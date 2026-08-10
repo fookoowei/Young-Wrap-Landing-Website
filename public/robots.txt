@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fookoowei.github.io/Young-Wrap-Landing-Website/sitemap.xml
