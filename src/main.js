@@ -17,7 +17,6 @@ function wireShopLinks() {
     for (const el of document.querySelectorAll(`[data-shop="${key}"]`)) el.href = url
   }
   document.querySelector('.shop-address').textContent = SHOP.addressLine
-  document.querySelector('.shop-hours').textContent = SHOP.hours
 }
 
 async function initViewer() {

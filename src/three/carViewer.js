@@ -81,22 +81,43 @@ export async function createCarViewer(container) {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
   renderer.setSize(container.clientWidth, container.clientHeight)
   renderer.toneMapping = THREE.ACESFilmicToneMapping
+  renderer.shadowMap.enabled = true
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap
   container.appendChild(renderer.domElement)
 
   const scene = new THREE.Scene()
   const pmrem = new THREE.PMREMGenerator(renderer)
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture
+  scene.environmentIntensity = 0.55
 
-  const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 100)
-  camera.position.set(4.5, 1.9, 4.5)
+  // Branded studio lighting: white key from the front-right, YW-amber rim from behind.
+  const keyLight = new THREE.DirectionalLight(0xffffff, 1.6)
+  keyLight.position.set(3.5, 5, 2.5)
+  keyLight.castShadow = true
+  keyLight.shadow.mapSize.set(1024, 1024)
+  keyLight.shadow.camera.left = -4
+  keyLight.shadow.camera.right = 4
+  keyLight.shadow.camera.top = 4
+  keyLight.shadow.camera.bottom = -4
+  scene.add(keyLight)
+  const rimLight = new THREE.DirectionalLight(0xf5a623, 2.2)
+  rimLight.position.set(-4, 2, -4)
+  scene.add(rimLight)
+
+  const floor = new THREE.Mesh(new THREE.CircleGeometry(8, 48), new THREE.ShadowMaterial({ opacity: 0.4 }))
+  floor.rotation.x = -Math.PI / 2
+  floor.receiveShadow = true
+  scene.add(floor)
+
+  const camera = new THREE.PerspectiveCamera(36, container.clientWidth / container.clientHeight, 0.1, 100)
+  camera.position.set(4.4, 1.5, 4.7)
 
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
   controls.enablePan = false
-  controls.minDistance = 3.2
-  controls.maxDistance = 8
+  controls.enableZoom = false
   controls.maxPolarAngle = Math.PI / 2.05
-  controls.target.set(0, 0.6, 0)
+  controls.target.set(0, 0.55, 0)
   controls.autoRotate = true
   controls.autoRotateSpeed = 1.1
   let idleTimer
@@ -109,9 +130,10 @@ export async function createCarViewer(container) {
   } catch {
     car = buildFallbackCar()
   }
+  car.object.traverse((o) => { if (o.isMesh) o.castShadow = true })
   scene.add(car.object)
 
-  const bodyMaterial = new THREE.MeshPhysicalMaterial({ color: 0x0b0b0d, roughness: 0.12, clearcoat: 1.0, clearcoatRoughness: 0.04 })
+  const bodyMaterial = new THREE.MeshPhysicalMaterial({ color: 0xf5a623, roughness: 0.12, clearcoat: 1.0, clearcoatRoughness: 0.04 })
   for (const mesh of car.bodyMeshes) mesh.material = bodyMaterial
 
   function applyWrap(params) {

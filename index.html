@@ -5,19 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Young Wrap — Car Wraps, PPF, Tint & Coating | Kota Kemuning, Shah Alam</title>
     <meta name="description" content="Young Wrap: premium car wraps, paint protection film (PPF), window tint, ceramic coating and detailing in Kota Kemuning, Shah Alam, Selangor. WhatsApp us for a quote." />
+    <meta name="theme-color" content="#0a0a0b" />
     <!-- PLACEHOLDER og:url/og:image — update after deploy + real photos -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Young Wrap — Car Wraps, PPF, Tint & Coating" />
     <meta property="og:description" content="Premium car wraps, PPF, tint & coating in Kota Kemuning, Shah Alam. WhatsApp us for a quote." />
     <meta property="og:url" content="https://fookoowei.github.io/Young-Wrap-Landing-Website/" />
-    <meta property="og:image" content="https://fookoowei.github.io/Young-Wrap-Landing-Website/images/gallery-1.svg" />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏎️</text></svg>" />
+    <meta property="og:image" content="https://fookoowei.github.io/Young-Wrap-Landing-Website/images/logo.jpg" />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M18 22 L50 54 L82 22 L82 46 L50 78 L18 46 Z' fill='%23f5a623'/></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,500;1,700&family=Saira:wght@400;500;600&display=swap" rel="stylesheet" />
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "AutoBodyShop",
       "name": "Young Wrap",
       "description": "Car wraps, paint protection film, window tint, ceramic coating and detailing.",
+      "image": "https://fookoowei.github.io/Young-Wrap-Landing-Website/images/logo.jpg",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "42, Jalan Anggerik Vanilla Ad 31/Ad, Kota Kemuning",
@@ -27,6 +32,10 @@
         "addressCountry": "MY"
       },
       "telephone": "+60196002910",
+      "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "10:00", "closes": "19:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "15:00" }
+      ],
       "url": "https://fookoowei.github.io/Young-Wrap-Landing-Website/",
       "sameAs": [
         "https://www.instagram.com/young.wrap/",
@@ -38,7 +47,7 @@
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="#top">Young Wrap</a>
+      <a class="brand" href="#top">YOUNG<span class="brand-dot">·</span>WRAP</a>
       <nav class="site-nav">
         <a href="#services" data-i18n="nav.services">Services</a>
         <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
@@ -49,31 +58,46 @@
 
     <main id="top">
       <section class="hero">
-        <div class="hero-copy">
-          <p class="hero-eyebrow">Wraps | PPF | Tint | Coating</p>
-          <h1 data-i18n="hero.headline">Transform Your Ride</h1>
-          <p class="hero-sub" data-i18n="hero.sub">Premium car wraps, PPF, window tint & ceramic coating in Kota Kemuning, Shah Alam.</p>
-          <div class="cta-row">
-            <a class="btn btn-whatsapp" data-shop="whatsapp" href="#" data-i18n="hero.cta.whatsapp">WhatsApp Us</a>
-            <a class="btn btn-call" data-shop="tel" href="#" data-i18n="hero.cta.call">Call Now</a>
-          </div>
+        <div id="car-canvas" aria-label="Interactive 3D car preview">
+          <img class="viewer-fallback-img" src="images/gallery-1.svg" alt="Wrapped car preview" hidden />
         </div>
-        <div class="hero-viewer">
-          <div id="car-canvas" aria-label="Interactive 3D car preview">
-            <img class="viewer-fallback-img" src="images/gallery-1.svg" alt="Wrapped car preview" hidden />
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <div class="hero-overlay">
+          <div class="hero-copy">
+            <p class="hero-eyebrow">Wrap · PPF · Tint · Coating</p>
+            <h1 class="hero-headline">
+              <span data-i18n="hero.headline1">Wrap it.</span>
+              <span class="accent" data-i18n="hero.headline2">Drive it.</span>
+            </h1>
+            <p class="hero-sub" data-i18n="hero.sub">Premium car wraps, PPF, window tint & ceramic coating in Kota Kemuning, Shah Alam.</p>
+            <div class="cta-row">
+              <a class="btn btn-whatsapp" data-shop="whatsapp" href="#" target="_blank" rel="noopener" data-i18n="hero.cta.whatsapp">WhatsApp Us</a>
+              <a class="btn btn-call" data-shop="tel" href="#" data-i18n="hero.cta.call">Call Now</a>
+            </div>
           </div>
-          <p class="hero-hint" data-i18n="hero.hint">Drag to spin the car — tap a color to preview a wrap</p>
-          <div class="wrap-picker">
-            <p class="picker-title" data-i18n="picker.title">Pick your wrap</p>
-            <div id="wrap-colors" class="swatches" role="listbox" aria-label="Wrap colors"></div>
-            <p class="picker-title" data-i18n="picker.finish">Finish</p>
-            <div id="wrap-finishes" class="finishes" role="listbox" aria-label="Wrap finishes"></div>
+          <div class="hero-bottom">
+            <p class="hero-hint" data-i18n="hero.hint">Drag to spin the car — tap a color to preview a wrap</p>
+            <div class="wrap-picker">
+              <p class="picker-title" data-i18n="picker.title">Pick your wrap</p>
+              <div id="wrap-colors" class="swatches" role="listbox" aria-label="Wrap colors"></div>
+              <p class="picker-title" data-i18n="picker.finish">Finish</p>
+              <div id="wrap-finishes" class="finishes" role="listbox" aria-label="Wrap finishes"></div>
+            </div>
           </div>
         </div>
       </section>
 
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span>Wrap</span><span>·</span><span>PPF</span><span>·</span><span>Tint</span><span>·</span><span>Coating</span><span>·</span><span>Detailing</span><span>·</span>
+          <span>Wrap</span><span>·</span><span>PPF</span><span>·</span><span>Tint</span><span>·</span><span>Coating</span><span>·</span><span>Detailing</span><span>·</span>
+          <span>Wrap</span><span>·</span><span>PPF</span><span>·</span><span>Tint</span><span>·</span><span>Coating</span><span>·</span><span>Detailing</span><span>·</span>
+        </div>
+      </div>
+
       <section id="services" class="services">
-        <h2 data-i18n="services.title">Our Services</h2>
+        <p class="eyebrow" data-i18n="services.title">Our Services</p>
+        <h2 class="visually-hidden" data-i18n="services.title">Our Services</h2>
         <div class="service-grid">
           <article><h3 data-i18n="services.wrap.title">Full & Partial Wraps</h3><p data-i18n="services.wrap.desc">Premium cast vinyl in any colour and finish. Change the look, protect the original paint.</p></article>
           <article><h3 data-i18n="services.ppf.title">Paint Protection Film</h3><p data-i18n="services.ppf.desc">Self-healing transparent film that shields your paint from stone chips and scratches.</p></article>
@@ -84,41 +108,46 @@
       </section>
 
       <section id="gallery" class="gallery">
-        <h2 data-i18n="gallery.title">Recent Work</h2>
-        <p data-i18n="gallery.sub">A few of our favourite transformations. See more on Instagram.</p>
+        <p class="eyebrow" data-i18n="gallery.title">Recent Work</p>
+        <p class="section-sub" data-i18n="gallery.sub">A few of our favourite transformations. See more on Instagram.</p>
         <div id="gallery-grid" class="gallery-grid"></div>
       </section>
 
       <section class="kol">
-        <h2 data-i18n="kol.title">As Seen On</h2>
-        <p data-i18n="kol.desc">Trusted by Charles Tee (@charlest33) — watch the collab on Instagram.</p>
-        <a class="btn btn-outline" data-shop="kol" href="#" target="_blank" rel="noopener" data-i18n="kol.cta">View the post</a>
+        <p class="kol-eyebrow" data-i18n="kol.title">As Seen On</p>
+        <a class="kol-handle" data-shop="kol" href="#" target="_blank" rel="noopener">@charlest33</a>
+        <p class="kol-desc" data-i18n="kol.desc">Trusted by Charles Tee (@charlest33) — watch the collab on Instagram.</p>
+        <a class="btn btn-dark" data-shop="kol" href="#" target="_blank" rel="noopener" data-i18n="kol.cta">View the post</a>
       </section>
 
       <section id="contact" class="contact">
-        <h2 data-i18n="contact.title">Find Us</h2>
+        <p class="eyebrow" data-i18n="contact.title">Find Us</p>
         <div class="contact-grid">
-          <div>
+          <div class="contact-info">
             <h3 data-i18n="contact.address">Address</h3>
             <p class="shop-address">42, Jalan Anggerik Vanilla Ad 31/Ad, Kota Kemuning, 40460 Shah Alam, Selangor</p>
             <h3 data-i18n="contact.hours">Opening Hours</h3>
-            <p class="shop-hours">Mon–Sat 10:00 AM – 7:00 PM</p>
+            <p class="shop-hours" data-i18n="contact.hoursValue">Mon–Fri 10:00 AM – 7:00 PM · Sat 10:00 AM – 3:00 PM · Sun closed</p>
             <a class="btn btn-outline" data-shop="maps" href="#" target="_blank" rel="noopener" data-i18n="contact.directions">Get Directions</a>
           </div>
           <div class="socials">
-            <a data-shop="instagram" href="#" target="_blank" rel="noopener">Instagram</a>
-            <a data-shop="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+            <a data-shop="instagram" href="#" target="_blank" rel="noopener">Instagram ↗</a>
+            <a data-shop="facebook" href="#" target="_blank" rel="noopener">Facebook ↗</a>
+            <a data-shop="whatsapp" href="#" target="_blank" rel="noopener">WhatsApp ↗</a>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
+      <img class="footer-logo" src="images/logo.jpg" alt="Young Wrap logo" width="150" height="150" loading="lazy" />
       <p data-i18n="footer.tagline">Your neighbourhood wrap installer — Wraps | PPF | Tint | Coating</p>
-      <p>© 2026 Young Wrap</p>
+      <p class="footer-copy">© 2026 Young Wrap</p>
     </footer>
 
-    <a class="whatsapp-fab" data-shop="whatsapp" href="#" aria-label="Chat on WhatsApp">💬</a>
+    <a class="whatsapp-fab" data-shop="whatsapp" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="#0a0a0b" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg>
+    </a>
 
     <dialog id="lightbox" class="lightbox">
       <button class="lightbox-close" type="button" aria-label="Close">×</button>

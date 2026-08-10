@@ -1,8 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-    <stop offset="0" stop-color="#14181d"/><stop offset="1" stop-color="#2a3340"/>
-  </linearGradient></defs>
-  <rect width="800" height="600" fill="url(#g)"/>
-  <text x="400" y="290" fill="#9aa3ad" font-family="system-ui" font-size="34" text-anchor="middle">Young Wrap</text>
-  <text x="400" y="335" fill="#5a636d" font-family="system-ui" font-size="22" text-anchor="middle">Photo 3 — real wrap photo coming soon</text>
+  <rect width="800" height="600" fill="#131316"/>
+  <path d="M310 230 L400 320 L490 230" stroke="#f5a623" stroke-width="30" fill="none" opacity="0.16"/>
+  <path d="M310 150 L400 240 L490 150" stroke="#f5a623" stroke-width="30" fill="none" opacity="0.08"/>
+  <text x="400" y="420" fill="#f5a623" font-family="system-ui" font-size="26" font-style="italic" font-weight="bold" text-anchor="middle" letter-spacing="6">YOUNG · WRAP</text>
+  <text x="400" y="460" fill="#98938a" font-family="system-ui" font-size="18" text-anchor="middle">Real wrap photo 3 coming soon</text>
 </svg>
