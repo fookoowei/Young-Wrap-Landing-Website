@@ -5,7 +5,7 @@
 
 ## Supplied by owner (pending — placeholders in use)
 - Phone/WhatsApp number → `src/config.js`
-- Full street address + hours → `src/config.js` and JSON-LD in `index.html`
+- Opening hours (address ✓ done) → `src/config.js` and JSON-LD in `index.html`
 - Logo + brand colors → `--brand-accent` in `src/styles/main.css`
 - Gallery photos → replace `public/images/gallery-*.svg`
 - Charles Tee collab post URL → `SHOP.kol.postUrl` in `src/config.js`
