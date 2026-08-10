@@ -2,6 +2,7 @@ import './styles/main.css'
 import { SHOP } from './config.js'
 import { initLanguageToggle, getSavedLanguage } from './i18n/i18n.js'
 import { WRAP_COLORS, WRAP_FINISHES, wrapParams } from './three/wraps.js'
+import { initGallery } from './gallery.js'
 
 function wireShopLinks() {
   const targets = {
@@ -76,4 +77,5 @@ async function initViewer() {
 
 wireShopLinks()
 initLanguageToggle(document.getElementById('lang-toggle'))
+initGallery()
 initViewer()
