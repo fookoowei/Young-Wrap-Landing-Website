@@ -1,5 +1,5 @@
 export const WRAP_COLORS = [
-  { id: 'yw-amber', hex: '#f5a623', name: { en: 'YW Amber', zh: '琥珀橙' } },
+  { id: 'yw-orange', hex: '#FA9C20', name: { en: 'YW Orange', zh: '炽橙' } },
   { id: 'midnight', hex: '#0b0b0d', name: { en: 'Midnight Black', zh: '午夜黑' } },
   { id: 'arctic', hex: '#e8eaed', name: { en: 'Arctic White', zh: '极地白' } },
   { id: 'nardo', hex: '#7b8087', name: { en: 'Nardo Grey', zh: '纳多灰' } },

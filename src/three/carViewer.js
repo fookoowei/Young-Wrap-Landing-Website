@@ -90,7 +90,7 @@ export async function createCarViewer(container) {
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture
   scene.environmentIntensity = 0.55
 
-  // Branded studio lighting: white key from the front-right, YW-amber rim from behind.
+  // Branded studio lighting: white key from the front-right, YW-orange rim from behind.
   const keyLight = new THREE.DirectionalLight(0xffffff, 1.6)
   keyLight.position.set(3.5, 5, 2.5)
   keyLight.castShadow = true
@@ -100,7 +100,7 @@ export async function createCarViewer(container) {
   keyLight.shadow.camera.top = 4
   keyLight.shadow.camera.bottom = -4
   scene.add(keyLight)
-  const rimLight = new THREE.DirectionalLight(0xf5a623, 2.2)
+  const rimLight = new THREE.DirectionalLight(0xFA9C20, 2.2)
   rimLight.position.set(-4, 2, -4)
   scene.add(rimLight)
 
@@ -133,7 +133,7 @@ export async function createCarViewer(container) {
   car.object.traverse((o) => { if (o.isMesh) o.castShadow = true })
   scene.add(car.object)
 
-  const bodyMaterial = new THREE.MeshPhysicalMaterial({ color: 0xf5a623, roughness: 0.12, clearcoat: 1.0, clearcoatRoughness: 0.04 })
+  const bodyMaterial = new THREE.MeshPhysicalMaterial({ color: 0xFA9C20, roughness: 0.12, clearcoat: 1.0, clearcoatRoughness: 0.04 })
   for (const mesh of car.bodyMeshes) mesh.material = bodyMaterial
 
   function applyWrap(params) {
