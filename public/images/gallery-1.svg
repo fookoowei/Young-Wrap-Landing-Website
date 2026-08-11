@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
-  <rect width="800" height="600" fill="#131316"/>
-  <path d="M310 230 L400 320 L490 230" stroke="#f5a623" stroke-width="30" fill="none" opacity="0.16"/>
-  <path d="M310 150 L400 240 L490 150" stroke="#f5a623" stroke-width="30" fill="none" opacity="0.08"/>
-  <text x="400" y="420" fill="#f5a623" font-family="system-ui" font-size="26" font-style="italic" font-weight="bold" text-anchor="middle" letter-spacing="6">YOUNG · WRAP</text>
-  <text x="400" y="460" fill="#98938a" font-family="system-ui" font-size="18" text-anchor="middle">Real wrap photo 1 coming soon</text>
-</svg>
