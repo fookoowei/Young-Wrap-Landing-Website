@@ -30,8 +30,6 @@ body {
 /* corner-cut panel shape used across cards/picker/tiles */
 .cut-corners,
 .wrap-picker,
-.service-grid article,
-.services-anything,
 .gallery-grid img,
 .kol-embed iframe,
 .map-embed {
@@ -253,27 +251,57 @@ body.menu-open { overflow: hidden; }
 }
 @keyframes marquee { to { transform: translateX(-33.333%); } }
 
-/* ---------- services ---------- */
-.service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 1rem; }
-.service-grid article {
-  background: var(--panel); border: 1px solid var(--line);
-  padding: 1.6rem 1.5rem 1.5rem;
-  transition: border-color 0.15s ease, transform 0.15s ease;
+/* ---------- about ---------- */
+.about-grid {
+  display: grid; grid-template-columns: 3fr 2fr; gap: 3rem;
+  align-items: start; margin-top: 0.5rem;
 }
-.service-grid article:hover { border-color: var(--orange); transform: translateY(-3px); }
-.service-grid h3 {
+.about-copy h2 {
+  font-family: var(--font-display); font-style: italic; font-weight: 700;
+  text-transform: uppercase; line-height: 1.05; letter-spacing: -0.01em;
+  font-size: clamp(1.9rem, 4.2vw, 2.7rem); margin-bottom: 1rem;
+}
+.about-copy p { color: var(--ink-dim); font-size: 1.05rem; max-width: 56ch; }
+.about-stats { display: flex; flex-direction: column; gap: 1.4rem; }
+.stat {
+  display: flex; flex-direction: column; gap: 0.2rem;
+  padding-top: 1rem; border-top: 1px solid var(--line);
+}
+.stat-num {
+  font-family: var(--font-display); font-style: italic; font-weight: 700;
+  font-size: 2.6rem; line-height: 1; color: var(--orange);
+}
+.stat-label { color: var(--ink-dim); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.about-figure { margin-top: 3rem; }
+.about-figure img { display: block; width: 100%; height: 50vh; object-fit: cover; }
+
+/* ---------- services ---------- */
+.service-rows { border-bottom: 1px solid var(--line); }
+.service-row {
+  display: grid; grid-template-columns: 3rem 1fr; align-items: baseline;
+  gap: 0 1.2rem; padding: 1.4rem 1rem;
+  border-top: 1px solid var(--line);
+  transition: background-color 0.2s ease;
+}
+.row-no {
+  font-family: var(--font-display); font-style: italic; font-weight: 700;
+  color: var(--ink-dim); font-size: 1rem;
+  transition: color 0.2s ease;
+}
+.service-row h3 {
+  grid-column: 2;
   font-family: var(--font-display); font-style: italic; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.02em;
-  font-size: 1.02rem; margin-bottom: 0.6rem; color: var(--ink);
+  font-size: 1.1rem; color: var(--ink);
 }
-.service-grid article:hover h3 { color: var(--orange); }
-.service-grid p { color: var(--ink-dim); font-size: 0.94rem; }
-.services-anything {
-  margin-top: 2.2rem; padding: 1.2rem 1.4rem;
-  border: 1px solid var(--orange);
-  background: color-mix(in srgb, var(--panel) 48%, transparent);
-  color: var(--ink-dim); font-size: 0.95rem;
+.service-row p {
+  grid-column: 2; color: var(--ink-dim); font-size: 0.94rem;
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
 }
+.service-row:hover, .service-row:focus-within { background: var(--panel); }
+.service-row:hover .row-no, .service-row:focus-within .row-no { color: var(--orange); }
+.service-row:hover p, .service-row:focus-within p { max-height: 6rem; opacity: 1; margin-top: 0.5rem; }
 
 /* ---------- gallery ---------- */
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0.9rem; margin-top: 1.6rem; }
@@ -395,10 +423,12 @@ body:has(.cursor-ring) .finish-btn {
 /* ---------- responsive / a11y ---------- */
 @media (max-width: 939px) {
   .contact-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .service-row p { max-height: none; opacity: 1; margin-top: 0.5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .marquee-track { animation: none; }
-  .btn, .swatch, .service-grid article, .gallery-grid img, .whatsapp-fab { transition: none; }
+  .btn, .swatch, .gallery-grid img, .whatsapp-fab, .service-row p { transition: none; }
   .menu-toggle span, .menu-links a { transition: none; }
 }
