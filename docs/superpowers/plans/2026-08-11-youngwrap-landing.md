@@ -14,7 +14,8 @@
 - New palette: orange `#FF6B00` (accent, replaces amber `#f5a623`), deep orange `#D45800` (replaces `#c97f16`), black/white/carbon tokens unchanged. Orange = accents/CTAs only.
 - Existing conventions win: `data-shop` link wiring, `data-i18n` keys (update BOTH `en`+`zh` in `src/i18n/translations.js`), corner-cut clip-path aesthetic, dynamic-import of Three.js.
 - `npm test` (vitest) and `npm run build` must pass at every commit.
-- Hero video file path: `public/videos/wrapping.mp4` (current placeholder clip; owner's nanobanana montage later overwrites the same file — see `docs/assets-brief.md`).
+- Hero video: use `public/videos/car-wrapping.mp4` (owner's newer clip, 32 MB — MUST be re-encoded to ≤ 8 MB before shipping); owner's nanobanana montage later overwrites the same file — see `docs/assets-brief.md`. Delete the older `wrapping.mp4` once swapped.
+- Design references (owner-picked): wearebrain.com — headline text sitting directly on dark video, minimal chrome; payanamuseum.com — alternating text/image rhythm, curatorial voice, timeline-style info blocks; 363sudbury.com — emotional-first tagline, lean breathing copy; car-wash-wcopilot.webflow.io — service landing structure. Apply as: keep copy sparse, big type over video, alternate section rhythms, don't crowd sections.
 
 ---
 
@@ -43,7 +44,7 @@ Restructure: `.hero` becomes a full-viewport video hero (reference: dark full-bl
 ```html
 <section class="hero">
   <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-    <source src="videos/wrapping.mp4" type="video/mp4" />
+    <source src="videos/car-wrapping.mp4" type="video/mp4" />
   </video>
   <div class="hero-scrim" aria-hidden="true"></div>
   <div class="hero-overlay">
@@ -86,27 +87,74 @@ Restructure: `.hero` becomes a full-viewport video hero (reference: dark full-bl
 Add nav link `<a href="#configurator" data-i18n="nav.configurator">3D Studio</a>` before Services; add `nav.configurator` + `configurator.title` to BOTH langs in `src/i18n/translations.js` (zh: `3D 工作室` / `设计你的车膜`).
 
 - [ ] **Step 3: CSS** — add `.hero-video { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }`; keep/strengthen `.hero-scrim` gradient (left side ≥ .85 black for text); `.configurator { }` styles: canvas container `height: min(70vh, 640px)` with the existing radial stage background moved from the old hero rules; wrap-picker centered below canvas. Delete/adapt now-unused hero-bottom rules. Follow the existing corner-cut / eyebrow patterns.
-- [ ] **Step 4:** Check video size: `ls -lh public/videos/wrapping.mp4` — if > 10 MB re-encode (`ffmpeg -i in.mp4 -vf scale=1920:-2 -an -crf 28 out.mp4`); if ffmpeg missing, note size in ASSETS.md for the owner.
+- [ ] **Step 4:** Re-encode the hero video (32 MB → target ≤ 8 MB): `ffmpeg -i public/videos/car-wrapping.mp4 -vf scale=1920:-2 -an -crf 30 -preset slow -movflags +faststart /tmp/hero.mp4 && mv /tmp/hero.mp4 public/videos/car-wrapping.mp4` (raise crf to 32 if still heavy; install ffmpeg via `brew install ffmpeg` if missing). Delete the superseded `public/videos/wrapping.mp4`.
 - [ ] **Step 5: Verify** — `npm test` passes; dev server: video plays behind headline, CTAs work, configurator section fully functional (spin + swatches + finishes), mobile 375px layout sane, no console errors.
 - [ ] **Step 6: Commit** — `git commit -am "feat: background video hero; move 3D viewer to configurator section"`
 
 ---
 
-### Task 3: GR86 model (manual sourcing, judgement required)
+### Task 3: GR86 model (LICENSING BLOCKER — judgement required)
 
 **Files:**
 - Modify: `public/models/car.glb` (replace), `ASSETS.md`, possibly `src/three/carViewer.js` (body-material matching)
+- Delete: `public/models/2021_pandem_gr86_v1_aero_kit/` (see below)
 
-- [ ] **Step 1:** Read `src/three/carViewer.js` first — note the model path and how body/paint meshes are identified.
-- [ ] **Step 2:** Source a downloadable CC0/CC-BY **Toyota GR86 / GT86 / Subaru BRZ** GLB (Sketchfab license filters). Must have a distinct body/paint material. If none acceptable, keep a comparable coupe and record the substitution for the owner.
-- [ ] **Step 3:** Optimize: `npx @gltf-transform/cli optimize in.glb public/models/car.glb --texture-compress webp` — target ≤ 4 MB. Adjust carViewer's material-matching to the new model's material names; re-verify all swatches recolor body only (not glass/wheels/lights).
-- [ ] **Step 4:** Record attribution (author, URL, license, credit line) in `ASSETS.md`; if CC-BY, add credit to the site footer.
-- [ ] **Step 5:** `npm test && npm run build` pass; visual check.
-- [ ] **Step 6: Commit** — `git commit -am "feat: swap 3D model to Toyota GR86"`
+⚠️ The owner-downloaded `2021_pandem_gr86_v1_aero_kit` (Ddiaz Design, Sketchfab) is **CC-BY-NC-SA-4.0 — non-commercial only**. A business marketing site is commercial use, so this model MUST NOT ship. Do not wire it up.
+
+- [ ] **Step 1:** Read `src/three/carViewer.js` — note model path and how body/paint meshes are identified.
+- [ ] **Step 2:** Source a **commercial-OK** (CC0 or CC-BY) Toyota GR86 / GT86 / Subaru BRZ GLB (Sketchfab downloadable + license filters; also try Poly Haven/pmndrs market). Must have a distinct body/paint material.
+- [ ] **Step 3:** If no commercial-OK GR86-family model exists: STOP and present the owner three options — (a) buy one with a standard royalty-free license (Sketchfab Store/CGTrader, typically USD 10–50), (b) message Ddiaz Design for written commercial permission, (c) keep the current generic coupe for launch. Wait for their pick.
+- [ ] **Step 4:** Optimize the chosen model: `npx @gltf-transform/cli optimize in.glb public/models/car.glb --texture-compress webp` — target ≤ 4 MB. Adjust carViewer's material-matching to the new material names; verify swatches recolor body only (not glass/wheels/lights). Remove the NC model folder from the repo.
+- [ ] **Step 5:** Record attribution (author, URL, license, credit line) in `ASSETS.md`; if CC-BY, add the credit line to the site footer.
+- [ ] **Step 6:** `npm test && npm run build` pass; visual check.
+- [ ] **Step 7: Commit** — `git commit -am "feat: swap 3D model to Toyota GR86"`
 
 ---
 
-### Task 4: Google Maps iframe embed
+### Task 4: Real gallery photos → WebP
+
+**Files:**
+- Modify: `src/gallery.js`, `public/images/` (10 owner photos: `car1.jpg…car10.webp`, mixed formats)
+
+- [ ] **Step 1:** Convert/normalize all 10 to WebP ≤ 1600 px wide (owner asked for all-WebP). One-off script with sharp:
+  `npm i -D sharp` then `node -e "const s=require('sharp'),fs=require('fs');fs.readdirSync('public/images').filter(f=>/^car\d+\.(jpg|webp)$/.test(f)).forEach(async f=>{const n=f.replace(/\..+$/,'.webp');await s('public/images/'+f).resize({width:1600,withoutEnlargement:true}).webp({quality:78}).toFile('public/images/tmp-'+n);fs.renameSync('public/images/tmp-'+n,'public/images/'+n)})"` — then delete leftover `.jpg` originals. Target ≤ 250 KB each (`ls -lh` check; lower quality to 70 if needed).
+- [ ] **Step 2:** Update `src/gallery.js` IMAGES to the ten real files with descriptive alts (look at each photo to write the alt, e.g. "Matte black full wrap on a sedan by Young Wrap"):
+
+```js
+const IMAGES = Array.from({ length: 10 }, (_, i) => ({
+  src: `${import.meta.env.BASE_URL}images/car${i + 1}.webp`,
+  alt: 'REPLACE with per-photo description during implementation',
+}))
+```
+
+- [ ] **Step 3:** Gallery-1.svg was also the 3D `viewer-fallback-img` — point that `<img>` at `images/car1.webp` instead.
+- [ ] **Step 4:** Verify grid + lightbox with real photos at desktop and 375 px; `npm run build` passes; committed images total ≤ ~2.5 MB.
+- [ ] **Step 5: Commit** — `git commit -am "feat: real wrap photos in gallery as webp"`
+
+---
+
+### Task 5: "We wrap anything" mention
+
+**Files:**
+- Modify: `index.html`, `src/i18n/translations.js`, `src/styles/main.css` (if needed)
+
+Owner: wraps aren't only cars — pickleball paddles, vans, planes, boats… always challenging themselves. Keep it VERY brief — one strip, no new heavy section.
+
+- [ ] **Step 1:** After the services grid, add:
+
+```html
+<p class="services-anything">
+  <span data-i18n="services.anything">Not just cars — we've wrapped pickleball paddles, vans, boats, even aircraft. If it has a surface, we'll wrap it.</span>
+</p>
+```
+
+- [ ] **Step 2:** i18n both langs (zh: `不只是汽车 — 匹克球拍、货车、船艇、甚至飞机我们都包过。只要有表面，我们就能包。`). Style as a single accent-bordered line matching the corner-cut aesthetic, muted text with orange highlight on "anything"/「都能包」.
+- [ ] **Step 3:** Verify + `npm test` (i18n parity) passes.
+- [ ] **Step 4: Commit** — `git commit -am "feat: brief we-wrap-anything mention"`
+
+---
+
+### Task 6: Google Maps iframe embed
 
 **Files:**
 - Modify: `src/config.js`, `index.html` (`#contact`), `src/main.js`, `src/styles/main.css`
@@ -119,7 +167,7 @@ Add nav link `<a href="#configurator" data-i18n="nav.configurator">3D Studio</a>
 
 ---
 
-### Task 5: KOL Instagram post iframe
+### Task 7: KOL Instagram post iframe
 
 **Files:**
 - Modify: `index.html` (`.kol`), `src/main.js`, `src/styles/main.css`
@@ -147,7 +195,7 @@ if (SHOP.kol.postUrl) {
 
 ---
 
-### Task 6: Full verification + push
+### Task 8: Full verification + push
 
 - [ ] **Step 1:** `npm test` → all pass. `npm run build && npm run preview` → walk every section from the production bundle at desktop + 375 px widths.
 - [ ] **Step 2:** Lighthouse (mobile): SEO ≥ 95, perf ≥ 80; fix flagged issues (likely video weight — see Task 2 Step 4).

@@ -6,30 +6,33 @@ Everything the site needs from the owner, and the generation prompts for nanoban
 
 | Asset | Target file | Status |
 |---|---|---|
-| Hero background video (10–20 s loop, 16:9, ≤ 8 MB) | `public/videos/wrapping.mp4` (overwrite) | rough clip in place — montage pending |
+| Hero background video (10–20 s loop, 16:9, ≤ 8 MB) | `public/videos/car-wrapping.mp4` (overwrite) | rough clip in place — montage pending |
 | Hero poster frame (first frame as JPG) | `public/videos/hero-poster.jpg` | pending |
-| 6–10 gallery photos | `public/images/` (replace `gallery-*.svg`) | pending |
-| Charles Tee collab post URL (confirm exact post) | `src/config.js` → `kol.postUrl` | placeholder guess in place |
+| Gallery photos | `public/images/car1–10` | ✅ supplied (webp conversion in plan Task 4) |
+| Charles Tee collab post URL | `src/config.js` → `kol.postUrl` | ✅ confirmed by owner |
+| GR86 3D model | `public/models/` | ⚠️ supplied model is CC-BY-NC (non-commercial) — cannot ship; see plan Task 3 |
+
+**Note from owner:** hero video must NOT show the owner's brother (or any recognizable person) — close-up wrapping process shots only.
 
 ## Hero video — recommended recipe
 
 Best result = **real shop clips as the backbone, AI b-roll as filler.** Real wrapping footage of the actual shop builds trust; AI clips fill gaps where no footage exists. Aim for 4–6 snippets × 2–3 s each, hard cuts, exported 1920×1080, H.264, muted, loopable (last shot flows back into the first). Keep overall exposure DARK — white text must stay readable on top.
 
-### Prompt A — image-to-video (use brother's photos as input frames)
+### Text-to-video prompts — close-up process only, NO people/faces
 
-> Cinematic slow-motion shot inside a dark professional car wrap studio, moody low-key lighting with warm orange rim light. The subject from the reference photo works on a sports car panel, smoothing matte vinyl wrap with a squeegee, sparks of reflected orange light on the car body. Shallow depth of field, dark charcoal background, embers of orange bokeh. Color palette: deep black, warm orange (#FF6B00) accents, white highlights. Slow dolly-in camera move, 24 fps film look, high contrast, no text, no watermark, underexposed background suitable for white text overlay.
+Generate each line as its own standalone 2–3 s clip. Every prompt deliberately frames hands/tools/surfaces only:
 
-### Prompt B — text-to-video b-roll (no reference image needed)
+> Extreme close-up, slow motion: gloved hands peel bright orange vinyl wrap film off its backing paper, film catches warm studio light, dark background, cinematic shallow depth of field, orange and black color palette, hands and film only, no face, no person visible beyond gloves, no text, no watermark.
 
-Generate several variations, one per line — each is a standalone 2–3 s clip:
+> Macro shot: heat gun softens vinyl wrap over a car fender curve, faint heat shimmer rising, dark moody garage lit by a single warm orange practical light, cinematic film grain, tools and car surface only, no people, no text, no watermark.
 
-> Extreme close-up, slow motion: gloved hands peel bright orange vinyl wrap film off its backing paper, film catches warm studio light, dark background, cinematic shallow depth of field, orange and black color palette, no text.
+> Close-up: felt-edge squeegee glides across freshly applied gloss black vinyl on a car door, micro air bubbles vanish behind it, warm orange rim lighting against near-black shadows, slow motion 120 fps look, gloved hand only, no face, no text.
 
-> Macro shot: heat gun softens vinyl wrap over a car fender curve, faint heat shimmer, dark moody garage lit by a single warm orange practical light, cinematic film grain, no text.
+> Macro slow motion: sharp blade trims excess matte vinyl along a car panel edge, clean cut line revealing perfect wrap edge, dark background with orange accent light, gloved fingertips only, no person, no text.
 
-> Slow orbit around a matte black Toyota GR86 sports coupe with subtle orange accents in a dark showroom, single overhead spotlight, reflections gliding across the body, very dark background, cinematic, loopable camera move, no text.
+> Extreme close-up: iridescent color-shift vinyl flexes and catches light, hues rolling from orange to deep purple across the film surface, black void background, cinematic, abstract, loopable, no hands, no text.
 
-> Close-up squeegee glides across freshly applied gloss vinyl on a car door, water beads scatter, warm orange rim lighting against near-black shadows, slow motion 120 fps look, no text.
+> Slow orbit around a matte black Toyota GR86 sports coupe with subtle orange accents in a dark empty showroom, single overhead spotlight, reflections gliding across the body, very dark background, cinematic, loopable camera move, no people, no text, no watermark.
 
 ### Prompt C — poster frame (image, not video)
 
