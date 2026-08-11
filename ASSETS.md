@@ -7,15 +7,17 @@
 
 ### GR86 model search (for the record)
 - Sketchfab has several CC-BY (attribution) Toyota GR86/GT86 models confirmed downloadable via the public API (e.g. "Toyota GR86 (ZN8)" by Car2022, "Toyota GT86 3D Model (Free)" by mpgs.studio, "GR86" by sr._suave_edits, "toyota gt 86" by klikker228666) — but Sketchfab's actual file download endpoint requires an authenticated session (`Authentication credentials were not provided`), which was not available in this environment. Not used.
-- The owner's existing `public/models/2021_pandem_gr86_v1_aero_kit/` (Ddiaz Design, Sketchfab) is CC-BY-NC-SA-4.0 — non-commercial only. Left on disk (gitignored), not wired up, not committed.
+- The owner's existing `assets-src/models/2021_pandem_gr86_v1_aero_kit/` (Ddiaz Design, Sketchfab) is CC-BY-NC-SA-4.0 — non-commercial only. Left on disk (gitignored), not wired up, not committed.
 - Poly Pizza's "Toyota AE86" by IvOfficial (CC-BY 3.0, https://poly.pizza/m/ZEFWmOPSgh) was also downloaded and inspected, but its body and all four wheels share a single baked "Body" material/texture — recoloring the body would also recolor the wheels, which fails the "swatches must not touch wheels/glass" requirement without repainting the model (out of scope). Rejected in favor of the RX-7's properly separated materials.
 - If an actual GR86/GT86/BRZ is wanted later: either (a) buy a royalty-free-licensed model (Sketchfab Store/CGTrader, ~USD 10–50) — several already-modeled options showed in search — or (b) log into Sketchfab and download one of the CC-BY models listed above (credit the author in this file and the footer), or (c) message Ddiaz Design for written commercial permission to use the Pandem GR86 kit already on disk.
 
 ## Logo
-- `public/images/logo.jpg` — official Young Wrap logo (from owner). Brand amber `#f5a623` derived from it → `--amber` in `src/styles/main.css`.
+- `public/logo/yw.jpg` — official Young Wrap logo (from owner). Brand orange `#FA9C20` sampled from it → `--orange` in `src/styles/main.css`.
 
-## Supplied by owner (pending — placeholders in use)
-- Gallery photos → replace `public/images/gallery-*.svg`
-- Charles Tee collab post URL → `SHOP.kol.postUrl` in `src/config.js`
+## Gallery
+- 10 real car wrap photos shipped as WebP: `public/images/car1–10.webp`.
+
+## KOL / Influencer collaboration
+- Charles Tee collab post: `https://www.instagram.com/p/DbX3XIbO2lg/` — confirmed by owner on 2026-08-11. Wired to `SHOP.kol.postUrl` in `src/config.js`.
 
 Done: phone ✓, address ✓, hours ✓ (Mon–Fri 10–7, Sat 10–3, Sun closed), logo ✓.
