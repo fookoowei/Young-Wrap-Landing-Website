@@ -11,7 +11,7 @@
 ## Global Constraints
 
 - Commit messages: plain conventional-commit style, **no AI/Claude attribution lines** (hard user requirement).
-- New palette: orange `#FF6B00` (accent, replaces amber `#f5a623`), deep orange `#D45800` (replaces `#c97f16`), black/white/carbon tokens unchanged. Orange = accents/CTAs only.
+- New palette: logo orange `#FA9C20` (sampled from public/logo/yw.jpg; accent, replaces amber `#f5a623`), deep variant `#C87C19` (replaces `#c97f16`), black/white/carbon tokens unchanged. Orange = accents/CTAs only. Owner: match the logo color, per 2026-08-11 instruction.
 - Existing conventions win: `data-shop` link wiring, `data-i18n` keys (update BOTH `en`+`zh` in `src/i18n/translations.js`), corner-cut clip-path aesthetic, dynamic-import of Three.js.
 - `npm test` (vitest) and `npm run build` must pass at every commit.
 - Hero video: use `public/videos/car-wrapping.mp4` (owner's newer clip, 32 MB — MUST be re-encoded to ≤ 8 MB before shipping); owner's nanobanana montage later overwrites the same file — see `docs/assets-brief.md`. Delete the older `wrapping.mp4` once swapped.
