@@ -36,7 +36,7 @@ export const WRAP_FINISHES = {
 
 export function wrapParams(colorId, finishId, overrideHex) {
   const color = WRAP_COLORS.find((c) => c.id === colorId)
-  const finish = WRAP_FINISHES[finishId]
+  const finish = Object.hasOwn(WRAP_FINISHES, finishId) ? WRAP_FINISHES[finishId] : undefined
   if (!overrideHex && !color) throw new Error(`Unknown wrap combination: ${colorId}/${finishId}`)
   if (!finish) throw new Error(`Unknown wrap combination: ${colorId}/${finishId}`)
   const hex = overrideHex ?? color.hex

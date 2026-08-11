@@ -11,7 +11,7 @@ function parseHash(hash) {
   const [, hex, finish] = match
   return {
     hex: `#${hex.toUpperCase()}`,
-    finishId: WRAP_FINISHES[finish] ? finish : 'gloss',
+    finishId: Object.hasOwn(WRAP_FINISHES, finish) ? finish : 'gloss',
   }
 }
 
@@ -108,6 +108,7 @@ async function initViewer() {
   customColor.type = 'color'
   customColor.id = 'custom-color'
   customColor.setAttribute('aria-label', t(lang, 'picker.custom'))
+  customColor.setAttribute('role', 'option')
   customColor.value = currentHex()
   customColor.addEventListener('input', (e) => {
     customHex = e.target.value.toUpperCase()

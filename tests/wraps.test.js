@@ -48,6 +48,12 @@ describe('wrap data', () => {
     expect(() => wrapParams(WRAP_COLORS[0].id, 'nope')).toThrow()
   })
 
+  it('wrapParams treats prototype-inherited finish ids as unknown, not as a finish', () => {
+    expect(() => wrapParams('yw-orange', 'constructor')).toThrow()
+    expect(() => wrapParams('yw-orange', 'toString')).toThrow()
+    expect(() => wrapParams('yw-orange', 'hasOwnProperty')).toThrow()
+  })
+
   it('wrapParams("yw-orange", "gloss") returns the orange hex', () => {
     const p = wrapParams('yw-orange', 'gloss')
     expect(p.color).toBe('#FA9C20')
