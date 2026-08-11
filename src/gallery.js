@@ -1,6 +1,19 @@
-const IMAGES = [1, 2, 3, 4, 5, 6].map((i) => ({
-  src: `${import.meta.env.BASE_URL}images/gallery-${i}.svg`,
-  alt: `Young Wrap project ${i}`, // replace with descriptive alts when real photos arrive
+const ALT_TEXTS = [
+  'Gloss grey wrap with an orange racing stripe on a Ford Mustang coupe by Young Wrap',
+  'Gloss magenta pink full wrap on a Mercedes-Benz A-Class AMG hatchback by Young Wrap',
+  'Gloss red wrap with a black roof on a Porsche 911 by Young Wrap',
+  'Gloss black full wrap on a Tesla Model Y by Young Wrap',
+  'Pearl white full wrap on a Porsche Taycan electric sedan by Young Wrap',
+  'Satin gunmetal wrap with a carbon-fibre hood and splitter on a Ford Mustang coupe by Young Wrap',
+  'Gloss maroon wrap with a carbon-fibre hood on a modified Honda Civic sedan by Young Wrap',
+  'Red and white racing livery wrap on a Toyota GR86 by Young Wrap',
+  'Satin silver chrome wrap on a BMW 5 Series sedan by Young Wrap',
+  'Gloss gunmetal wrap with a carbon-fibre hood on a Honda Civic Type R by Young Wrap',
+]
+
+const IMAGES = ALT_TEXTS.map((alt, i) => ({
+  src: `${import.meta.env.BASE_URL}images/car${i + 1}.webp`,
+  alt,
 }))
 
 export function initGallery() {
