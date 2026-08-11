@@ -62,7 +62,11 @@
       </nav>
       <div class="menu-meta">
         <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language">中文</button>
-        <div class="menu-socials"><!-- populated by Task 9's icon set; until then text links --><a data-shop="instagram" href="#" target="_blank" rel="noopener">Instagram</a><a data-shop="facebook" href="#" target="_blank" rel="noopener">Facebook</a></div>
+        <div class="menu-socials">
+          <a data-shop="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+          <a data-shop="facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M15 3h-2.2C10.4 3 9 4.5 9 7v2.4H7V13h2v8h3.2v-8h2.6l.4-3.6h-3V7.3c0-1 .3-1.6 1.6-1.6H15V3Z"/></svg></a>
+          <a data-shop="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg></a>
+        </div>
         <a class="menu-phone" data-shop="tel" href="#"></a>
       </div>
     </div>
@@ -151,29 +155,41 @@
 
       <section id="contact" class="contact">
         <p class="eyebrow" data-i18n="contact.title" data-reveal>Find Us</p>
-        <div class="contact-grid">
-          <div class="contact-info">
-            <h3 data-i18n="contact.address">Address</h3>
-            <p class="shop-address">42, Jalan Anggerik Vanilla Ad 31/Ad, Kota Kemuning, 40460 Shah Alam, Selangor</p>
-            <h3 data-i18n="contact.hours">Opening Hours</h3>
+        <div class="contact-grid contact-grid--form">
+          <form id="quote-form" class="quote-form" data-reveal>
+            <label><span data-i18n="form.name">Name</span><input name="name" required autocomplete="name" /></label>
+            <label><span data-i18n="form.car">Car model</span><input name="car" placeholder="e.g. GR86" /></label>
+            <label><span data-i18n="form.service">Service</span>
+              <select name="service">
+                <option data-i18n="services.wrap.title">Full & Partial Wraps</option>
+                <option data-i18n="services.ppf.title">Paint Protection Film</option>
+                <option data-i18n="services.tint.title">Window Tint</option>
+                <option data-i18n="services.coating.title">Ceramic Coating</option>
+                <option data-i18n="services.detailing.title">Detailing</option>
+              </select></label>
+            <label><span data-i18n="form.message">Message</span><textarea name="message" rows="4"></textarea></label>
+            <button class="btn btn-whatsapp" type="submit" data-i18n="form.send">Send via WhatsApp</button>
+          </form>
+          <div class="contact-side" data-reveal>
+            <iframe class="map-embed" src="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Young Wrap location on Google Maps"></iframe>
+            <p class="shop-address"></p>
             <p class="shop-hours" data-i18n="contact.hoursValue">Mon–Fri 10:00 AM – 7:00 PM · Sat 10:00 AM – 3:00 PM · Sun closed</p>
             <a class="btn btn-outline" data-shop="maps" href="#" target="_blank" rel="noopener" data-i18n="contact.directions">Get Directions</a>
           </div>
-          <div class="socials">
-            <a data-shop="instagram" href="#" target="_blank" rel="noopener">Instagram ↗</a>
-            <a data-shop="facebook" href="#" target="_blank" rel="noopener">Facebook ↗</a>
-            <a data-shop="whatsapp" href="#" target="_blank" rel="noopener">WhatsApp ↗</a>
-          </div>
-          <iframe class="map-embed" src="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Young Wrap location on Google Maps"></iframe>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <img class="footer-logo" src="logo/yw.jpg" alt="Young Wrap logo" width="150" height="150" loading="lazy" />
-      <p data-i18n="footer.tagline">Your neighbourhood wrap installer — Wraps | PPF | Tint | Coating</p>
-      <p class="footer-copy">© 2026 Young Wrap</p>
+      <a class="footer-wordmark" href="index.html">YOUNG<span class="brand-dot">·</span>WRAP</a>
+      <div class="footer-socials">
+        <a data-shop="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        <a data-shop="facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M15 3h-2.2C10.4 3 9 4.5 9 7v2.4H7V13h2v8h3.2v-8h2.6l.4-3.6h-3V7.3c0-1 .3-1.6 1.6-1.6H15V3Z"/></svg></a>
+        <a data-shop="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg></a>
+      </div>
+      <p class="footer-tagline" data-i18n="footer.tagline">Your neighbourhood wrap installer — Wraps | PPF | Tint | Coating</p>
       <p class="footer-credit">3D preview car: "Mazda RX-7" by <a href="https://poly.pizza/u/IvOfficial" target="_blank" rel="noopener">IvOfficial</a>, via <a href="https://poly.pizza/m/SnIoWlh7S2" target="_blank" rel="noopener">Poly Pizza</a> (<a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">CC-BY 3.0</a>)</p>
+      <p class="footer-copy">© 2026 Young Wrap</p>
     </footer>
 
     <a class="whatsapp-fab" data-shop="whatsapp" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">

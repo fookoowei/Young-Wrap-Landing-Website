@@ -5,6 +5,7 @@ import { initCarousel } from './carousel.js'
 import { initMotion } from './motion.js'
 import { initMenu } from './menu.js'
 import { initCursor } from './cursor.js'
+import { initQuoteForm } from './quote-form.js'
 
 function wireShopLinks() {
   const targets = {
@@ -44,3 +45,4 @@ initCarousel()
 initMotion()
 initMenu()
 initCursor()
+initQuoteForm(SHOP)
