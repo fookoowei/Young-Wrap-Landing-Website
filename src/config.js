@@ -7,7 +7,8 @@ export const SHOP = {
   phoneDisplay: '+60 19-600 2910',
   whatsappUrl: `https://wa.me/${phoneRaw.replace(/[^0-9]/g, '')}`,
   addressLine: '42, Jalan Anggerik Vanilla Ad 31/Ad, Kota Kemuning, 40460 Shah Alam, Selangor',
-  mapsUrl: 'https://www.google.com/maps?sca_esv=64b268b11d0571a2&output=search&q=young+wrap&source=lnms&fbs=ABfTbFVyMZGZf1hfvX9uKjN_-G8c4u0nXx4bEIpwm1lnNH832SMIiTl3t-JZ4hGJOxPbHYQR84vEJkyW62ul7Q3Bkhu9i-p_ALr7slx3OYYzZdb8If6UlQdzA3eae6DyEgB_K-Oo1DvwvNqNRv3gdbsoRfWHVTF95OvL34AXg7os5ZtnLg-hyVSE-sxRQ5Br450XBMGBoSj7SjsaRwd0OfiTicAThWwJFQ&entry=mc&ved=1t:200715&ictx=111',
+  mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Young+Wrap+Kota+Kemuning',
+  mapsEmbedSrc: 'https://www.google.com/maps?q=42,+Jalan+Anggerik+Vanilla+Ad+31%2FAd,+Kota+Kemuning,+40460+Shah+Alam,+Selangor&output=embed',
   instagram: 'https://www.instagram.com/young.wrap/',
   facebook: 'https://www.facebook.com/people/YoungWrap/61552718845372/',
   kol: {

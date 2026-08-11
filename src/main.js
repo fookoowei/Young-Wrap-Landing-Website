@@ -17,6 +17,8 @@ function wireShopLinks() {
     for (const el of document.querySelectorAll(`[data-shop="${key}"]`)) el.href = url
   }
   document.querySelector('.shop-address').textContent = SHOP.addressLine
+  const mapEmbed = document.querySelector('.map-embed')
+  if (mapEmbed) mapEmbed.src = SHOP.mapsEmbedSrc
 }
 
 async function initViewer() {
