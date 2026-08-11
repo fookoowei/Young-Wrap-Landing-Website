@@ -1,14 +1,31 @@
 export const WRAP_COLORS = [
-  { id: 'yw-orange', hex: '#FA9C20', name: { en: 'YW Orange', zh: '炽橙' } },
-  { id: 'midnight', hex: '#0b0b0d', name: { en: 'Midnight Black', zh: '午夜黑' } },
-  { id: 'arctic', hex: '#e8eaed', name: { en: 'Arctic White', zh: '极地白' } },
-  { id: 'nardo', hex: '#7b8087', name: { en: 'Nardo Grey', zh: '纳多灰' } },
-  { id: 'racing-red', hex: '#c1121f', name: { en: 'Racing Red', zh: '赛道红' } },
-  { id: 'miami-blue', hex: '#00b4d8', name: { en: 'Miami Blue', zh: '迈阿密蓝' } },
-  { id: 'signal-yellow', hex: '#ffd60a', name: { en: 'Signal Yellow', zh: '信号黄' } },
-  { id: 'emerald', hex: '#2d6a4f', name: { en: 'Emerald Green', zh: '祖母绿' } },
-  { id: 'ultraviolet', hex: '#7b2cbf', name: { en: 'Ultraviolet', zh: '紫罗兰' } },
+  { id: 'yw-orange', hex: '#FA9C20', group: 'bright', name: { en: 'YW Orange', zh: '炽橙' } },
+  { id: 'racing-red', hex: '#C1121F', group: 'bright', name: { en: 'Racing Red', zh: '竞速红' } },
+  { id: 'miami-blue', hex: '#00B7C2', group: 'bright', name: { en: 'Miami Blue', zh: '迈阿密蓝' } },
+  { id: 'acid-green', hex: '#7FB069', group: 'bright', name: { en: 'Acid Green', zh: '酸性绿' } },
+  { id: 'jet-black', hex: '#0B0B0C', group: 'neutral', name: { en: 'Jet Black', zh: '曜石黑' } },
+  { id: 'pearl-white', hex: '#F4F1EA', group: 'neutral', name: { en: 'Pearl White', zh: '珍珠白' } },
+  { id: 'cement-grey', hex: '#9DA3A8', group: 'neutral', name: { en: 'Cement Grey', zh: '水泥灰' } },
+  { id: 'khaki-tan', hex: '#B8A47E', group: 'neutral', name: { en: 'Khaki Tan', zh: '卡其棕' } },
+  { id: 'gunmetal', hex: '#3A4148', group: 'metallic', name: { en: 'Gunmetal', zh: '枪灰金属' } },
+  { id: 'liquid-silver', hex: '#C8CDD2', group: 'metallic', name: { en: 'Liquid Silver', zh: '流银' } },
+  { id: 'deep-bronze', hex: '#6E4A1F', group: 'metallic', name: { en: 'Deep Bronze', zh: '深古铜' } },
+  { id: 'midnight-purple', hex: '#3B2A63', group: 'special', name: { en: 'Midnight Purple', zh: '午夜紫' } },
+  { id: 'chameleon-teal', hex: '#0E5A54', group: 'special', name: { en: 'Chameleon Teal', zh: '变色青' } },
+  { id: 'sakura-pink', hex: '#E8A3C3', group: 'special', name: { en: 'Sakura Pink', zh: '樱花粉' } },
 ]
+
+// GROUP_LABELS kept for tests / fallback text; the on-page headings are driven
+// by data-i18n keys (palette.<group>) in src/i18n/translations.js instead, so
+// they respond to the language toggle. GROUP_ORDER (its key order) drives the
+// render order of the grouped swatch sections in studio.js.
+export const GROUP_LABELS = {
+  bright: { en: 'Gloss Brights', zh: '亮彩' },
+  neutral: { en: 'Neutrals', zh: '中性色' },
+  metallic: { en: 'Metallics', zh: '金属色' },
+  special: { en: 'Specials', zh: '特殊色' },
+}
+export const GROUP_ORDER = Object.keys(GROUP_LABELS)
 
 export const WRAP_FINISHES = {
   gloss: { label: { en: 'Gloss', zh: '亮面' }, roughness: 0.12, metalness: 0.0, clearcoat: 1.0, clearcoatRoughness: 0.04 },

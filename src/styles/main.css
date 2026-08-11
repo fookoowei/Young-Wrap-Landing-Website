@@ -158,11 +158,10 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 5rem 1.4rem; }
   font-family: var(--font-display); font-weight: 500; text-transform: uppercase;
   letter-spacing: 0.18em; color: var(--ink-dim); font-size: 0.72rem; margin: 0.6rem 0 0.55rem;
 }
+.swatch-groups { display: flex; flex-direction: column; }
+.swatch-group-title { margin-top: 0.9rem; }
+.swatch-group-title:first-child { margin-top: 0.2rem; }
 .swatches { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-#custom-color {
-  width: 44px; height: 32px; padding: 0; border: 2px solid #ffffff24;
-  background: none; cursor: pointer; transform: skewX(-8deg);
-}
 .swatch {
   width: 32px; height: 32px; cursor: pointer;
   border: 2px solid #ffffff24;
@@ -171,6 +170,19 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 5rem 1.4rem; }
 }
 .swatch:hover { transform: skewX(-8deg) scale(1.12); }
 .swatch[aria-selected="true"] { border-color: var(--orange); box-shadow: 0 0 0 2px var(--orange); }
+.swatch-custom-wrap {
+  position: relative; width: 32px; height: 32px; display: inline-flex;
+}
+.swatch-custom-wrap::after {
+  content: '+'; position: absolute; inset: 0; display: flex;
+  align-items: center; justify-content: center; pointer-events: none;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.05rem;
+  color: #fff; transform: skewX(8deg); text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+}
+.swatch-custom-wrap input[type="color"] {
+  width: 32px; height: 32px; padding: 0; border: 2px solid #ffffff24;
+  background: none; cursor: pointer; transform: skewX(-8deg);
+}
 .finishes { display: flex; gap: 0.5rem; flex-wrap: wrap; }
 .finish-btn {
   border: 1px solid var(--line); background: none; color: var(--ink);
