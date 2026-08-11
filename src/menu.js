@@ -12,6 +12,8 @@ export function initMenu() {
     btn.setAttribute('aria-expanded', String(open))
     btn.classList.toggle('is-open', open)
     document.body.classList.toggle('menu-open', open)
+    gsap.killTweensOf(overlay)
+    gsap.killTweensOf(overlay.querySelector('[data-menu-stagger]').children)
     if (open) {
       overlay.hidden = false
       if (!reduce) {
@@ -21,7 +23,7 @@ export function initMenu() {
       }
       links[0]?.focus()
     } else {
-      const done = () => (overlay.hidden = true)
+      const done = () => { if (!open) overlay.hidden = true }
       reduce ? done() : gsap.to(overlay, { opacity: 0, duration: 0.25, onComplete: done })
       btn.focus()
     }
