@@ -2,6 +2,7 @@ import './styles/main.css'
 import { initLanguageToggle, getSavedLanguage, t } from './i18n/i18n.js'
 import { WRAP_COLORS, WRAP_FINISHES, GROUP_ORDER, wrapParams } from './three/wraps.js'
 import { createCarViewer } from './three/carViewer.js'
+import { initMotion } from './motion.js'
 
 const HASH_RE = /#?c=([0-9a-fA-F]{6})&f=(\w+)/
 
@@ -143,3 +144,4 @@ async function initViewer() {
 
 initLanguageToggle(document.getElementById('lang-toggle'))
 initViewer()
+initMotion()

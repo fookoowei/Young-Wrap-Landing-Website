@@ -2,6 +2,7 @@ import './styles/main.css'
 import { SHOP } from './config.js'
 import { initLanguageToggle } from './i18n/i18n.js'
 import { initGallery } from './gallery.js'
+import { initMotion } from './motion.js'
 
 function wireShopLinks() {
   const targets = {
@@ -36,3 +37,4 @@ if (SHOP.kol.postUrl) {
 
 initLanguageToggle(document.getElementById('lang-toggle'))
 initGallery()
+initMotion()
