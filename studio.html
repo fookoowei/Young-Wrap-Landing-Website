@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3D Wrap Studio — Young Wrap</title>
+    <meta name="description" content="Preview wrap colours and finishes on a 3D car — Young Wrap, Kota Kemuning." />
+    <meta name="theme-color" content="#0a0a0b" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="3D Wrap Studio — Young Wrap" />
+    <meta property="og:description" content="Preview wrap colours and finishes on a 3D car — Young Wrap, Kota Kemuning." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M18 22 L50 54 L82 22 L82 46 L50 78 L18 46 Z' fill='%23FA9C20'/></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,500;1,700&family=Saira:wght@400;500;600&display=swap" rel="stylesheet" />
+    <script type="module" src="/src/studio.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">YOUNG<span class="brand-dot">·</span>WRAP</a>
+      <nav class="site-nav">
+        <a href="studio.html" data-i18n="nav.configurator">3D Studio</a>
+        <a href="index.html#services" data-i18n="nav.services">Services</a>
+        <a href="index.html#gallery" data-i18n="nav.gallery">Gallery</a>
+        <a href="index.html#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language">中文</button>
+    </header>
+
+    <main id="top">
+      <section class="studio">
+        <p class="eyebrow" data-i18n="configurator.title">Design Your Wrap</p>
+        <p class="section-sub" data-i18n="hero.hint">Drag to spin the car — tap a color to preview a wrap</p>
+        <div id="car-canvas" aria-label="Interactive 3D car preview">
+          <img class="viewer-fallback-img" src="images/car1.webp" alt="Wrapped car preview" hidden />
+        </div>
+        <div class="wrap-picker">
+          <p class="picker-title" data-i18n="picker.title">Pick your wrap</p>
+          <div id="wrap-colors" class="swatches" role="listbox" aria-label="Wrap colors"></div>
+          <p class="picker-title" data-i18n="picker.custom">Custom colour</p>
+          <input type="color" id="custom-color" value="#FA9C20" aria-label="Custom wrap colour" />
+          <p class="picker-title" data-i18n="picker.finish">Finish</p>
+          <div id="wrap-finishes" class="finishes" role="listbox" aria-label="Wrap finishes"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p class="footer-copy">© 2026 Young Wrap</p>
+      <p class="footer-credit">3D preview car: "Mazda RX-7" by <a href="https://poly.pizza/u/IvOfficial" target="_blank" rel="noopener">IvOfficial</a>, via <a href="https://poly.pizza/m/SnIoWlh7S2" target="_blank" rel="noopener">Poly Pizza</a> (<a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">CC-BY 3.0</a>)</p>
+    </footer>
+  </body>
+</html>

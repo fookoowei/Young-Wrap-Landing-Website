@@ -17,10 +17,12 @@ export const WRAP_FINISHES = {
   shift: { label: { en: 'Color Shift', zh: '变色龙' }, roughness: 0.18, metalness: 0.6, clearcoat: 1.0, clearcoatRoughness: 0.05, iridescence: 1.0, iridescenceIOR: 1.6 },
 }
 
-export function wrapParams(colorId, finishId) {
+export function wrapParams(colorId, finishId, overrideHex) {
   const color = WRAP_COLORS.find((c) => c.id === colorId)
   const finish = WRAP_FINISHES[finishId]
-  if (!color || !finish) throw new Error(`Unknown wrap combination: ${colorId}/${finishId}`)
+  if (!overrideHex && !color) throw new Error(`Unknown wrap combination: ${colorId}/${finishId}`)
+  if (!finish) throw new Error(`Unknown wrap combination: ${colorId}/${finishId}`)
+  const hex = overrideHex ?? color.hex
   const { label, ...material } = finish
-  return { color: color.hex, ...material }
+  return { color: hex, ...material }
 }

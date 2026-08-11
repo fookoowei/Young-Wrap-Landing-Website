@@ -131,9 +131,9 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 5rem 1.4rem; }
   .hero-overlay { padding: 7.5rem 1.4rem 4.5rem; }
 }
 
-/* ---------- configurator ---------- */
-.configurator { text-align: center; }
-.configurator .section-sub { margin: 0 auto 2rem; }
+/* ---------- studio ---------- */
+.studio { text-align: center; min-height: calc(100vh - 130px); display: flex; flex-direction: column; justify-content: center; }
+.studio .section-sub { margin: 0 auto 2rem; }
 #car-canvas {
   position: relative; height: min(70vh, 640px); min-height: 340px;
   background:
@@ -159,6 +159,10 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 5rem 1.4rem; }
   letter-spacing: 0.18em; color: var(--ink-dim); font-size: 0.72rem; margin: 0.6rem 0 0.55rem;
 }
 .swatches { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+#custom-color {
+  width: 44px; height: 32px; padding: 0; border: 2px solid #ffffff24;
+  background: none; cursor: pointer; transform: skewX(-8deg);
+}
 .swatch {
   width: 32px; height: 32px; cursor: pointer;
   border: 2px solid #ffffff24;
@@ -176,6 +180,10 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 5rem 1.4rem; }
 }
 .finish-btn:hover { border-color: var(--orange); }
 .finish-btn[aria-selected="true"] { background: var(--orange); border-color: var(--orange); color: var(--carbon); font-weight: 700; }
+
+/* ---------- studio teaser ---------- */
+.studio-teaser { text-align: center; }
+.studio-teaser .section-sub { margin: 0 auto 2rem; }
 
 /* ---------- marquee ---------- */
 .marquee {
