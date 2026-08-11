@@ -1,5 +1,6 @@
 export const translations = {
   en: {
+    'nav.configurator': '3D Studio',
     'nav.services': 'Services',
     'nav.gallery': 'Gallery',
     'nav.contact': 'Contact',
@@ -9,6 +10,7 @@ export const translations = {
     'hero.cta.whatsapp': 'WhatsApp Us',
     'hero.cta.call': 'Call Now',
     'hero.hint': 'Drag to spin the car — tap a color to preview a wrap',
+    'configurator.title': 'Design Your Wrap',
     'picker.title': 'Pick your wrap',
     'picker.finish': 'Finish',
     'finish.gloss': 'Gloss',
@@ -39,6 +41,7 @@ export const translations = {
     'footer.tagline': 'Your neighbourhood wrap installer — Wraps | PPF | Tint | Coating',
   },
   zh: {
+    'nav.configurator': '3D 工作室',
     'nav.services': '服务项目',
     'nav.gallery': '作品展示',
     'nav.contact': '联系我们',
@@ -48,6 +51,7 @@ export const translations = {
     'hero.cta.whatsapp': 'WhatsApp 联系',
     'hero.cta.call': '立即致电',
     'hero.hint': '拖动旋转车辆 — 点击色块预览改色效果',
+    'configurator.title': '设计你的车膜',
     'picker.title': '挑选你的改色膜',
     'picker.finish': '质感',
     'finish.gloss': '亮面',

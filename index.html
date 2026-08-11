@@ -11,7 +11,7 @@
     <meta property="og:title" content="Young Wrap — Car Wraps, PPF, Tint & Coating" />
     <meta property="og:description" content="Premium car wraps, PPF, tint & coating in Kota Kemuning, Shah Alam. WhatsApp us for a quote." />
     <meta property="og:url" content="https://fookoowei.github.io/Young-Wrap-Landing-Website/" />
-    <meta property="og:image" content="https://fookoowei.github.io/Young-Wrap-Landing-Website/images/logo.jpg" />
+    <meta property="og:image" content="https://fookoowei.github.io/Young-Wrap-Landing-Website/logo/yw.jpg" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M18 22 L50 54 L82 22 L82 46 L50 78 L18 46 Z' fill='%23FA9C20'/></svg>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,7 +22,7 @@
       "@type": "AutoBodyShop",
       "name": "Young Wrap",
       "description": "Car wraps, paint protection film, window tint, ceramic coating and detailing.",
-      "image": "https://fookoowei.github.io/Young-Wrap-Landing-Website/images/logo.jpg",
+      "image": "https://fookoowei.github.io/Young-Wrap-Landing-Website/logo/yw.jpg",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "42, Jalan Anggerik Vanilla Ad 31/Ad, Kota Kemuning",
@@ -49,6 +49,7 @@
     <header class="site-header">
       <a class="brand" href="#top">YOUNG<span class="brand-dot">·</span>WRAP</a>
       <nav class="site-nav">
+        <a href="#configurator" data-i18n="nav.configurator">3D Studio</a>
         <a href="#services" data-i18n="nav.services">Services</a>
         <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
         <a href="#contact" data-i18n="nav.contact">Contact</a>
@@ -58,9 +59,9 @@
 
     <main id="top">
       <section class="hero">
-        <div id="car-canvas" aria-label="Interactive 3D car preview">
-          <img class="viewer-fallback-img" src="images/gallery-1.svg" alt="Wrapped car preview" hidden />
-        </div>
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+          <source src="videos/car-wrapping.mp4" type="video/mp4" />
+        </video>
         <div class="hero-scrim" aria-hidden="true"></div>
         <div class="hero-overlay">
           <div class="hero-copy">
@@ -75,15 +76,6 @@
               <a class="btn btn-call" data-shop="tel" href="#" data-i18n="hero.cta.call">Call Now</a>
             </div>
           </div>
-          <div class="hero-bottom">
-            <p class="hero-hint" data-i18n="hero.hint">Drag to spin the car — tap a color to preview a wrap</p>
-            <div class="wrap-picker">
-              <p class="picker-title" data-i18n="picker.title">Pick your wrap</p>
-              <div id="wrap-colors" class="swatches" role="listbox" aria-label="Wrap colors"></div>
-              <p class="picker-title" data-i18n="picker.finish">Finish</p>
-              <div id="wrap-finishes" class="finishes" role="listbox" aria-label="Wrap finishes"></div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -94,6 +86,20 @@
           <span>Wrap</span><span>·</span><span>PPF</span><span>·</span><span>Tint</span><span>·</span><span>Coating</span><span>·</span><span>Detailing</span><span>·</span>
         </div>
       </div>
+
+      <section id="configurator" class="configurator">
+        <p class="eyebrow" data-i18n="configurator.title">Design Your Wrap</p>
+        <p class="section-sub" data-i18n="hero.hint">Drag to spin the car — tap a color to preview a wrap</p>
+        <div id="car-canvas" aria-label="Interactive 3D car preview">
+          <img class="viewer-fallback-img" src="images/car1.jpg" alt="Wrapped car preview" hidden />
+        </div>
+        <div class="wrap-picker">
+          <p class="picker-title" data-i18n="picker.title">Pick your wrap</p>
+          <div id="wrap-colors" class="swatches" role="listbox" aria-label="Wrap colors"></div>
+          <p class="picker-title" data-i18n="picker.finish">Finish</p>
+          <div id="wrap-finishes" class="finishes" role="listbox" aria-label="Wrap finishes"></div>
+        </div>
+      </section>
 
       <section id="services" class="services">
         <p class="eyebrow" data-i18n="services.title">Our Services</p>
@@ -140,7 +146,7 @@
     </main>
 
     <footer class="site-footer">
-      <img class="footer-logo" src="images/logo.jpg" alt="Young Wrap logo" width="150" height="150" loading="lazy" />
+      <img class="footer-logo" src="logo/yw.jpg" alt="Young Wrap logo" width="150" height="150" loading="lazy" />
       <p data-i18n="footer.tagline">Your neighbourhood wrap installer — Wraps | PPF | Tint | Coating</p>
       <p class="footer-copy">© 2026 Young Wrap</p>
     </footer>
