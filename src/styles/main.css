@@ -299,9 +299,9 @@ body.menu-open { overflow: hidden; }
   max-height: 0; opacity: 0; overflow: hidden;
   transition: max-height 0.35s ease, opacity 0.25s ease;
 }
-.service-row:hover, .service-row:focus-within { background: var(--panel); }
-.service-row:hover .row-no, .service-row:focus-within .row-no { color: var(--orange); }
-.service-row:hover p, .service-row:focus-within p { max-height: 6rem; opacity: 1; margin-top: 0.5rem; }
+.service-row:hover, .service-row:focus, .service-row:focus-within { background: var(--panel); }
+.service-row:hover .row-no, .service-row:focus .row-no, .service-row:focus-within .row-no { color: var(--orange); }
+.service-row:hover p, .service-row:focus p, .service-row:focus-within p { max-height: 6rem; opacity: 1; margin-top: 0.5rem; }
 
 /* ---------- gallery ---------- */
 .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0.9rem; margin-top: 1.6rem; }
