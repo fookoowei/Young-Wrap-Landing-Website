@@ -92,4 +92,6 @@ if (SHOP.kol.postUrl) {
 
 initLanguageToggle(document.getElementById('lang-toggle'))
 initGallery()
-initViewer()
+new IntersectionObserver((entries, obs) => {
+  if (entries[0].isIntersecting) { obs.disconnect(); initViewer() }
+}, { rootMargin: '300px' }).observe(document.getElementById('configurator'))
