@@ -1,3 +1,9 @@
+import gsap from 'gsap'
+import { Draggable } from 'gsap/Draggable'
+import { InertiaPlugin } from 'gsap/InertiaPlugin'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(Draggable, InertiaPlugin)
+
 const ALT_TEXTS = [
   'Gloss grey wrap with an orange racing stripe on a Ford Mustang coupe by Young Wrap',
   'Gloss magenta pink full wrap on a Mercedes-Benz A-Class AMG hatchback by Young Wrap',
@@ -16,24 +22,33 @@ const IMAGES = ALT_TEXTS.map((alt, i) => ({
   alt,
 }))
 
-export function initGallery() {
-  const grid = document.getElementById('gallery-grid')
+export function initCarousel() {
+  const track = document.getElementById('portfolio-track')
   const lightbox = document.getElementById('lightbox')
   const lightboxImg = lightbox.querySelector('.lightbox-img')
-
   for (const { src, alt } of IMAGES) {
-    const img = document.createElement('img')
-    img.src = src
-    img.alt = alt
-    img.loading = 'lazy'
-    img.addEventListener('click', () => {
-      lightboxImg.src = src
-      lightboxImg.alt = alt
-      lightbox.showModal()
+    const card = document.createElement('figure')
+    card.className = 'portfolio-card'
+    card.innerHTML = `<img src="${src}" alt="${alt}" loading="lazy" draggable="false" /><figcaption>${alt}</figcaption>`
+    card.querySelector('img').addEventListener('click', () => {
+      if (dragging) return
+      lightboxImg.src = src; lightboxImg.alt = alt; lightbox.showModal()
     })
-    grid.append(img)
+    track.append(card)
   }
+  let dragging = false
+  const bound = () => Math.min(0, track.parentElement.clientWidth - track.scrollWidth)
+  Draggable.create(track, {
+    type: 'x', inertia: true, edgeResistance: 0.82,
+    bounds: () => ({ minX: bound(), maxX: 0 }),
+    onDragStart: () => (dragging = true),
+    onThrowComplete: () => (dragging = false),
+    onDragEnd: function () { if (!this.tween) dragging = false },
+  })
+  addEventListener('resize', () => Draggable.get(track)?.applyBounds({ minX: bound(), maxX: 0 }))
 
   lightbox.querySelector('.lightbox-close').addEventListener('click', () => lightbox.close())
   lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.close() })
+
+  ScrollTrigger.refresh()
 }

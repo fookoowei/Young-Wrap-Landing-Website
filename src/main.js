@@ -1,7 +1,7 @@
 import './styles/main.css'
 import { SHOP } from './config.js'
 import { initLanguageToggle } from './i18n/i18n.js'
-import { initGallery } from './gallery.js'
+import { initCarousel } from './carousel.js'
 import { initMotion } from './motion.js'
 import { initMenu } from './menu.js'
 import { initCursor } from './cursor.js'
@@ -40,7 +40,7 @@ if (SHOP.kol.postUrl) {
 }
 
 initLanguageToggle(document.getElementById('lang-toggle'))
-initGallery()
+initCarousel()
 initMotion()
 initMenu()
 initCursor()

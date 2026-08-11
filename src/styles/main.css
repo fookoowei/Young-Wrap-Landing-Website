@@ -30,7 +30,7 @@ body {
 /* corner-cut panel shape used across cards/picker/tiles */
 .cut-corners,
 .wrap-picker,
-.gallery-grid img,
+.portfolio-card,
 .kol-embed iframe,
 .map-embed {
   clip-path: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
@@ -303,14 +303,23 @@ body.menu-open { overflow: hidden; }
 .service-row:hover .row-no, .service-row:focus .row-no, .service-row:focus-within .row-no { color: var(--orange); }
 .service-row:hover p, .service-row:focus p, .service-row:focus-within p { max-height: 6rem; opacity: 1; margin-top: 0.5rem; }
 
-/* ---------- gallery ---------- */
-.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 0.9rem; margin-top: 1.6rem; }
-.gallery-grid img {
-  width: 100%; aspect-ratio: 4 / 3; object-fit: cover; cursor: zoom-in;
-  border: 1px solid var(--line);
+/* ---------- portfolio carousel ---------- */
+.portfolio-viewport { overflow: hidden; margin-top: 1.6rem; }
+.portfolio-track { display: flex; gap: 1rem; width: max-content; touch-action: pan-y; }
+.portfolio-card {
+  width: min(70vw, 520px); aspect-ratio: 4 / 3; flex: none;
+  border: 1px solid var(--line); overflow: hidden; position: relative;
+}
+.portfolio-card img {
+  width: 100%; height: 100%; object-fit: cover; cursor: zoom-in;
   transition: transform 0.2s ease, border-color 0.2s ease;
 }
-.gallery-grid img:hover { transform: scale(1.02); border-color: var(--orange); }
+.portfolio-card:hover img { transform: scale(1.02); }
+.portfolio-card figcaption {
+  position: absolute; inset: auto 0 0 0; padding: 0.5rem 0.7rem;
+  background: linear-gradient(to top, rgba(10, 10, 11, 0.85), transparent);
+  color: var(--ink-dim); font-size: 0.78rem; line-height: 1.3;
+}
 
 /* ---------- KOL: the one loud block ---------- */
 .kol {
@@ -429,6 +438,6 @@ body:has(.cursor-ring) .finish-btn {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .marquee-track { animation: none; }
-  .btn, .swatch, .gallery-grid img, .whatsapp-fab, .service-row p { transition: none; }
+  .btn, .swatch, .portfolio-card img, .whatsapp-fab, .service-row p { transition: none; }
   .menu-toggle span, .menu-links a { transition: none; }
 }
