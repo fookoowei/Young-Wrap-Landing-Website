@@ -1,5 +1,4 @@
 node_modules/
 dist/
 .DS_Store
-public/models/2021_pandem_gr86_v1_aero_kit/
-public/videos/wrapping[1-6].mp4
+assets-src/
