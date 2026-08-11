@@ -5,6 +5,7 @@ import { WRAP_COLORS, WRAP_FINISHES, GROUP_ORDER, wrapParams } from './three/wra
 import { createCarViewer } from './three/carViewer.js'
 import { initMotion } from './motion.js'
 import { initMenu } from './menu.js'
+import { initCursor } from './cursor.js'
 
 function wireShopLinks() {
   const targets = {
@@ -164,3 +165,4 @@ initLanguageToggle(document.getElementById('lang-toggle'))
 initViewer()
 initMotion()
 initMenu()
+initCursor()

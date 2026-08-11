@@ -4,6 +4,7 @@ import { initLanguageToggle } from './i18n/i18n.js'
 import { initGallery } from './gallery.js'
 import { initMotion } from './motion.js'
 import { initMenu } from './menu.js'
+import { initCursor } from './cursor.js'
 
 function wireShopLinks() {
   const targets = {
@@ -42,3 +43,4 @@ initLanguageToggle(document.getElementById('lang-toggle'))
 initGallery()
 initMotion()
 initMenu()
+initCursor()
