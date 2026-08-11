@@ -1,5 +1,8 @@
 export const translations = {
   en: {
+    'header.cta': 'WhatsApp',
+    'menu.home': 'Home',
+    'menu.studio': '3D Studio',
     'nav.configurator': '3D Studio',
     'nav.services': 'Services',
     'nav.gallery': 'Gallery',
@@ -51,6 +54,9 @@ export const translations = {
     'teaser.cta': 'Enter the studio',
   },
   zh: {
+    'header.cta': 'WhatsApp 咨询',
+    'menu.home': '首页',
+    'menu.studio': '3D 工作室',
     'nav.configurator': '3D 工作室',
     'nav.services': '服务项目',
     'nav.gallery': '作品展示',

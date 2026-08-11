@@ -1,8 +1,26 @@
 import './styles/main.css'
+import { SHOP } from './config.js'
 import { initLanguageToggle, getSavedLanguage, t } from './i18n/i18n.js'
 import { WRAP_COLORS, WRAP_FINISHES, GROUP_ORDER, wrapParams } from './three/wraps.js'
 import { createCarViewer } from './three/carViewer.js'
 import { initMotion } from './motion.js'
+import { initMenu } from './menu.js'
+
+function wireShopLinks() {
+  const targets = {
+    whatsapp: SHOP.whatsappUrl,
+    tel: `tel:${SHOP.phone}`,
+    instagram: SHOP.instagram,
+    facebook: SHOP.facebook,
+  }
+  for (const [key, url] of Object.entries(targets)) {
+    for (const el of document.querySelectorAll(`[data-shop="${key}"]`)) el.href = url
+  }
+  const menuPhone = document.querySelector('.menu-phone')
+  if (menuPhone) menuPhone.textContent = SHOP.phoneDisplay
+}
+
+wireShopLinks()
 
 const HASH_RE = /#?c=([0-9a-fA-F]{6})&f=(\w+)/
 
@@ -145,3 +163,4 @@ async function initViewer() {
 initLanguageToggle(document.getElementById('lang-toggle'))
 initViewer()
 initMotion()
+initMenu()

@@ -3,6 +3,7 @@ import { SHOP } from './config.js'
 import { initLanguageToggle } from './i18n/i18n.js'
 import { initGallery } from './gallery.js'
 import { initMotion } from './motion.js'
+import { initMenu } from './menu.js'
 
 function wireShopLinks() {
   const targets = {
@@ -19,6 +20,8 @@ function wireShopLinks() {
   document.querySelector('.shop-address').textContent = SHOP.addressLine
   const mapEmbed = document.querySelector('.map-embed')
   if (mapEmbed) mapEmbed.src = SHOP.mapsEmbedSrc
+  const menuPhone = document.querySelector('.menu-phone')
+  if (menuPhone) menuPhone.textContent = SHOP.phoneDisplay
 }
 
 wireShopLinks()
@@ -38,3 +41,4 @@ if (SHOP.kol.postUrl) {
 initLanguageToggle(document.getElementById('lang-toggle'))
 initGallery()
 initMotion()
+initMenu()
