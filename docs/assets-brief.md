@@ -6,13 +6,10 @@ Everything the site needs from the owner, and the generation prompts for nanoban
 
 | Asset | Target file | Status |
 |---|---|---|
-| Hero background video (10–20 s loop, 16:9, ≤ 8 MB) | `public/videos/hero.mp4` | pending |
+| Hero background video (10–20 s loop, 16:9, ≤ 8 MB) | `public/videos/wrapping.mp4` (overwrite) | rough clip in place — montage pending |
 | Hero poster frame (first frame as JPG) | `public/videos/hero-poster.jpg` | pending |
-| Logo (transparent PNG or SVG) | `public/img/logo.png` | pending |
-| 6–10 gallery photos | `public/img/gallery/*.jpg` | pending |
-| Phone/WhatsApp number | `src/config.js` | pending |
-| Street address + opening hours | `src/config.js` | pending |
-| Charles Tee collab post URL | `src/config.js` | pending |
+| 6–10 gallery photos | `public/images/` (replace `gallery-*.svg`) | pending |
+| Charles Tee collab post URL (confirm exact post) | `src/config.js` → `kol.postUrl` | placeholder guess in place |
 
 ## Hero video — recommended recipe
 
