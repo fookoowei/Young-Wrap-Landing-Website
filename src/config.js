@@ -15,6 +15,6 @@ export const SHOP = {
     name: 'Charles Tee',
     handle: '@charlest33',
     url: 'https://www.instagram.com/charlest33/',
-    postUrl: 'https://www.instagram.com/p/DbX3XIbO2lg/', // PLACEHOLDER — exact collab post URL
+    postUrl: 'https://www.instagram.com/p/DbX3XIbO2lg/',
   },
 }

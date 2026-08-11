@@ -34,6 +34,7 @@ body {
 .service-grid article,
 .services-anything,
 .gallery-grid img,
+.kol-embed iframe,
 .map-embed {
   clip-path: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
 }
@@ -241,6 +242,8 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 5rem 1.4rem; }
 }
 .kol-handle:hover { text-decoration: underline; text-decoration-thickness: 4px; }
 .kol-desc { max-width: 46ch; margin: 0 auto; font-weight: 500; }
+.kol-embed { display: flex; justify-content: center; margin: 1.5rem 0; }
+.kol-embed iframe { width: min(400px, 90vw); height: 520px; border: 0; background: var(--panel); }
 .kol .btn { margin-top: 1.6rem; }
 
 /* ---------- contact ---------- */

@@ -77,6 +77,19 @@ async function initViewer() {
 }
 
 wireShopLinks()
+
+const kolBox = document.getElementById('kol-embed')
+if (SHOP.kol.postUrl) {
+  const iframe = document.createElement('iframe')
+  iframe.src = SHOP.kol.postUrl.replace(/\/?$/, '/') + 'embed/'
+  iframe.loading = 'lazy'
+  iframe.title = `Instagram post by ${SHOP.kol.handle}`
+  iframe.setAttribute('scrolling', 'no')
+  iframe.setAttribute('frameborder', '0')
+  iframe.setAttribute('allowtransparency', 'true')
+  kolBox.append(iframe)
+}
+
 initLanguageToggle(document.getElementById('lang-toggle'))
 initGallery()
 initViewer()
