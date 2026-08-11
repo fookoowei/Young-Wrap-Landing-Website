@@ -1,11 +1,37 @@
+import gsap from 'gsap'
 import './styles/main.css'
 import { SHOP } from './config.js'
 import { initLanguageToggle } from './i18n/i18n.js'
 import { initCarousel } from './carousel.js'
-import { initMotion } from './motion.js'
+import { initMotion, initHeroReveal } from './motion.js'
 import { initMenu } from './menu.js'
 import { initCursor } from './cursor.js'
 import { initQuoteForm } from './quote-form.js'
+
+// Landing-only intro: brief brand curtain, then the hero headline reveals.
+// Skipped instantly (no animation) once seen this session, or under reduced motion.
+function initPreloader(onDone) {
+  const el = document.getElementById('preloader')
+  if (!el) { onDone(); return }
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (reduce || sessionStorage.getItem('yw-seen')) {
+    el.remove()
+    onDone()
+    return
+  }
+
+  const mark = el.querySelector('.preloader-mark')
+  gsap.timeline({
+    onComplete: () => {
+      el.remove()
+      try { sessionStorage.setItem('yw-seen', '1') } catch { /* private mode — non-fatal */ }
+      onDone()
+    },
+  })
+    .to(mark, { opacity: 1, letterSpacing: '0.34em', duration: 0.6, ease: 'power2.out' })
+    .to(el, { yPercent: -100, duration: 0.6, ease: 'power3.inOut' })
+}
 
 function wireShopLinks() {
   const targets = {
@@ -46,3 +72,6 @@ initMotion()
 initMenu()
 initCursor()
 initQuoteForm(SHOP)
+
+const playHeroReveal = initHeroReveal()
+initPreloader(playHeroReveal)

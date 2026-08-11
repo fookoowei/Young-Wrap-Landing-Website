@@ -27,6 +27,18 @@ body {
   clip: rect(0 0 0 0); white-space: nowrap;
 }
 
+/* ---------- preloader ---------- */
+#preloader {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--carbon);
+}
+#preloader .preloader-mark {
+  font-family: var(--font-display); font-style: italic; font-weight: 700;
+  font-size: clamp(2.2rem, 6vw, 3.2rem); letter-spacing: 0.3em;
+  color: var(--orange); opacity: 0; padding-left: 0.3em; /* offsets tracking so the mark looks centered */
+}
+
 /* corner-cut panel shape used across cards/picker/tiles */
 .cut-corners,
 .wrap-picker,
@@ -134,7 +146,7 @@ body.menu-open { overflow: hidden; }
 .hero-overlay {
   position: relative; z-index: 2; height: 100%;
   display: flex; align-items: flex-end;
-  padding: 2rem 1.4rem 3rem; max-width: var(--maxw); margin: 0 auto;
+  padding: 2rem 1.4rem 4.75rem; max-width: var(--maxw); margin: 0 auto;
 }
 .hero-eyebrow {
   font-family: var(--font-display); font-style: italic; font-weight: 500;
@@ -148,8 +160,25 @@ body.menu-open { overflow: hidden; }
   display: flex; flex-direction: column;
 }
 .hero-headline .accent { color: var(--orange); }
+.hero-headline .line-mask { overflow: hidden; display: block; }
 .hero-sub { color: var(--ink-dim); max-width: 44ch; font-size: 1.05rem; }
 .cta-row { display: flex; gap: 1rem; margin-top: 1.8rem; flex-wrap: wrap; }
+
+.scroll-indicator {
+  position: absolute; left: 1.4rem; bottom: 1rem; z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+}
+.scroll-indicator .scroll-line {
+  display: block; width: 1px; height: 26px;
+  background: var(--ink-dim); transform-origin: top center;
+}
+.scroll-indicator .scroll-label {
+  font-family: var(--font-display); text-transform: uppercase;
+  letter-spacing: 0.2em; font-size: 0.6rem; color: var(--ink-dim);
+}
+@media (min-width: 940px) {
+  .scroll-indicator { left: 2.5rem; bottom: 1.4rem; }
+}
 
 .btn {
   display: inline-block; padding: 0.8rem 1.7rem;
@@ -167,7 +196,7 @@ body.menu-open { overflow: hidden; }
 .btn-outline:hover { border-color: var(--orange); color: var(--orange); }
 
 @media (min-width: 940px) {
-  .hero-overlay { padding: 7.5rem 1.4rem 4.5rem; }
+  .hero-overlay { padding: 7.5rem 1.4rem 5.75rem; }
 }
 
 /* ---------- studio ---------- */
@@ -386,7 +415,7 @@ body.menu-open { overflow: hidden; }
 .footer-socials a:hover { color: var(--orange); }
 .footer-tagline { max-width: 40ch; margin: 0 auto; }
 .footer-copy { margin-top: 0.4rem; font-size: 0.8rem; }
-.footer-credit { margin-top: 0.6rem; font-size: 0.72rem; opacity: 0.7; }
+.footer-credit { margin-top: 0.6rem; font-size: 0.72rem; opacity: 0.9; }
 .footer-credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .footer-credit a:hover { color: var(--orange); }
 

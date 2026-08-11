@@ -45,6 +45,8 @@
     <script type="module" src="/src/main.js"></script>
   </head>
   <body>
+    <div id="preloader" aria-hidden="true"><span class="preloader-mark">YW</span></div>
+    <noscript><style>#preloader { display: none; }</style></noscript>
     <header class="site-header">
       <a class="brand" href="index.html">YOUNG<span class="brand-dot">·</span>WRAP</a>
       <div class="header-right">
@@ -81,8 +83,8 @@
           <div class="hero-copy">
             <p class="hero-eyebrow">Wrap · PPF · Tint · Coating</p>
             <h1 class="hero-headline">
-              <span data-i18n="hero.headline1">Wrap it.</span>
-              <span class="accent" data-i18n="hero.headline2">Drive it.</span>
+              <span class="line-mask"><span data-i18n="hero.headline1">Wrap it.</span></span>
+              <span class="line-mask"><span class="accent" data-i18n="hero.headline2">Drive it.</span></span>
             </h1>
             <p class="hero-sub" data-i18n="hero.sub">Premium car wraps, PPF, window tint & ceramic coating in Kota Kemuning, Shah Alam.</p>
             <div class="cta-row">
@@ -90,6 +92,10 @@
               <a class="btn btn-call" data-shop="tel" href="#" data-i18n="hero.cta.call">Call Now</a>
             </div>
           </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+          <span class="scroll-line"></span>
+          <span class="scroll-label" data-i18n="hero.scroll">Scroll</span>
         </div>
       </section>
 
