@@ -13,17 +13,23 @@ Rationale:
 - Hosting: static files work anywhere; no Node server required.
 - Scope: one landing page doesn't justify a framework.
 
+## Visual Theme
+
+- **Colors:** orange as brand accent on black backgrounds with white text. Tokens: `--clr-orange: #FF6B00`, `--clr-black: #0B0B0C`, `--clr-surface: #151517`, `--clr-white: #FFFFFF`. Orange is used for CTAs, highlights, and hover states; never as a large background.
+- Overall feel: dark, cinematic, premium — modeled on the reference screenshot (full-bleed dark video, large white headline, minimal chrome).
+
 ## Page Structure (single page, top to bottom)
 
-1. **Hero** — Young Wrap logo + tagline ("Wraps | PPF | Tint | Coating"), interactive 3D car filling the viewport. Floating wrap picker: color swatches × finish options (gloss, matte, satin, color-shift). Prominent WhatsApp and Call buttons.
-2. **Services** — Full/Partial Wraps, PPF, Window Tint, Ceramic Coating, Detailing. Real HTML headings and copy for SEO.
-3. **Gallery** — responsive grid of past-work photos (from Instagram content the owner supplies). Lightbox on click.
-4. **KOL section** — "As seen on @charlest33" (Charles Tee, 316K followers), linking to the collab Instagram post.
-5. **Location & Contact** — address, Google Maps embed, opening hours, Instagram/Facebook links. Floating WhatsApp button persists across the whole page.
+1. **Hero** — full-viewport **background video** (montage of wrap-work clips, muted/looped/autoplay/playsinline, dark overlay for text contrast, poster image fallback). Over it: Young Wrap logo + large headline + tagline ("Wraps | PPF | Tint | Coating"), prominent WhatsApp and Call buttons. Video is owner-supplied (generated with nanobanana 2 + real shop clips; prompts provided in `docs/assets-brief.md`).
+2. **3D Configurator** — full-screen section: interactive 3D **Toyota GR86** (the owner's car). Wrap picker: color swatches × finish options (gloss, matte, satin, color-shift).
+3. **Services** — Full/Partial Wraps, PPF, Window Tint, Ceramic Coating, Detailing. Real HTML headings and copy for SEO.
+4. **Gallery** — responsive grid of past-work photos (from Instagram content the owner supplies). Lightbox on click.
+5. **KOL section** — "As seen on @charlest33" (Charles Tee, 316K followers), with the collab Instagram post embedded via `<iframe>` (post permalink + `/embed`), plus a link to the profile.
+6. **Location & Contact** — address, **Google Maps iframe embed** (free `?output=embed` URL — no API key or billing), opening hours, Instagram/Facebook links. Floating WhatsApp button persists across the whole page.
 
 ## 3D Car (Three.js)
 
-- Free, properly licensed (CC-BY or CC0) low-poly car model in GLB format, target ≤ ~2 MB.
+- Free, properly licensed (CC-BY or CC0) **Toyota GR86** model in GLB format, target ≤ ~4 MB compressed; if no acceptable GR86 license is found, fall back to a comparable generic sports coupe and note it for the owner. License attribution recorded in `public/models/ATTRIBUTION.md` and site footer if required.
 - Interactions: drag to rotate (OrbitControls, zoom/pan constrained), slow auto-rotate when idle.
 - Wrap picker changes the body material's color + finish parameters (metalness/roughness/clearcoat; color-shift via iridescence or angle-dependent tint).
 - Fallback: WebGL-unavailable or low-end devices get a static hero image instead; page content never depends on the 3D loading.
@@ -44,12 +50,13 @@ Rationale:
 
 ## Assets & Placeholders
 
-Owner will supply (placeholders until then, each swappable in one place):
+Owner will supply (placeholders until then, each swappable in one place — `src/config.js`):
 - Phone/WhatsApp number (drives `tel:` and `wa.me` links)
-- Exact street address + opening hours
-- Logo file and brand colors
+- Exact street address + opening hours (drives the Google Maps embed URL)
+- Logo file
+- Hero background video (nanobanana 2 montage + real wrap clips; prompts in `docs/assets-brief.md`) + poster frame
 - 6–10 gallery photos → `~/Downloads/youngwrap` then copied into the repo
-- Charles Tee collab post URL
+- Charles Tee collab post URL (drives the Instagram iframe embed)
 
 ## Hosting & Repo
 
