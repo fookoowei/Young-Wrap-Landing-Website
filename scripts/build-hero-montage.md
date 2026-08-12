@@ -88,3 +88,8 @@ seg5 and the closing wrapping6 shot. Same per-segment encode (2.5s, 1920x1080
 upscale, crf 30, 24fps); 8 segments, 20s total, 1.3 MB.
 `studio-teaser.mp4` (amber GT-R turntable, owner-generated) encoded with the
 same settings (full 4s, no trim) → public/videos/studio-teaser.mp4, 265 KB.
+
+## Re-cut 2026-08-12 (b) — full-length clips, no trimming
+Owner preferred a slower pace: all 8 clips concatenated at full length
+(~4.04s each, wrapping4 untrimmed too), same order and encode settings.
+32.3s total, 2.1 MB.
