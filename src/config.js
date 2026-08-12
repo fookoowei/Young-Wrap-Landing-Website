@@ -11,10 +11,24 @@ export const SHOP = {
   mapsEmbedSrc: 'https://www.google.com/maps?q=42,+Jalan+Anggerik+Vanilla+Ad+31%2FAd,+Kota+Kemuning,+40460+Shah+Alam,+Selangor&output=embed',
   instagram: 'https://www.instagram.com/young.wrap/',
   facebook: 'https://www.facebook.com/people/YoungWrap/61552718845372/',
-  kol: {
-    name: 'Charles Tee',
-    handle: '@charlest33',
-    url: 'https://www.instagram.com/charlest33/',
-    postUrl: 'https://www.instagram.com/p/DbX3XIbO2lg/',
-  },
+  kols: [
+    {
+      name: 'Charles Tee',
+      handle: '@charlest33',
+      url: 'https://www.instagram.com/charlest33/',
+      postUrl: 'https://www.instagram.com/p/DbX3XIbO2lg/',
+    },
+    {
+      name: 'Mike Faizi',
+      handle: '@mikefaizi',
+      url: 'https://www.instagram.com/mikefaizi/',
+      postUrl: 'https://www.instagram.com/reel/DYPGSOISZRm/',
+    },
+    {
+      name: 'Livvie',
+      handle: '@livvie',
+      url: 'https://www.instagram.com/livvie/',
+      postUrl: 'https://www.instagram.com/reel/DYCh2shy5m3/',
+    },
+  ],
 }

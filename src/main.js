@@ -42,7 +42,6 @@ function wireShopLinks() {
     maps: SHOP.mapsUrl,
     instagram: SHOP.instagram,
     facebook: SHOP.facebook,
-    kol: SHOP.kol.postUrl,
   }
   for (const [key, url] of Object.entries(targets)) {
     for (const el of document.querySelectorAll(`[data-shop="${key}"]`)) el.href = url
@@ -59,16 +58,25 @@ initPreloader(playHeroReveal)
 
 wireShopLinks()
 
-const kolBox = document.getElementById('kol-embed')
-if (SHOP.kol.postUrl) {
+const kolGrid = document.getElementById('kol-grid')
+for (const kol of SHOP.kols) {
+  const card = document.createElement('div')
+  card.className = 'kol-card'
+  const handle = document.createElement('a')
+  handle.className = 'kol-handle'
+  handle.href = kol.url
+  handle.target = '_blank'
+  handle.rel = 'noopener'
+  handle.textContent = kol.handle
   const iframe = document.createElement('iframe')
-  iframe.src = SHOP.kol.postUrl.replace(/\/?$/, '/') + 'embed/'
+  iframe.src = kol.postUrl.replace(/\/?$/, '/') + 'embed/'
   iframe.loading = 'lazy'
-  iframe.title = `Instagram post by ${SHOP.kol.handle}`
+  iframe.title = `Instagram post by ${kol.handle}`
   iframe.setAttribute('scrolling', 'no')
   iframe.setAttribute('frameborder', '0')
   iframe.setAttribute('allowtransparency', 'true')
-  kolBox.append(iframe)
+  card.append(handle, iframe)
+  kolGrid.append(card)
 }
 
 initLanguageToggle(document.getElementById('lang-toggle'))

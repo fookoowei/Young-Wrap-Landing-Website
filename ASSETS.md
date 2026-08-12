@@ -1,7 +1,8 @@
 # Assets
 
 ## 3D model
-- `public/models/car.glb` — "Mazda RX-7" by IvOfficial, from Poly Pizza: https://poly.pizza/m/SnIoWlh7S2 (profile: https://poly.pizza/u/IvOfficial). License: **CC-BY 3.0** — attribution required, credit line added to the site footer (`index.html`). Downloaded, then optimized with `@gltf-transform/cli optimize --texture-compress webp --palette false --join false` (palette/join disabled to preserve the `Body_paint`/`Rims`/`Glass`/`Black_matte` material names the wrap picker in `src/three/carViewer.js` relies on to isolate the paint shell). 1.36 MB → 246 KB.
+- `public/models/car.glb` — "FREE 1975 Porsche 911 (930) Turbo" by Lionsharp Studios, from Sketchfab: https://sketchfab.com/3d-models/free-1975-porsche-911-930-turbo-8568d9d14a994b9cae59499f0dbed21e (profile: https://sketchfab.com/lionsharp). License: **CC-BY 4.0** — commercial use allowed, attribution required; credit line in both page footers. Downloaded by the owner (2026-08-12, source in gitignored `assets-src/models/free_1975_porsche_911_930_turbo/` with its license.txt), then optimized with `@gltf-transform/cli optimize --compress quantize --texture-compress webp --texture-size 1024 --simplify false` (74.2 MB → 6.4 MB). Its `paint` material is matched by the explicit `/body|paint/i` rule in `src/three/carViewer.js`, so wrap swatches recolor the body shell only.
+- Previous model: "Mazda RX-7" by IvOfficial (CC-BY 3.0, Poly Pizza https://poly.pizza/m/SnIoWlh7S2). No longer shipped; kept here as history.
   - Chosen as a substitute for a Toyota GR86/GT86/Subaru BRZ: no commercial-safe (CC0/CC-BY) GR86-family model with a no-login download path was found (see "GR86 model search" below for candidates and why they were rejected). The RX-7 is a comparably-proportioned Japanese RWD sports coupe with a cleanly separated body-paint material, so wrap-color swatches apply correctly to the body only (glass, rims, black trim, and badge/logo decals are untouched).
   - Previous model: "Sports Car" by Quaternius (CC0), from the Cars Bundle on Poly Pizza: https://poly.pizza/m/1mkmFkAz5v (bundle: https://poly.pizza/bundle/Cars-Bundle-FE5IWe6OMk). Kept only as history here; no longer shipped.
 
@@ -18,6 +19,9 @@
 - 10 real car wrap photos shipped as WebP: `public/images/car1–10.webp`.
 
 ## KOL / Influencer collaboration
-- Charles Tee collab post: `https://www.instagram.com/p/DbX3XIbO2lg/` — confirmed by owner on 2026-08-11. Wired to `SHOP.kol.postUrl` in `src/config.js`.
+Wired to `SHOP.kols` in `src/config.js` (2026-08-12):
+- Charles Tee `@charlest33` — post `https://www.instagram.com/p/DbX3XIbO2lg/`
+- Mike Faizi `@mikefaizi` — reel `https://www.instagram.com/reel/DYPGSOISZRm/`
+- Livvie `@livvie` — reel `https://www.instagram.com/reel/DYCh2shy5m3/`
 
 Done: phone ✓, address ✓, hours ✓ (Mon–Fri 10–7, Sat 10–3, Sun closed), logo ✓.

@@ -44,6 +44,11 @@ export function initMotion() {
       gsap.to(el, { yPercent: 8, ease: 'none',
         scrollTrigger: { trigger: el, scrub: true } })
     }
+    for (const clip of document.querySelectorAll('.media-clip')) {
+      const tl = gsap.timeline({ scrollTrigger: { trigger: clip, start: 'top 88%' } })
+      tl.from(clip, { clipPath: 'inset(100% 0 0 0)', duration: 1, ease: 'power3.out' }, 0)
+        .from(clip.querySelector('img'), { scale: 1.25, duration: 1.4, ease: 'power2.out' }, 0)
+    }
   })
   // desktop: as each sticky panel is covered by the next, it recedes and dims
   mm.add('(prefers-reduced-motion: no-preference) and (min-width: 940px)', () => {
