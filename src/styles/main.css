@@ -503,6 +503,16 @@ body.menu-open { overflow: hidden; }
 .footer-credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .footer-credit a:hover { color: var(--orange); }
 
+/* ---------- floating WhatsApp ---------- */
+.whatsapp-fab {
+  position: fixed; right: 1.25rem; bottom: 1.25rem; z-index: 50;
+  width: 56px; height: 56px; border-radius: 50%; background: var(--orange);
+  display: grid; place-items: center;
+  box-shadow: 0 8px 24px #000a;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+.whatsapp-fab:hover { transform: scale(1.08); background: #ffb347; }
+
 /* ---------- cursor ---------- */
 .cursor-dot {
   position: fixed; top: 0; left: 0; width: 6px; height: 6px;
