@@ -67,36 +67,38 @@ Generate these whenever ready (nanobanana or camera). No people or faces in any 
 ## Round 4 — video clips (2026-08-12)
 
 ### Two extra 4s hero clips (extend the closing car showcase)
-Reference images (frames from the current closing clip, saved to `~/Downloads`):
-`hero-car-ref-1.jpg` (side profile) and `hero-car-ref-2.jpg`. Use them as the
-image reference so the car, lighting and grade match. Target: 1280x720, 24fps,
-~4s each, no people, loopable-ish ends.
+Text-to-video, no reference image needed — the descriptions below carry the
+style of the current closing shot. Target: 1280x720, 24fps, ~4s each,
+no people, loopable-ish ends.
 
 1. **Rear three-quarter orbit**
-   "Using the reference image: the same matte black sports coupe with bronze
-   wheels and a thin orange pinstripe, in a pitch-black studio under a single
-   soft top light with a reflective dark floor. Camera slowly orbits from side
-   profile toward the rear three-quarter view, subtle light sweep across the
-   rear haunch and ducktail spoiler, cinematic, photorealistic, no people,
-   4 seconds, 24fps"
+   "A matte charcoal-black Japanese sports coupe with bronze multi-spoke
+   wheels, a thin orange pinstripe along the side skirt and a subtle ducktail
+   spoiler, parked in a pitch-black photo studio under a single soft overhead
+   light, dark reflective floor with a faint mirror image of the car. Camera
+   slowly orbits from the side profile toward the rear three-quarter view, a
+   soft light sweep gliding across the rear haunch and spoiler, deep shadows,
+   cinematic, photorealistic, no people, no text, 4 seconds, 24fps"
 2. **Low front dolly-in**
-   "Using the reference image: same matte black sports coupe, same dark studio
-   and top light. Low camera at bumper height slowly dollies toward the front
-   of the car, headlights catch a faint warm rim light, orange pinstripe on the
-   splitter glints, shallow depth of field, cinematic, photorealistic,
-   no people, 4 seconds, 24fps"
+   "A matte charcoal-black Japanese sports coupe with bronze multi-spoke
+   wheels and a thin orange pinstripe on the front splitter, in a pitch-black
+   photo studio under a single soft overhead light, dark reflective floor.
+   Very low camera at bumper height slowly dollies in toward the front of the
+   car, headlights catching a faint warm rim light, the orange pinstripe
+   glinting, shallow depth of field, deep shadows, cinematic, photorealistic,
+   no people, no text, 4 seconds, 24fps"
 
 Deliver as `wrapping7.mp4` / `wrapping8.mp4` in Downloads — I'll re-cut the
 montage with them appended before the closing shot.
 
 ### Studio-teaser background video (replaces the Ken Burns placeholder)
 The section already plays `public/videos/studio-teaser.mp4` (a temporary slow
-zoom of the still). Generate from `public/images/studio-teaser.webp` (or your
-original process4.png):
-   "Using the reference image: the amber-orange sports car on a dark circular
-   turntable stage. The turntable rotates slowly and continuously, studio rim
-   lighting sweeps across the matte orange body as it turns, black void
-   background, subtle floor reflections, seamless loop, photorealistic,
-   no people, 6 seconds, 24fps, 16:9"
+zoom of the still). Text-to-video, no reference needed:
+   "A sleek sports car in matte amber-orange wrap standing on a dark circular
+   turntable stage in a black void studio. The turntable rotates slowly and
+   continuously, studio rim lighting sweeping across the matte orange body as
+   it turns, subtle reflections on the dark floor, deep shadows all around,
+   seamless loop, cinematic, photorealistic, no people, no text, 6 seconds,
+   24fps, 16:9"
 Deliver as `studio-teaser.mp4` in Downloads — drop-in replacement, no code
 change needed.

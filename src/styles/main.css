@@ -35,7 +35,11 @@ body {
   position: fixed; inset: 0; z-index: 100;
   display: flex; align-items: center; justify-content: center;
   background: var(--carbon);
+  /* failsafe: if the JS bundle never runs (broken deploy, blocked script),
+     the curtain lifts on its own instead of black-screening the site */
+  animation: preloader-bail 0.5s ease 2.8s forwards;
 }
+@keyframes preloader-bail { to { opacity: 0; visibility: hidden; } }
 #preloader .preloader-mark {
   font-family: var(--font-display); font-style: italic; font-weight: 700;
   font-size: clamp(2.2rem, 6vw, 3.2rem); letter-spacing: 0.3em;
