@@ -93,3 +93,7 @@ same settings (full 4s, no trim) → public/videos/studio-teaser.mp4, 265 KB.
 Owner preferred a slower pace: all 8 clips concatenated at full length
 (~4.04s each, wrapping4 untrimmed too), same order and encode settings.
 32.3s total, 2.1 MB.
+
+## Re-cut 2026-08-12 (c) — tighter middle
+wrapping3 and wrapping5 trimmed to 3.04s (end cut), wrapping4 starts at 1.0s
+(skips the static opening); all other clips full length. 29.3s total, 1.8 MB.

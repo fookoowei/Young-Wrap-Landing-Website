@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js'
 
@@ -56,7 +57,9 @@ function findBodyMeshes(root) {
 
 async function loadCar() {
   const url = `${import.meta.env.BASE_URL}models/car.glb`
-  const gltf = await new GLTFLoader().loadAsync(url)
+  const loader = new GLTFLoader()
+  loader.setMeshoptDecoder(MeshoptDecoder)
+  const gltf = await loader.loadAsync(url)
   const object = gltf.scene
   // Normalize: ~4 units long, centered on origin, resting on y=0.
   const box = new THREE.Box3().setFromObject(object)
