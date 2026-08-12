@@ -17,14 +17,14 @@ html { scroll-behavior: smooth; }
 html.lenis, html.lenis body { height: auto; }
 
 /* branded scrollbars */
-html { scrollbar-width: thin; scrollbar-color: var(--panel-2) var(--carbon); }
+html { scrollbar-width: thin; scrollbar-color: var(--orange) var(--carbon); }
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: var(--carbon); }
 ::-webkit-scrollbar-thumb {
-  background: var(--panel-2);
+  background: var(--orange);
   border: 2px solid var(--carbon); border-radius: 5px;
 }
-::-webkit-scrollbar-thumb:hover { background: var(--orange); }
+::-webkit-scrollbar-thumb:hover { background: #ffb347; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
