@@ -45,6 +45,16 @@ export function initMotion() {
         scrollTrigger: { trigger: el, scrub: true } })
     }
   })
+  // desktop: as each sticky panel is covered by the next, it recedes and dims
+  mm.add('(prefers-reduced-motion: no-preference) and (min-width: 940px)', () => {
+    const panels = gsap.utils.toArray('.panel')
+    panels.forEach((panel, i) => {
+      const next = panels[i + 1]
+      if (!next) return
+      gsap.to(panel, { scale: 0.95, filter: 'brightness(0.45)', transformOrigin: 'center top', ease: 'none',
+        scrollTrigger: { trigger: next, start: 'top bottom', end: 'top top', scrub: true } })
+    })
+  })
   mm.add('(prefers-reduced-motion: reduce)', () => {
     document.querySelector('.hero-video')?.pause()
   })

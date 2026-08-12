@@ -4,7 +4,7 @@ import { SHOP } from './config.js'
 import { initLanguageToggle } from './i18n/i18n.js'
 import { initCarousel } from './carousel.js'
 import { initMotion, initHeroReveal } from './motion.js'
-import { initMenu } from './menu.js'
+import { initMenu, initHeaderScroll } from './menu.js'
 import { initCursor } from './cursor.js'
 import { initQuoteForm } from './quote-form.js'
 
@@ -75,5 +75,6 @@ initLanguageToggle(document.getElementById('lang-toggle'))
 initCarousel()
 initMotion()
 initMenu()
+initHeaderScroll()
 initCursor()
 initQuoteForm(SHOP)

@@ -4,7 +4,7 @@ import { initLanguageToggle, getSavedLanguage, t } from './i18n/i18n.js'
 import { WRAP_COLORS, WRAP_FINISHES, GROUP_ORDER, wrapParams } from './three/wraps.js'
 import { createCarViewer } from './three/carViewer.js'
 import { initMotion } from './motion.js'
-import { initMenu } from './menu.js'
+import { initMenu, initHeaderScroll } from './menu.js'
 import { initCursor } from './cursor.js'
 
 function wireShopLinks() {
@@ -165,4 +165,5 @@ initLanguageToggle(document.getElementById('lang-toggle'))
 initViewer()
 initMotion()
 initMenu()
+initHeaderScroll()
 initCursor()
