@@ -22,7 +22,7 @@ export const SHOP = {
       name: 'Mike Faizi',
       handle: '@mikefaizi',
       url: 'https://www.instagram.com/mikefaizi/',
-      postUrl: 'https://www.instagram.com/reel/DYPGSOISZRm/',
+      postUrl: 'https://www.instagram.com/reel/DZcQRN9hP24/',
     },
     {
       name: 'Livvie',

@@ -75,7 +75,10 @@ for (const kol of SHOP.kols) {
   iframe.setAttribute('scrolling', 'no')
   iframe.setAttribute('frameborder', '0')
   iframe.setAttribute('allowtransparency', 'true')
-  card.append(handle, iframe)
+  const crop = document.createElement('div')
+  crop.className = 'kol-embed-crop'
+  crop.append(iframe)
+  card.append(handle, crop)
   kolGrid.append(card)
 }
 

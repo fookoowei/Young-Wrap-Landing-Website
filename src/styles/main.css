@@ -42,7 +42,7 @@ body {
 .cut-corners,
 .wrap-picker,
 .portfolio-card,
-.kol-card iframe,
+.kol-embed-crop,
 .map-embed {
   clip-path: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
 }
@@ -78,8 +78,8 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 5rem 1.4rem; }
   border-bottom-color: var(--line);
 }
 .brand { display: inline-flex; align-items: center; }
-.brand-logo { height: 54px; width: auto; display: block; transition: height 0.35s ease; }
-.site-header.is-scrolled .brand-logo { height: 40px; }
+.brand-logo { height: 38px; width: auto; display: block; transition: height 0.35s ease; }
+.site-header.is-scrolled .brand-logo { height: 30px; }
 .brand-dot { color: var(--orange); }
 .lang-toggle {
   border: 1px solid var(--line); background: none; color: var(--ink);
@@ -219,7 +219,19 @@ body.menu-open { overflow: hidden; }
 
 /* ---------- studio ---------- */
 .studio { text-align: center; min-height: 100vh; padding-top: 6.5rem; display: flex; flex-direction: column; justify-content: center; }
-.studio .section-sub { margin: 0 auto 2rem; }
+.studio .section-sub { margin: 0 auto; }
+.studio-layout {
+  display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 1.5rem;
+  align-items: stretch; margin-top: 1.5rem; text-align: left;
+}
+.studio-layout .wrap-picker {
+  margin: 0; max-width: none;
+  max-height: min(70vh, 640px); overflow-y: auto;
+}
+@media (max-width: 939px) {
+  .studio-layout { grid-template-columns: 1fr; }
+  .studio-layout .wrap-picker { max-height: none; overflow: visible; }
+}
 #car-canvas {
   position: relative; height: min(70vh, 640px); min-height: 340px;
   background:
@@ -236,8 +248,6 @@ body.menu-open { overflow: hidden; }
   backdrop-filter: blur(10px);
   border: 1px solid var(--line);
   padding: 1.1rem 1.4rem 1.3rem;
-  max-width: 560px;
-  margin: 1.6rem auto 0;
   text-align: left;
 }
 .picker-title {
@@ -313,6 +323,10 @@ body.menu-open { overflow: hidden; }
 }
 .media-clip { overflow: hidden; }
 .media-clip img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.panel-veil {
+  position: absolute; inset: 0; z-index: 6;
+  background: var(--carbon); opacity: 0; pointer-events: none;
+}
 .panel-body { color: var(--ink-dim); font-size: 1.05rem; max-width: 56ch; }
 
 @media (min-width: 940px) {
@@ -375,18 +389,21 @@ body.menu-open { overflow: hidden; }
 .service-row:hover .row-no, .service-row:focus .row-no, .service-row:focus-within .row-no { color: var(--orange); }
 .service-row:hover p, .service-row:focus p, .service-row:focus-within p { max-height: 6rem; opacity: 1; margin-top: 0.5rem; }
 
-/* ---------- portfolio carousel (infinite drag loop) ---------- */
+/* ---------- portfolio carousel (infinite drag loop, drag-to-focus) ---------- */
 .portfolio-viewport { overflow: hidden; margin-top: 1.6rem; }
 .portfolio-track { display: flex; gap: 1.2rem; width: max-content; touch-action: pan-y; }
 .portfolio-card {
-  width: min(78vw, 880px); aspect-ratio: 3 / 2; flex: none;
+  width: min(52vw, 460px); aspect-ratio: 4 / 5; flex: none;
   border: 1px solid var(--line); overflow: hidden; position: relative;
+  transition: transform 0.45s ease;
 }
 .portfolio-card img {
   width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: filter 0.45s ease;
 }
-.portfolio-card:hover img { transform: scale(1.03); }
+.portfolio-viewport.is-dragging .portfolio-card { transform: scale(0.92); }
+.portfolio-viewport.is-dragging .portfolio-card img { filter: grayscale(1) brightness(0.55); }
+.portfolio-viewport.is-dragging .portfolio-card.is-centered img { filter: none; }
 
 /* ---------- KOL ---------- */
 .kol {
@@ -408,9 +425,17 @@ body.menu-open { overflow: hidden; }
   transition: color 0.2s ease;
 }
 .kol-handle:hover { color: var(--orange); }
+/* crop the embed after the "View more on Instagram" row: 54px header +
+   4:5 media (125% of width) + 46px link row; like/comment chrome is cut */
+.kol-embed-crop {
+  position: relative; overflow: hidden;
+  padding-top: calc(125% + 100px);
+  background: var(--panel-2);
+}
 .kol-card iframe {
-  width: 100%; aspect-ratio: 5 / 8;
-  border: 0; background: var(--panel-2);
+  position: absolute; top: 0; left: 0;
+  width: 100%; height: calc(100% + 320px);
+  border: 0;
 }
 @media (max-width: 939px) {
   .kol-grid { grid-template-columns: 1fr; max-width: 500px; }
@@ -459,31 +484,6 @@ body.menu-open { overflow: hidden; }
 .footer-credit a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
 .footer-credit a:hover { color: var(--orange); }
 
-/* ---------- lightbox ---------- */
-.lightbox {
-  border: none; padding: 0; margin: 0;
-  width: 100vw; height: 100dvh; max-width: 100vw; max-height: 100dvh;
-  background: rgba(5, 5, 6, 0.92);
-}
-.lightbox[open] { display: flex; align-items: center; justify-content: center; }
-.lightbox-img {
-  max-width: min(92vw, 1400px); max-height: 84dvh; display: block;
-  border: 1px solid var(--line);
-}
-.lightbox-close {
-  position: absolute; top: 1.2rem; right: 1.4rem; width: 48px; height: 48px;
-  border: 1px solid var(--line); background: color-mix(in srgb, var(--carbon) 75%, transparent);
-  cursor: pointer; transition: border-color 0.2s ease;
-}
-.lightbox-close span {
-  position: absolute; top: 50%; left: 50%; width: 22px; height: 2px;
-  background: var(--ink); transition: background-color 0.2s ease;
-}
-.lightbox-close span:first-child { transform: translate(-50%, -50%) rotate(45deg); }
-.lightbox-close span:last-child { transform: translate(-50%, -50%) rotate(-45deg); }
-.lightbox-close:hover { border-color: var(--orange); }
-.lightbox-close:hover span { background: var(--orange); }
-
 /* ---------- cursor ---------- */
 .cursor-dot {
   position: fixed; top: 0; left: 0; width: 6px; height: 6px;
@@ -518,10 +518,6 @@ body:has(.cursor-ring) .swatch,
 body:has(.cursor-ring) .finish-btn,
 body:has(.cursor-ring) .portfolio-card {
   cursor: none;
-}
-body:has(.cursor-ring) .lightbox,
-body:has(.cursor-ring) .lightbox button {
-  cursor: pointer;
 }
 
 /* ---------- responsive / a11y ---------- */

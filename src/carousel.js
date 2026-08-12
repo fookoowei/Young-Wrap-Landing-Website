@@ -23,9 +23,7 @@ const IMAGES = ALT_TEXTS.map((alt, i) => ({
 
 export function initCarousel() {
   const track = document.getElementById('portfolio-track')
-  const lightbox = document.getElementById('lightbox')
-  const lightboxImg = lightbox.querySelector('.lightbox-img')
-  let dragging = false
+  const viewport = track.parentElement
 
   // two copies of the set make the drag loop seamless; the clone set is
   // hidden from the accessibility tree
@@ -33,37 +31,43 @@ export function initCarousel() {
     for (const { src, alt } of IMAGES) {
       const card = document.createElement('figure')
       card.className = 'portfolio-card'
-      card.dataset.cursor = 'zoom'
       if (copy > 0) card.setAttribute('aria-hidden', 'true')
       card.innerHTML = `<img src="${src}" alt="${copy > 0 ? '' : alt}" loading="lazy" draggable="false" />`
-      card.addEventListener('click', () => {
-        if (dragging) return
-        lightboxImg.src = src; lightboxImg.alt = alt; lightbox.showModal()
-      })
       track.append(card)
     }
+  }
+  const cards = [...track.children]
+
+  // while dragging, every card recedes and greys out except the one
+  // closest to the viewport centre
+  const markCentered = () => {
+    const mid = viewport.getBoundingClientRect().left + viewport.clientWidth / 2
+    let best, bestDist = Infinity
+    for (const card of cards) {
+      const r = card.getBoundingClientRect()
+      const d = Math.abs(r.left + r.width / 2 - mid)
+      if (d < bestDist) { bestDist = d; best = card }
+    }
+    for (const card of cards) card.classList.toggle('is-centered', card === best)
   }
 
   // distance between the first card of each copy = one full loop
   let period = track.children[IMAGES.length].offsetLeft - track.children[0].offsetLeft
   let wrapX = gsap.utils.wrap(-period, 0)
-  const applyWrap = function () { gsap.set(track, { x: wrapX(this.x) }) }
-  // dragging guard: set on real drags so the click right after a drag can't
-  // open the lightbox; reset on every fresh press so the next tap works even
-  // when that press interrupted an inertia throw
+  const applyWrap = function () { gsap.set(track, { x: wrapX(this.x) }); markCentered() }
   Draggable.create(track, {
     type: 'x', inertia: true,
-    onPress: () => (dragging = false),
-    onDragStart: () => (dragging = true),
+    onPress: () => { markCentered(); viewport.classList.add('is-dragging') },
     onDrag: applyWrap,
     onThrowUpdate: applyWrap,
+    onRelease: function () {
+      if (!this.tween || !this.tween.isActive()) viewport.classList.remove('is-dragging')
+    },
+    onThrowComplete: () => viewport.classList.remove('is-dragging'),
   })
   addEventListener('resize', () => {
     period = track.children[IMAGES.length].offsetLeft - track.children[0].offsetLeft
     wrapX = gsap.utils.wrap(-period, 0)
     gsap.set(track, { x: wrapX(Number(gsap.getProperty(track, 'x'))) })
   })
-
-  lightbox.querySelector('.lightbox-close').addEventListener('click', () => lightbox.close())
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.close() })
 }

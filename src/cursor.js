@@ -14,7 +14,7 @@ export function initCursor() {
   const rsx = gsap.quickTo(ring, 'scaleX', { duration: 0.2, ease: 'power2.out' }), rsy = gsap.quickTo(ring, 'scaleY', { duration: 0.2, ease: 'power2.out' })
   addEventListener('pointermove', (e) => { dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY) })
 
-  const LABELS = { drag: 'DRAG', spin: 'SPIN', zoom: 'ZOOM' }
+  const LABELS = { drag: 'DRAG', spin: 'SPIN' }
   addEventListener('pointerover', (e) => {
     const pill = e.target.closest('[data-cursor]')
     const interactive = e.target.closest('a, button, input, select, textarea, .swatch, .finish-btn')

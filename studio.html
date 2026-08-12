@@ -17,7 +17,7 @@
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="index.html"><img class="brand-logo" src="logo/yw-logo.png" alt="Young Wrap — home" /></a>
+      <a class="brand" href="index.html"><img class="brand-logo" src="logo/yw-logo-h.png" alt="Young Wrap — home" /></a>
       <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-overlay" aria-label="Menu"><span></span><span></span></button>
     </header>
     <div id="menu-backdrop" class="menu-backdrop" hidden></div>
@@ -45,14 +45,16 @@
       <section class="studio">
         <p class="eyebrow" data-i18n="configurator.title">Design Your Wrap</p>
         <p class="section-sub" data-i18n="hero.hint">Drag to spin the car — tap a color to preview a wrap</p>
-        <div id="car-canvas" data-cursor="spin" aria-label="Interactive 3D car preview">
-          <img class="viewer-fallback-img" src="images/car1.webp" alt="Wrapped car preview" hidden />
-        </div>
-        <div class="wrap-picker">
-          <p class="picker-title" data-i18n="picker.title">Pick your wrap</p>
-          <div id="wrap-colors" class="swatch-groups" role="listbox" aria-label="Wrap colors"></div>
-          <p class="picker-title" data-i18n="picker.finish">Finish</p>
-          <div id="wrap-finishes" class="finishes" role="listbox" aria-label="Wrap finishes"></div>
+        <div class="studio-layout">
+          <div id="car-canvas" data-cursor="spin" aria-label="Interactive 3D car preview">
+            <img class="viewer-fallback-img" src="images/car1.webp" alt="Wrapped car preview" hidden />
+          </div>
+          <div class="wrap-picker">
+            <p class="picker-title" data-i18n="picker.title">Pick your wrap</p>
+            <div id="wrap-colors" class="swatch-groups" role="listbox" aria-label="Wrap colors"></div>
+            <p class="picker-title" data-i18n="picker.finish">Finish</p>
+            <div id="wrap-finishes" class="finishes" role="listbox" aria-label="Wrap finishes"></div>
+          </div>
         </div>
       </section>
     </main>
