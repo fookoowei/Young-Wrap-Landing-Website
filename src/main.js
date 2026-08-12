@@ -35,8 +35,8 @@ function initPreloader(onDone) {
       onDone()
     },
   })
-    .to(mark, { opacity: 1, letterSpacing: '0.34em', duration: 0.6, ease: 'power2.out' })
-    .to({}, { duration: 1 }) // hold the brand moment
+    .fromTo(mark, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out' })
+    .to({}, { duration: 1.2 }) // hold — the CSS glow pulse plays here
     .to(el, { yPercent: -100, duration: 0.6, ease: 'power3.inOut' })
 }
 

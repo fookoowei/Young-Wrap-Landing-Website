@@ -51,9 +51,13 @@ body {
 }
 @keyframes preloader-bail { to { opacity: 0; visibility: hidden; } }
 #preloader .preloader-mark {
-  font-family: var(--font-display); font-style: italic; font-weight: 700;
-  font-size: clamp(2.2rem, 6vw, 3.2rem); letter-spacing: 0.3em;
-  color: var(--orange); opacity: 0; padding-left: 0.3em; /* offsets tracking so the mark looks centered */
+  width: clamp(84px, 13vw, 132px); height: auto; opacity: 0;
+  /* amber glow pulse takes over the transform once the GSAP fade-in lands */
+  animation: mark-pulse 1.5s ease-in-out 0.6s infinite;
+}
+@keyframes mark-pulse {
+  0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(250, 156, 32, 0.2)); }
+  50% { transform: scale(1.07); filter: drop-shadow(0 0 32px rgba(250, 156, 32, 0.55)); }
 }
 
 /* corner-cut panel shape used across cards/picker/tiles */
