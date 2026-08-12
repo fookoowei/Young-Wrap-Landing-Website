@@ -97,3 +97,8 @@ Owner preferred a slower pace: all 8 clips concatenated at full length
 ## Re-cut 2026-08-12 (c) — tighter middle
 wrapping3 and wrapping5 trimmed to 3.04s (end cut), wrapping4 starts at 1.0s
 (skips the static opening); all other clips full length. 29.3s total, 1.8 MB.
+
+## Re-cut 2026-08-12 (d) — natural order, 2s mid-clips
+Order fixed to wrapping1..wrapping8 (no reordering). wrapping3/5 = first 2s,
+wrapping4 = 2s starting at 1.0s. 26.2s total, 1.8 MB. Verified with a
+per-segment contact sheet: 8 unique segments.
