@@ -102,7 +102,6 @@ section { max-width: var(--maxw); margin: 0 auto; padding: 5rem 1.4rem; }
 .brand { display: inline-flex; align-items: center; }
 .brand-logo { height: 38px; width: auto; display: block; transition: height 0.35s ease; }
 .site-header.is-scrolled .brand-logo { height: 30px; }
-.brand-dot { color: var(--orange); }
 .lang-toggle {
   border: 1px solid var(--line); background: none; color: var(--ink);
   font-family: var(--font-display); font-weight: 500;

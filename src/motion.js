@@ -42,16 +42,6 @@ export function initHeroReveal() {
 }
 
 export function initMotion() {
-  // offscreen autoplay videos don't reliably start when scrolled into view —
-  // drive play/pause from visibility (skipped entirely under reduced motion)
-  const bgVideos = document.querySelectorAll('video.panel-bg')
-  if (bgVideos.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause()
-    }, { threshold: 0.15 })
-    for (const v of bgVideos) io.observe(v)
-  }
-
   const mm = gsap.matchMedia()
   mm.add('(prefers-reduced-motion: no-preference)', () => {
     for (const el of document.querySelectorAll('[data-reveal]')) {
@@ -98,6 +88,6 @@ export function initMotion() {
     return () => { for (const fn of cleanups) fn() }
   })
   mm.add('(prefers-reduced-motion: reduce)', () => {
-    for (const video of document.querySelectorAll('.hero-video, video.panel-bg')) video.pause()
+    document.querySelector('.hero-video')?.pause()
   })
 }

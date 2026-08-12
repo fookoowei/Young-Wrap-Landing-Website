@@ -70,17 +70,23 @@ async function loadCar() {
   const center = scaled.getCenter(new THREE.Vector3())
   object.position.x -= center.x
   object.position.z -= center.z
-  // rest the TIRES on y=0 — the overall bbox can dip lower than the tread
-  // (underbody/suspension geometry), which would leave the car hovering
-  const tireBox = new THREE.Box3()
-  let hasTires = false
+  // Rest the car on y=0 using a low vertex-density percentile: bounding boxes
+  // can contain phantom outlier vertices (compression artifacts) far below the
+  // real tread line, which would leave the car hovering above the floor.
+  object.updateMatrixWorld(true)
+  const v = new THREE.Vector3()
+  const ys = []
   object.traverse((o) => {
-    if (o.isMesh && /tire|tyre|wheel/i.test(o.material?.name || o.name)) {
-      tireBox.expandByObject(o)
-      hasTires = true
+    if (!o.isMesh) return
+    const pos = o.geometry.attributes.position
+    const step = Math.max(1, Math.floor(pos.count / 20000))
+    for (let i = 0; i < pos.count; i += step) {
+      ys.push(v.fromBufferAttribute(pos, i).applyMatrix4(o.matrixWorld).y)
     }
   })
-  object.position.y -= (hasTires ? tireBox : scaled).min.y
+  ys.sort((a, b) => a - b)
+  const ground = ys.length ? ys[Math.floor(0.001 * (ys.length - 1))] : scaled.min.y
+  object.position.y -= ground + 0.01
   return { object, bodyMeshes: findBodyMeshes(object) }
 }
 
@@ -101,11 +107,12 @@ export async function createCarViewer(container) {
   const scene = new THREE.Scene()
   const pmrem = new THREE.PMREMGenerator(renderer)
   scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture
+  pmrem.dispose()
   scene.environmentIntensity = 0.55
 
   // Branded studio lighting: white key from the front-right, YW-orange rim from behind.
   const keyLight = new THREE.DirectionalLight(0xffffff, 1.6)
-  keyLight.position.set(3.5, 5, 2.5)
+  keyLight.position.set(2.0, 6, 1.6)
   keyLight.castShadow = true
   keyLight.shadow.mapSize.set(1024, 1024)
   keyLight.shadow.camera.left = -4
@@ -113,7 +120,6 @@ export async function createCarViewer(container) {
   keyLight.shadow.camera.top = 4
   keyLight.shadow.camera.bottom = -4
   scene.add(keyLight)
-  // amber rim light lives on layer 1 so it kisses the car but not the floor
   // amber rim light lives on layer 1 so it kisses the car but not the floor
   const rimLight = new THREE.DirectionalLight(0xFA9C20, 2.2)
   rimLight.position.set(-4, 2, -4)
@@ -124,8 +130,8 @@ export async function createCarViewer(container) {
   // linear fog fades the floor edge into the page background
   scene.fog = new THREE.Fog(0x0a0a0b, 9, 17)
 
-  const floorMat = new THREE.MeshStandardMaterial({ color: 0x0a0a0c, roughness: 0.6, metalness: 0.25 })
-  floorMat.envMapIntensity = 0.18
+  const floorMat = new THREE.MeshStandardMaterial({ color: 0x08080a, roughness: 0.7, metalness: 0.2 })
+  floorMat.envMapIntensity = 0.14
   const floor = new THREE.Mesh(new THREE.CircleGeometry(14, 64), floorMat)
   floor.rotation.x = -Math.PI / 2
   floor.receiveShadow = true
@@ -156,14 +162,14 @@ export async function createCarViewer(container) {
   const aoCanvas = document.createElement('canvas')
   aoCanvas.width = aoCanvas.height = 256
   const aoCtx = aoCanvas.getContext('2d')
-  const aoGrad = aoCtx.createRadialGradient(128, 128, 16, 128, 128, 126)
-  aoGrad.addColorStop(0, 'rgba(0,0,0,0.8)')
-  aoGrad.addColorStop(0.55, 'rgba(0,0,0,0.4)')
+  const aoGrad = aoCtx.createRadialGradient(128, 128, 40, 128, 128, 126)
+  aoGrad.addColorStop(0, 'rgba(0,0,0,0.9)')
+  aoGrad.addColorStop(0.7, 'rgba(0,0,0,0.5)')
   aoGrad.addColorStop(1, 'rgba(0,0,0,0)')
   aoCtx.fillStyle = aoGrad
   aoCtx.fillRect(0, 0, 256, 256)
   const contactShadow = new THREE.Mesh(
-    new THREE.PlaneGeometry(4.6, 2.4),
+    new THREE.PlaneGeometry(1.75, 4.15), // car length runs along Z
     new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(aoCanvas), transparent: true, depthWrite: false })
   )
   contactShadow.rotation.x = -Math.PI / 2
@@ -171,7 +177,7 @@ export async function createCarViewer(container) {
   scene.add(contactShadow)
 
   const camera = new THREE.PerspectiveCamera(36, container.clientWidth / container.clientHeight, 0.1, 100)
-  camera.position.set(4.4, 2.0, 4.7)
+  camera.position.set(4.4, 1.45, 4.7)
   camera.layers.enable(1)
 
   const controls = new OrbitControls(camera, renderer.domElement)
@@ -179,7 +185,7 @@ export async function createCarViewer(container) {
   controls.enablePan = false
   controls.enableZoom = false
   controls.maxPolarAngle = Math.PI / 2.05
-  controls.target.set(0, 1.35, 0)
+  controls.target.set(0, 0.58, 0)
   controls.autoRotate = true
   controls.autoRotateSpeed = 1.1
   let idleTimer
@@ -221,6 +227,8 @@ export async function createCarViewer(container) {
     controls.update()
     renderer.render(scene, camera)
   })
+
+  if (new URLSearchParams(location.search).has('debug3d')) window.__scene3d = { scene, car, THREE }
 
   return { applyWrap }
 }

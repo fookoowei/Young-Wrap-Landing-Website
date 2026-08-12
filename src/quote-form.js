@@ -1,6 +1,6 @@
 export function buildWhatsAppUrl(waBase, { name, car, service, message }) {
   const lines = [`Hi Young Wrap! I'd like a quote.`,
-    name && `Name: ${name}`, car && `Car: ${car}`, service && `Service: ${service}`, message && `Message: ${message}`,
+    name && `Name: ${name}`, car && `Item: ${car}`, service && `Service: ${service}`, message && `Message: ${message}`,
   ].filter(Boolean)
   return `${waBase.split('?')[0]}?text=${encodeURIComponent(lines.join('\n'))}`
 }

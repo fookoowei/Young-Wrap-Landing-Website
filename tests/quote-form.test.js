@@ -10,6 +10,6 @@ describe('buildWhatsAppUrl', () => {
   })
   it('omits empty fields', () => {
     const text = decodeURIComponent(buildWhatsAppUrl('https://wa.me/1', { name: 'A', car: '', service: '', message: '' }).split('text=')[1])
-    expect(text).not.toContain('Car:')
+    expect(text).not.toContain('Item:')
   })
 })
