@@ -15,6 +15,16 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 html.lenis, html.lenis body { height: auto; }
+
+/* branded scrollbars */
+html { scrollbar-width: thin; scrollbar-color: var(--panel-2) var(--carbon); }
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--carbon); }
+::-webkit-scrollbar-thumb {
+  background: var(--panel-2);
+  border: 2px solid var(--carbon); border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--orange); }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
 .lenis.lenis-stopped { overflow: hidden; }
@@ -37,7 +47,7 @@ body {
   background: var(--carbon);
   /* failsafe: if the JS bundle never runs (broken deploy, blocked script),
      the curtain lifts on its own instead of black-screening the site */
-  animation: preloader-bail 0.5s ease 2.8s forwards;
+  animation: preloader-bail 0.5s ease 3.8s forwards;
 }
 @keyframes preloader-bail { to { opacity: 0; visibility: hidden; } }
 #preloader .preloader-mark {
@@ -232,13 +242,11 @@ body.menu-open { overflow: hidden; }
   display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 1.5rem;
   align-items: stretch; margin-top: 1.5rem; text-align: left;
 }
-.studio-layout .wrap-picker {
-  margin: 0; max-width: none;
-  max-height: min(70vh, 640px); overflow-y: auto;
-}
+.studio-layout .wrap-picker { margin: 0; max-width: none; }
+.studio-layout #car-canvas { height: auto; min-height: min(70vh, 560px); }
 @media (max-width: 939px) {
   .studio-layout { grid-template-columns: 1fr; }
-  .studio-layout .wrap-picker { max-height: none; overflow: visible; }
+  .studio-layout #car-canvas { height: min(70vh, 640px); }
 }
 #car-canvas {
   position: relative; height: min(70vh, 640px); min-height: 340px;

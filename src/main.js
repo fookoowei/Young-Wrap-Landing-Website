@@ -17,6 +17,10 @@ function initPreloader(onDone) {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
   let seen = false
   try { seen = Boolean(sessionStorage.getItem('yw-seen')) } catch { /* private mode — non-fatal */ }
+  if (import.meta.env.DEV) {
+    seen = false
+    el.style.removeProperty('display') // inline skip script may have hidden it
+  }
   if (reduce || seen) {
     el.remove()
     onDone()
@@ -32,6 +36,7 @@ function initPreloader(onDone) {
     },
   })
     .to(mark, { opacity: 1, letterSpacing: '0.34em', duration: 0.6, ease: 'power2.out' })
+    .to({}, { duration: 1 }) // hold the brand moment
     .to(el, { yPercent: -100, duration: 0.6, ease: 'power3.inOut' })
 }
 

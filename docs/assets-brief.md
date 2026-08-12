@@ -71,22 +71,20 @@ Text-to-video, no reference image needed — the descriptions below carry the
 style of the current closing shot. Target: 1280x720, 24fps, ~4s each,
 no people, loopable-ish ends.
 
-1. **Rear three-quarter orbit**
-   "A matte charcoal-black Japanese sports coupe with bronze multi-spoke
-   wheels, a thin orange pinstripe along the side skirt and a subtle ducktail
-   spoiler, parked in a pitch-black photo studio under a single soft overhead
-   light, dark reflective floor with a faint mirror image of the car. Camera
-   slowly orbits from the side profile toward the rear three-quarter view, a
-   soft light sweep gliding across the rear haunch and spoiler, deep shadows,
-   cinematic, photorealistic, no people, no text, 4 seconds, 24fps"
-2. **Low front dolly-in**
-   "A matte charcoal-black Japanese sports coupe with bronze multi-spoke
-   wheels and a thin orange pinstripe on the front splitter, in a pitch-black
-   photo studio under a single soft overhead light, dark reflective floor.
-   Very low camera at bumper height slowly dollies in toward the front of the
-   car, headlights catching a faint warm rim light, the orange pinstripe
-   glinting, shallow depth of field, deep shadows, cinematic, photorealistic,
-   no people, no text, 4 seconds, 24fps"
+1. **Close-up rear orbit (GR86)**
+   "Close-up slow orbit around the rear haunch of a matte black Toyota GR86
+   sports coupe with subtle orange accents, in a dark empty showroom under a
+   single overhead spotlight, reflections gliding across the rear fender,
+   ducktail spoiler and taillight as the camera moves, very dark background,
+   cinematic, loopable camera move, no people, no text, no watermark,
+   4 seconds, 24fps"
+2. **Close-up front dolly (GR86)**
+   "Extreme close-up, low camera at bumper height slowly dollying along the
+   front of a matte black Toyota GR86 sports coupe with subtle orange accents,
+   headlight and front fender filling the frame, a single overhead spotlight
+   in a dark empty showroom, reflections gliding across the hood, shallow
+   depth of field, very dark background, cinematic, loopable camera move,
+   no people, no text, no watermark, 4 seconds, 24fps"
 
 Deliver as `wrapping7.mp4` / `wrapping8.mp4` in Downloads — I'll re-cut the
 montage with them appended before the closing shot.
@@ -94,11 +92,11 @@ montage with them appended before the closing shot.
 ### Studio-teaser background video (replaces the Ken Burns placeholder)
 The section already plays `public/videos/studio-teaser.mp4` (a temporary slow
 zoom of the still). Text-to-video, no reference needed:
-   "A sleek sports car in matte amber-orange wrap standing on a dark circular
+   "A Nissan GT-R R35 in matte amber-orange wrap standing on a dark circular
    turntable stage in a black void studio. The turntable rotates slowly and
-   continuously, studio rim lighting sweeping across the matte orange body as
-   it turns, subtle reflections on the dark floor, deep shadows all around,
-   seamless loop, cinematic, photorealistic, no people, no text, 6 seconds,
-   24fps, 16:9"
+   continuously, studio rim lighting sweeping across the matte orange body and
+   rear wing as it turns, subtle reflections on the dark floor, deep shadows
+   all around, seamless loop, cinematic, photorealistic, no people, no text,
+   no watermark, 6 seconds, 24fps, 16:9"
 Deliver as `studio-teaser.mp4` in Downloads — drop-in replacement, no code
 change needed.
