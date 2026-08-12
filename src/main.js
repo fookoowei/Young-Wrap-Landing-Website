@@ -3,7 +3,7 @@ import './styles/main.css'
 import { SHOP } from './config.js'
 import { initLanguageToggle } from './i18n/i18n.js'
 import { initCarousel } from './carousel.js'
-import { initMotion, initHeroReveal } from './motion.js'
+import { initMotion, initHeroReveal, initSmoothScroll } from './motion.js'
 import { initMenu, initHeaderScroll } from './menu.js'
 import { initCursor } from './cursor.js'
 import { initQuoteForm } from './quote-form.js'
@@ -85,6 +85,7 @@ for (const kol of SHOP.kols) {
 initLanguageToggle(document.getElementById('lang-toggle'))
 initCarousel()
 initMotion()
+initSmoothScroll()
 initMenu()
 initHeaderScroll()
 initCursor()

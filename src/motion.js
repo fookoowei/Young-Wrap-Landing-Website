@@ -1,6 +1,25 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import Lenis from 'lenis'
 gsap.registerPlugin(ScrollTrigger)
+
+// Lerped scrolling (scgroup-style). Native scroll position is animated, so
+// position: sticky and fixed keep working; ScrollTrigger stays in sync.
+export function initSmoothScroll() {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  const lenis = new Lenis({ lerp: 0.09 })
+  lenis.on('scroll', ScrollTrigger.update)
+  gsap.ticker.add((t) => lenis.raf(t * 1000))
+  gsap.ticker.lagSmoothing(0)
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]')
+    if (!a || a.hash.length < 2) return
+    const el = document.querySelector(a.hash)
+    if (!el) return
+    e.preventDefault()
+    lenis.scrollTo(el)
+  })
+}
 
 // Sets the hero headline lines + scroll indicator to their pre-reveal state and
 // returns a function that plays the reveal. Call play() once the preloader
@@ -23,6 +42,16 @@ export function initHeroReveal() {
 }
 
 export function initMotion() {
+  // offscreen autoplay videos don't reliably start when scrolled into view —
+  // drive play/pause from visibility (skipped entirely under reduced motion)
+  const bgVideos = document.querySelectorAll('video.panel-bg')
+  if (bgVideos.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) e.isIntersecting ? e.target.play().catch(() => {}) : e.target.pause()
+    }, { threshold: 0.15 })
+    for (const v of bgVideos) io.observe(v)
+  }
+
   const mm = gsap.matchMedia()
   mm.add('(prefers-reduced-motion: no-preference)', () => {
     for (const el of document.querySelectorAll('[data-reveal]')) {
@@ -69,6 +98,6 @@ export function initMotion() {
     return () => { for (const fn of cleanups) fn() }
   })
   mm.add('(prefers-reduced-motion: reduce)', () => {
-    document.querySelector('.hero-video')?.pause()
+    for (const video of document.querySelectorAll('.hero-video, video.panel-bg')) video.pause()
   })
 }

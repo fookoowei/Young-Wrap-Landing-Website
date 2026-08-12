@@ -63,3 +63,40 @@ Generate these whenever ready (nanobanana or camera). No people or faces in any 
    Prompt: "A sleek Japanese sports coupe in matte amber-orange wrap on a dark turntable stage, studio rim lighting, black void background, slight top-down angle, no people, no badges, 16:9, photorealistic"
 4. **Optional: vertical detail clips** (9:16, 5–8 s each, for a future reels strip)
    Same style as the hero montage prompts in Round 2 (close-up wrapping process, no people/faces).
+
+## Round 4 — video clips (2026-08-12)
+
+### Two extra 4s hero clips (extend the closing car showcase)
+Reference images (frames from the current closing clip, saved to `~/Downloads`):
+`hero-car-ref-1.jpg` (side profile) and `hero-car-ref-2.jpg`. Use them as the
+image reference so the car, lighting and grade match. Target: 1280x720, 24fps,
+~4s each, no people, loopable-ish ends.
+
+1. **Rear three-quarter orbit**
+   "Using the reference image: the same matte black sports coupe with bronze
+   wheels and a thin orange pinstripe, in a pitch-black studio under a single
+   soft top light with a reflective dark floor. Camera slowly orbits from side
+   profile toward the rear three-quarter view, subtle light sweep across the
+   rear haunch and ducktail spoiler, cinematic, photorealistic, no people,
+   4 seconds, 24fps"
+2. **Low front dolly-in**
+   "Using the reference image: same matte black sports coupe, same dark studio
+   and top light. Low camera at bumper height slowly dollies toward the front
+   of the car, headlights catch a faint warm rim light, orange pinstripe on the
+   splitter glints, shallow depth of field, cinematic, photorealistic,
+   no people, 4 seconds, 24fps"
+
+Deliver as `wrapping7.mp4` / `wrapping8.mp4` in Downloads — I'll re-cut the
+montage with them appended before the closing shot.
+
+### Studio-teaser background video (replaces the Ken Burns placeholder)
+The section already plays `public/videos/studio-teaser.mp4` (a temporary slow
+zoom of the still). Generate from `public/images/studio-teaser.webp` (or your
+original process4.png):
+   "Using the reference image: the amber-orange sports car on a dark circular
+   turntable stage. The turntable rotates slowly and continuously, studio rim
+   lighting sweeps across the matte orange body as it turns, black void
+   background, subtle floor reflections, seamless loop, photorealistic,
+   no people, 6 seconds, 24fps, 16:9"
+Deliver as `studio-teaser.mp4` in Downloads — drop-in replacement, no code
+change needed.

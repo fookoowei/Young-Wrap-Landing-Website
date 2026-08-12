@@ -21,7 +21,7 @@
       <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-overlay" aria-label="Menu"><span></span><span></span></button>
     </header>
     <div id="menu-backdrop" class="menu-backdrop" hidden></div>
-    <aside id="menu-overlay" class="menu-panel" hidden aria-label="Menu">
+    <aside id="menu-overlay" class="menu-panel" hidden aria-label="Menu" data-lenis-prevent>
       <button id="menu-close" class="menu-close" type="button" aria-label="Close menu"><span></span><span></span></button>
       <nav class="menu-links" data-menu-stagger>
         <a href="index.html#top" data-i18n="menu.home">Home</a>
@@ -49,7 +49,7 @@
           <div id="car-canvas" data-cursor="spin" aria-label="Interactive 3D car preview">
             <img class="viewer-fallback-img" src="images/car1.webp" alt="Wrapped car preview" hidden />
           </div>
-          <div class="wrap-picker">
+          <div class="wrap-picker" data-lenis-prevent>
             <p class="picker-title" data-i18n="picker.title">Pick your wrap</p>
             <div id="wrap-colors" class="swatch-groups" role="listbox" aria-label="Wrap colors"></div>
             <p class="picker-title" data-i18n="picker.finish">Finish</p>

@@ -110,14 +110,14 @@ export async function createCarViewer(container) {
   scene.add(floor)
 
   const camera = new THREE.PerspectiveCamera(36, container.clientWidth / container.clientHeight, 0.1, 100)
-  camera.position.set(4.4, 1.5, 4.7)
+  camera.position.set(4.4, 2.0, 4.7)
 
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
   controls.enablePan = false
   controls.enableZoom = false
   controls.maxPolarAngle = Math.PI / 2.05
-  controls.target.set(0, 0.55, 0)
+  controls.target.set(0, 1.35, 0)
   controls.autoRotate = true
   controls.autoRotateSpeed = 1.1
   let idleTimer

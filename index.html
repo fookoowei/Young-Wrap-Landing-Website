@@ -59,7 +59,7 @@
       <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-overlay" aria-label="Menu"><span></span><span></span></button>
     </header>
     <div id="menu-backdrop" class="menu-backdrop" hidden></div>
-    <aside id="menu-overlay" class="menu-panel" hidden aria-label="Menu">
+    <aside id="menu-overlay" class="menu-panel" hidden aria-label="Menu" data-lenis-prevent>
       <button id="menu-close" class="menu-close" type="button" aria-label="Close menu"><span></span><span></span></button>
       <nav class="menu-links" data-menu-stagger>
         <a href="#top" data-i18n="menu.home">Home</a>
@@ -158,7 +158,9 @@
         </section>
 
         <section id="studio-teaser" class="panel panel--teaser">
-          <img class="panel-bg" src="images/studio-teaser.webp" alt="" aria-hidden="true" loading="lazy" />
+          <video class="panel-bg" autoplay muted loop playsinline preload="metadata" poster="images/studio-teaser.webp" aria-hidden="true">
+            <source src="videos/studio-teaser.mp4" type="video/mp4" />
+          </video>
           <div class="panel-scrim" aria-hidden="true"></div>
           <div class="panel-inner panel-inner--center">
             <p class="eyebrow" data-i18n="teaser.eyebrow">3D Studio</p>
