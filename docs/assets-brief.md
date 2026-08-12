@@ -55,7 +55,7 @@ Generate these whenever ready (nanobanana or camera). No people or faces in any 
 1. **About panel background** (replaces `images/car2.webp` if you want something wider)
    Prompt: "Ultra-wide cinematic photo of a dark automotive workshop interior at night, a freshly wrapped sports car in amber-orange vinyl under warm spot lighting, deep black shadows, no people, no logos, moody luxury garage atmosphere, 21:9, photorealistic"
 2. **Process panel accent stills** (4 close-ups, 3:2, one per step)
-   - "Macro photo of rolls of car wrap vinyl stacked on a dark shelf, amber orange, gunmetal grey and black rolls, shallow depth of field, no people, no hands, photorealistic"
+   - "Macro photo of dozens of car wrap vinyl rolls stacked on a dark industrial shelf, a rainbow of colours — gloss amber orange, candy red, sapphire blue, viper green, magenta pink, pearl white, gunmetal grey, satin black, chrome silver, colour-shift purple-teal — glossy and matte finishes side by side, shallow depth of field with the amber orange roll in sharp focus, no people, no hands, photorealistic"
    - "Close-up of colour swatch fan of vinyl wrap samples lying on a dark carbon-fibre table, amber accent lighting, no people, photorealistic"
    - "Extreme close-up of a felt squeegee smoothing amber-orange vinyl over a car door edge, gloved fingertips barely visible at frame edge only if unavoidable — prefer tool-only crop, dramatic side light, photorealistic"
    - "Close-up of water beading on a freshly ceramic-coated glossy black car panel, dark background, single warm light streak, no people, photorealistic"
