@@ -16,9 +16,22 @@ const ALT_TEXTS = [
   'Gloss gunmetal wrap with a carbon-fibre hood on a Honda Civic Type R by Young Wrap',
 ]
 
-const IMAGES = ALT_TEXTS.map((alt, i) => ({
-  src: `${import.meta.env.BASE_URL}images/car${i + 1}.webp`,
-  alt,
+const FILES = [
+  'gloss-grey-orange-stripe-wrap-ford-mustang.webp',
+  'gloss-magenta-wrap-mercedes-amg.webp',
+  'gloss-red-wrap-porsche-911.webp',
+  'gloss-black-wrap-tesla-model-y.webp',
+  'pearl-white-wrap-porsche-taycan.webp',
+  'satin-gunmetal-wrap-ford-mustang.webp',
+  'gloss-maroon-wrap-honda-civic.webp',
+  'racing-livery-wrap-toyota-gr86.webp',
+  'satin-chrome-wrap-bmw-5-series.webp',
+  'gloss-gunmetal-wrap-honda-civic-type-r.webp',
+]
+
+const IMAGES = FILES.map((file, i) => ({
+  src: `${import.meta.env.BASE_URL}images/${file}`,
+  alt: ALT_TEXTS[i],
 }))
 
 export function initCarousel() {

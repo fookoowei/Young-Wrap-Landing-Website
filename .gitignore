@@ -2,3 +2,9 @@ node_modules/
 dist/
 .DS_Store
 assets-src/
+.superpowers/
+.claude/
+CLAUDE.md
+docs/
+scripts/*.md
+ASSETS.md
