@@ -15,7 +15,9 @@ function initPreloader(onDone) {
   if (!el) { onDone(); return }
 
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
-  if (reduce || sessionStorage.getItem('yw-seen')) {
+  let seen = false
+  try { seen = Boolean(sessionStorage.getItem('yw-seen')) } catch { /* private mode — non-fatal */ }
+  if (reduce || seen) {
     el.remove()
     onDone()
     return
@@ -52,6 +54,9 @@ function wireShopLinks() {
   if (menuPhone) menuPhone.textContent = SHOP.phoneDisplay
 }
 
+const playHeroReveal = initHeroReveal()
+initPreloader(playHeroReveal)
+
 wireShopLinks()
 
 const kolBox = document.getElementById('kol-embed')
@@ -72,6 +77,3 @@ initMotion()
 initMenu()
 initCursor()
 initQuoteForm(SHOP)
-
-const playHeroReveal = initHeroReveal()
-initPreloader(playHeroReveal)

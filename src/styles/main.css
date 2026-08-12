@@ -161,6 +161,7 @@ body.menu-open { overflow: hidden; }
 }
 .hero-headline .accent { color: var(--orange); }
 .hero-headline .line-mask { overflow: hidden; display: block; }
+.hero-headline .line-mask > * { display: inline-block; }
 .hero-sub { color: var(--ink-dim); max-width: 44ch; font-size: 1.05rem; }
 .cta-row { display: flex; gap: 1rem; margin-top: 1.8rem; flex-wrap: wrap; }
 

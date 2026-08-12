@@ -46,6 +46,13 @@
   </head>
   <body>
     <div id="preloader" aria-hidden="true"><span class="preloader-mark">YW</span></div>
+    <script>
+      try {
+        if (sessionStorage.getItem('yw-seen') || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.getElementById('preloader').style.display = 'none'
+        }
+      } catch { /* private mode — non-fatal */ }
+    </script>
     <noscript><style>#preloader { display: none; }</style></noscript>
     <header class="site-header">
       <a class="brand" href="index.html">YOUNG<span class="brand-dot">·</span>WRAP</a>
