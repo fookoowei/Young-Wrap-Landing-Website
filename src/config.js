@@ -13,16 +13,16 @@ export const SHOP = {
   facebook: 'https://www.facebook.com/people/YoungWrap/61552718845372/',
   kols: [
     {
-      name: 'Charles Tee',
-      handle: '@charlest33',
-      url: 'https://www.instagram.com/charlest33/',
-      postUrl: 'https://www.instagram.com/p/DbX3XIbO2lg/',
-    },
-    {
       name: 'Mike Faizi',
       handle: '@mikefaizi',
       url: 'https://www.instagram.com/mikefaizi/',
       postUrl: 'https://www.instagram.com/reel/DZcQRN9hP24/',
+    },
+    {
+      name: 'Charles Tee',
+      handle: '@charlest33',
+      url: 'https://www.instagram.com/charlest33/',
+      postUrl: 'https://www.instagram.com/p/DbX3XIbO2lg/',
     },
     {
       name: 'Livvie',

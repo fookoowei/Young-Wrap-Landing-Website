@@ -70,7 +70,17 @@ async function loadCar() {
   const center = scaled.getCenter(new THREE.Vector3())
   object.position.x -= center.x
   object.position.z -= center.z
-  object.position.y -= scaled.min.y
+  // rest the TIRES on y=0 — the overall bbox can dip lower than the tread
+  // (underbody/suspension geometry), which would leave the car hovering
+  const tireBox = new THREE.Box3()
+  let hasTires = false
+  object.traverse((o) => {
+    if (o.isMesh && /tire|tyre|wheel/i.test(o.material?.name || o.name)) {
+      tireBox.expandByObject(o)
+      hasTires = true
+    }
+  })
+  object.position.y -= (hasTires ? tireBox : scaled).min.y
   return { object, bodyMeshes: findBodyMeshes(object) }
 }
 
@@ -141,6 +151,24 @@ export async function createCarViewer(container) {
   shadowCatcher.position.y = 0.006
   shadowCatcher.receiveShadow = true
   scene.add(shadowCatcher)
+
+  // soft contact shadow under the car footprint — glues the car to the ground
+  const aoCanvas = document.createElement('canvas')
+  aoCanvas.width = aoCanvas.height = 256
+  const aoCtx = aoCanvas.getContext('2d')
+  const aoGrad = aoCtx.createRadialGradient(128, 128, 16, 128, 128, 126)
+  aoGrad.addColorStop(0, 'rgba(0,0,0,0.8)')
+  aoGrad.addColorStop(0.55, 'rgba(0,0,0,0.4)')
+  aoGrad.addColorStop(1, 'rgba(0,0,0,0)')
+  aoCtx.fillStyle = aoGrad
+  aoCtx.fillRect(0, 0, 256, 256)
+  const contactShadow = new THREE.Mesh(
+    new THREE.PlaneGeometry(4.6, 2.4),
+    new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(aoCanvas), transparent: true, depthWrite: false })
+  )
+  contactShadow.rotation.x = -Math.PI / 2
+  contactShadow.position.y = 0.009
+  scene.add(contactShadow)
 
   const camera = new THREE.PerspectiveCamera(36, container.clientWidth / container.clientHeight, 0.1, 100)
   camera.position.set(4.4, 2.0, 4.7)
