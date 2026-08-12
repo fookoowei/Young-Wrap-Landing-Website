@@ -47,3 +47,19 @@ Generate each line as its own standalone 2–3 s clip. Every prompt deliberately
 ## Gallery photos
 
 Pick 6–10 best finished-car shots from @young.wrap. Landscape orientation preferred, ≥ 1200 px wide. Drop originals in `~/Downloads/youngwrap`; they get resized/compressed into the repo during implementation.
+
+## Round 3 — assets for the panel redesign (2026-08-12)
+
+Generate these whenever ready (nanobanana or camera). No people or faces in any of them. Deliver to `Downloads` as before; I'll convert to WebP and wire them in.
+
+1. **About panel background** (replaces `images/car2.webp` if you want something wider)
+   Prompt: "Ultra-wide cinematic photo of a dark automotive workshop interior at night, a freshly wrapped sports car in amber-orange vinyl under warm spot lighting, deep black shadows, no people, no logos, moody luxury garage atmosphere, 21:9, photorealistic"
+2. **Process panel accent stills** (4 close-ups, 3:2, one per step)
+   - "Macro photo of rolls of car wrap vinyl stacked on a dark shelf, amber orange, gunmetal grey and black rolls, shallow depth of field, no people, no hands, photorealistic"
+   - "Close-up of colour swatch fan of vinyl wrap samples lying on a dark carbon-fibre table, amber accent lighting, no people, photorealistic"
+   - "Extreme close-up of a felt squeegee smoothing amber-orange vinyl over a car door edge, gloved fingertips barely visible at frame edge only if unavoidable — prefer tool-only crop, dramatic side light, photorealistic"
+   - "Close-up of water beading on a freshly ceramic-coated glossy black car panel, dark background, single warm light streak, no people, photorealistic"
+3. **Studio teaser background** (replaces `images/car8.webp` if desired)
+   Prompt: "A sleek Japanese sports coupe in matte amber-orange wrap on a dark turntable stage, studio rim lighting, black void background, slight top-down angle, no people, no badges, 16:9, photorealistic"
+4. **Optional: vertical detail clips** (9:16, 5–8 s each, for a future reels strip)
+   Same style as the hero montage prompts in Round 2 (close-up wrapping process, no people/faces).

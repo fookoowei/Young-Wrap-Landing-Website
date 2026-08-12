@@ -10,7 +10,7 @@
     <meta property="og:title" content="Young Wrap — Car Wraps, PPF, Tint & Coating" />
     <meta property="og:description" content="Premium car wraps, PPF, tint & coating in Kota Kemuning, Shah Alam. WhatsApp us for a quote." />
     <meta property="og:url" content="https://fookoowei.github.io/Young-Wrap-Landing-Website/" />
-    <meta property="og:image" content="https://fookoowei.github.io/Young-Wrap-Landing-Website/images/car1.webp" />
+    <meta property="og:image" content="https://fookoowei.github.io/Young-Wrap-Landing-Website/videos/hero-poster.jpg" />
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M18 22 L50 54 L82 22 L82 46 L50 78 L18 46 Z' fill='%23FA9C20'/></svg>" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,36 +45,59 @@
     <script type="module" src="/src/main.js"></script>
   </head>
   <body>
+    <div id="preloader" aria-hidden="true"><span class="preloader-mark">YW</span></div>
+    <script>
+      try {
+        if (sessionStorage.getItem('yw-seen') || matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          document.getElementById('preloader').style.display = 'none'
+        }
+      } catch { /* private mode — non-fatal */ }
+    </script>
+    <noscript><style>#preloader { display: none; }</style></noscript>
     <header class="site-header">
-      <a class="brand" href="#top">YOUNG<span class="brand-dot">·</span>WRAP</a>
-      <nav class="site-nav">
-        <a href="#configurator" data-i18n="nav.configurator">3D Studio</a>
+      <a class="brand" href="index.html"><img class="brand-logo" src="logo/yw-mark.png" alt="" />YOUNG<span class="brand-dot">·</span>WRAP</a>
+      <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-overlay" aria-label="Menu"><span></span><span></span></button>
+    </header>
+    <div id="menu-backdrop" class="menu-backdrop" hidden></div>
+    <aside id="menu-overlay" class="menu-panel" hidden aria-label="Menu">
+      <button id="menu-close" class="menu-close" type="button" aria-label="Close menu"><span></span><span></span></button>
+      <nav class="menu-links" data-menu-stagger>
+        <a href="#top" data-i18n="menu.home">Home</a>
+        <a href="studio.html" data-i18n="menu.studio">3D Studio</a>
         <a href="#services" data-i18n="nav.services">Services</a>
-        <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
+        <a href="#gallery" data-i18n="nav.gallery">Portfolio</a>
         <a href="#contact" data-i18n="nav.contact">Contact</a>
       </nav>
-      <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language">中文</button>
-    </header>
+      <div class="menu-meta">
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language">中文</button>
+        <div class="menu-socials">
+          <a data-shop="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+          <a data-shop="facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M15 3h-2.2C10.4 3 9 4.5 9 7v2.4H7V13h2v8h3.2v-8h2.6l.4-3.6h-3V7.3c0-1 .3-1.6 1.6-1.6H15V3Z"/></svg></a>
+          <a data-shop="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg></a>
+        </div>
+        <a class="menu-phone" data-shop="tel" href="#"></a>
+      </div>
+    </aside>
 
     <main id="top">
       <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
-          <source src="videos/car-wrapping.mp4" type="video/mp4" />
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="videos/hero-poster.jpg" aria-hidden="true">
+          <source src="videos/hero-montage.mp4" type="video/mp4" />
         </video>
         <div class="hero-scrim" aria-hidden="true"></div>
         <div class="hero-overlay">
           <div class="hero-copy">
             <p class="hero-eyebrow">Wrap · PPF · Tint · Coating</p>
             <h1 class="hero-headline">
-              <span data-i18n="hero.headline1">Wrap it.</span>
-              <span class="accent" data-i18n="hero.headline2">Drive it.</span>
+              <span class="line-mask"><span data-i18n="hero.headline1">Wrap it.</span></span>
+              <span class="line-mask"><span class="accent" data-i18n="hero.headline2">Drive it.</span></span>
             </h1>
             <p class="hero-sub" data-i18n="hero.sub">Premium car wraps, PPF, window tint & ceramic coating in Kota Kemuning, Shah Alam.</p>
-            <div class="cta-row">
-              <a class="btn btn-whatsapp" data-shop="whatsapp" href="#" target="_blank" rel="noopener" data-i18n="hero.cta.whatsapp">WhatsApp Us</a>
-              <a class="btn btn-call" data-shop="tel" href="#" data-i18n="hero.cta.call">Call Now</a>
-            </div>
           </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+          <span class="scroll-line"></span>
+          <span class="scroll-label" data-i18n="hero.scroll">Scroll</span>
         </div>
       </section>
 
@@ -86,82 +109,119 @@
         </div>
       </div>
 
-      <section id="configurator" class="configurator">
-        <p class="eyebrow" data-i18n="configurator.title">Design Your Wrap</p>
-        <p class="section-sub" data-i18n="hero.hint">Drag to spin the car — tap a color to preview a wrap</p>
-        <div id="car-canvas" aria-label="Interactive 3D car preview">
-          <img class="viewer-fallback-img" src="images/car1.webp" alt="Wrapped car preview" hidden />
-        </div>
-        <div class="wrap-picker">
-          <p class="picker-title" data-i18n="picker.title">Pick your wrap</p>
-          <div id="wrap-colors" class="swatches" role="listbox" aria-label="Wrap colors"></div>
-          <p class="picker-title" data-i18n="picker.finish">Finish</p>
-          <div id="wrap-finishes" class="finishes" role="listbox" aria-label="Wrap finishes"></div>
+      <div class="panel-stack">
+        <section id="about" class="panel panel--about">
+          <img class="panel-bg" src="images/car2.webp" alt="" aria-hidden="true" loading="lazy" />
+          <div class="panel-scrim" aria-hidden="true"></div>
+          <div class="panel-inner">
+            <p class="eyebrow" data-i18n="about.eyebrow">The House of Young Wrap</p>
+            <h2 class="panel-title" data-reveal data-i18n="about.title">Your neighbourhood wrap installer</h2>
+            <p class="panel-body" data-reveal data-i18n="about.body">From Kota Kemuning, we transform daily drives into statements — precision vinyl, paint protection and coatings, applied with obsession. Every panel, every edge, every time.</p>
+            <div class="about-stats" data-reveal-group>
+              <div class="stat"><span class="stat-num" data-count="5">0</span><span class="stat-label" data-i18n="about.stat1">Core services</span></div>
+              <div class="stat"><span class="stat-num" data-count="10">0</span><span class="stat-label" data-i18n="about.stat2">Featured transformations</span></div>
+              <div class="stat"><span class="stat-num" data-count="1">0</span><span class="stat-label" data-i18n="about.stat3">Home — Kota Kemuning</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="process" class="panel panel--process">
+          <div class="panel-inner">
+            <p class="eyebrow" data-i18n="process.eyebrow">The Process</p>
+            <h2 class="panel-title" data-reveal data-i18n="process.title">From idea to installed</h2>
+            <div class="process-grid" data-reveal-group>
+              <div class="process-step"><span class="row-no">01</span><h3 data-i18n="process.s1.title">Consult</h3><p data-i18n="process.s1.desc">Tell us your car, your idea and your budget — on WhatsApp or over the counter.</p></div>
+              <div class="process-step"><span class="row-no">02</span><h3 data-i18n="process.s2.title">Design</h3><p data-i18n="process.s2.desc">Pick colours and finishes, preview them in the 3D studio, see real samples in store.</p></div>
+              <div class="process-step"><span class="row-no">03</span><h3 data-i18n="process.s3.title">Install</h3><p data-i18n="process.s3.desc">Panel-by-panel precision installation in our Kota Kemuning bay.</p></div>
+              <div class="process-step"><span class="row-no">04</span><h3 data-i18n="process.s4.title">Aftercare</h3><p data-i18n="process.s4.desc">Care guidance and support to keep the finish flawless for years.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="services" class="panel panel--services">
+          <div class="panel-inner">
+            <p class="eyebrow" data-i18n="services.title">Our Services</p>
+            <h2 class="visually-hidden" data-i18n="services.title">Our Services</h2>
+            <div class="service-rows" data-reveal-group>
+          <div class="service-row" tabindex="0"><span class="row-no">01</span><h3 data-i18n="services.wrap.title">Full & Partial Wraps</h3><p data-i18n="services.wrap.desc">Premium cast vinyl in any colour and finish. Change the look, protect the original paint.</p></div>
+          <div class="service-row" tabindex="0"><span class="row-no">02</span><h3 data-i18n="services.ppf.title">Paint Protection Film</h3><p data-i18n="services.ppf.desc">Self-healing transparent film that shields your paint from stone chips and scratches.</p></div>
+          <div class="service-row" tabindex="0"><span class="row-no">03</span><h3 data-i18n="services.tint.title">Window Tint</h3><p data-i18n="services.tint.desc">Heat-rejecting films for cooler cabins, privacy and UV protection.</p></div>
+          <div class="service-row" tabindex="0"><span class="row-no">04</span><h3 data-i18n="services.coating.title">Ceramic Coating</h3><p data-i18n="services.coating.desc">Deep gloss and long-lasting protection that makes every wash easier.</p></div>
+          <div class="service-row" tabindex="0"><span class="row-no">05</span><h3 data-i18n="services.detailing.title">Detailing</h3><p data-i18n="services.detailing.desc">Interior and exterior deep cleaning to showroom standard.</p></div>
+          <div class="service-row service-row--any" tabindex="0"><span class="row-no">06</span><h3 data-i18n="services.anything.title">Anything</h3><p data-i18n="services.anything">Not just cars — we've wrapped pickleball paddles, vans, boats, even aircraft. If it has a surface, we'll wrap it.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="studio-teaser" class="panel panel--teaser">
+          <img class="panel-bg" src="images/car8.webp" alt="" aria-hidden="true" loading="lazy" />
+          <div class="panel-scrim" aria-hidden="true"></div>
+          <div class="panel-inner panel-inner--center">
+            <p class="eyebrow" data-i18n="teaser.eyebrow">3D Studio</p>
+            <h2 class="panel-title" data-i18n="teaser.title">Design your wrap in 3D</h2>
+            <p class="panel-body" data-i18n="teaser.sub">Spin the car, pick a colour, choose your finish — then send it to us.</p>
+            <a class="btn btn-primary" href="studio.html" data-i18n="teaser.cta">Enter the studio</a>
+          </div>
+        </section>
+      </div>
+
+      <section id="gallery" class="portfolio">
+        <p class="eyebrow" data-i18n="gallery.title" data-reveal>Recent Work</p>
+        <p class="section-sub" data-i18n="gallery.sub" data-reveal>A few of our favourite transformations. See more on Instagram.</p>
+        <div class="portfolio-viewport" data-cursor="drag">
+          <div id="portfolio-track" class="portfolio-track"><!-- 10 cards injected by JS --></div>
         </div>
       </section>
 
-      <section id="services" class="services">
-        <p class="eyebrow" data-i18n="services.title">Our Services</p>
-        <h2 class="visually-hidden" data-i18n="services.title">Our Services</h2>
-        <div class="service-grid">
-          <article><h3 data-i18n="services.wrap.title">Full & Partial Wraps</h3><p data-i18n="services.wrap.desc">Premium cast vinyl in any colour and finish. Change the look, protect the original paint.</p></article>
-          <article><h3 data-i18n="services.ppf.title">Paint Protection Film</h3><p data-i18n="services.ppf.desc">Self-healing transparent film that shields your paint from stone chips and scratches.</p></article>
-          <article><h3 data-i18n="services.tint.title">Window Tint</h3><p data-i18n="services.tint.desc">Heat-rejecting films for cooler cabins, privacy and UV protection.</p></article>
-          <article><h3 data-i18n="services.coating.title">Ceramic Coating</h3><p data-i18n="services.coating.desc">Deep gloss and long-lasting protection that makes every wash easier.</p></article>
-          <article><h3 data-i18n="services.detailing.title">Detailing</h3><p data-i18n="services.detailing.desc">Interior and exterior deep cleaning to showroom standard.</p></article>
-        </div>
-        <p class="services-anything">
-          <span data-i18n="services.anything">Not just cars — we've wrapped pickleball paddles, vans, boats, even aircraft. If it has a surface, we'll wrap it.</span>
-        </p>
-      </section>
-
-      <section id="gallery" class="gallery">
-        <p class="eyebrow" data-i18n="gallery.title">Recent Work</p>
-        <p class="section-sub" data-i18n="gallery.sub">A few of our favourite transformations. See more on Instagram.</p>
-        <div id="gallery-grid" class="gallery-grid"></div>
-      </section>
-
-      <section class="kol">
-        <p class="kol-eyebrow" data-i18n="kol.title">As Seen On</p>
+      <section class="kol" data-reveal>
+        <p class="eyebrow" data-i18n="kol.title">As Seen On</p>
         <a class="kol-handle" data-shop="kol" href="#" target="_blank" rel="noopener">@charlest33</a>
         <p class="kol-desc" data-i18n="kol.desc">Trusted by Charles Tee (@charlest33) — watch the collab on Instagram.</p>
         <div id="kol-embed" class="kol-embed"></div>
-        <a class="btn btn-dark" data-shop="kol" href="#" target="_blank" rel="noopener" data-i18n="kol.cta">View the post</a>
+        <a class="btn btn-outline" data-shop="kol" href="#" target="_blank" rel="noopener" data-i18n="kol.cta">View the post</a>
       </section>
 
       <section id="contact" class="contact">
-        <p class="eyebrow" data-i18n="contact.title">Find Us</p>
-        <div class="contact-grid">
-          <div class="contact-info">
-            <h3 data-i18n="contact.address">Address</h3>
-            <p class="shop-address">42, Jalan Anggerik Vanilla Ad 31/Ad, Kota Kemuning, 40460 Shah Alam, Selangor</p>
-            <h3 data-i18n="contact.hours">Opening Hours</h3>
+        <p class="eyebrow" data-i18n="contact.title" data-reveal>Find Us</p>
+        <div class="contact-grid contact-grid--form">
+          <form id="quote-form" class="quote-form" data-reveal>
+            <label><span data-i18n="form.name">Name</span><input name="name" required autocomplete="name" /></label>
+            <label><span data-i18n="form.car">Car model</span><input name="car" placeholder="e.g. GR86" /></label>
+            <label><span data-i18n="form.service">Service</span>
+              <select name="service">
+                <option data-i18n="services.wrap.title">Full & Partial Wraps</option>
+                <option data-i18n="services.ppf.title">Paint Protection Film</option>
+                <option data-i18n="services.tint.title">Window Tint</option>
+                <option data-i18n="services.coating.title">Ceramic Coating</option>
+                <option data-i18n="services.detailing.title">Detailing</option>
+              </select></label>
+            <label><span data-i18n="form.message">Message</span><textarea name="message" rows="4"></textarea></label>
+            <button class="btn btn-primary" type="submit" data-i18n="form.send">Send via WhatsApp</button>
+          </form>
+          <div class="contact-side" data-reveal>
+            <iframe class="map-embed" src="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Young Wrap location on Google Maps"></iframe>
+            <p class="shop-address"></p>
             <p class="shop-hours" data-i18n="contact.hoursValue">Mon–Fri 10:00 AM – 7:00 PM · Sat 10:00 AM – 3:00 PM · Sun closed</p>
             <a class="btn btn-outline" data-shop="maps" href="#" target="_blank" rel="noopener" data-i18n="contact.directions">Get Directions</a>
           </div>
-          <div class="socials">
-            <a data-shop="instagram" href="#" target="_blank" rel="noopener">Instagram ↗</a>
-            <a data-shop="facebook" href="#" target="_blank" rel="noopener">Facebook ↗</a>
-            <a data-shop="whatsapp" href="#" target="_blank" rel="noopener">WhatsApp ↗</a>
-          </div>
-          <iframe class="map-embed" src="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Young Wrap location on Google Maps"></iframe>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <img class="footer-logo" src="logo/yw.jpg" alt="Young Wrap logo" width="150" height="150" loading="lazy" />
-      <p data-i18n="footer.tagline">Your neighbourhood wrap installer — Wraps | PPF | Tint | Coating</p>
-      <p class="footer-copy">© 2026 Young Wrap</p>
+      <a class="footer-wordmark" href="index.html">YOUNG<span class="brand-dot">·</span>WRAP</a>
+      <div class="footer-socials">
+        <a data-shop="instagram" href="#" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        <a data-shop="facebook" href="#" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M15 3h-2.2C10.4 3 9 4.5 9 7v2.4H7V13h2v8h3.2v-8h2.6l.4-3.6h-3V7.3c0-1 .3-1.6 1.6-1.6H15V3Z"/></svg></a>
+        <a data-shop="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg></a>
+      </div>
+      <p class="footer-tagline" data-i18n="footer.tagline">Your neighbourhood wrap installer — Wraps | PPF | Tint | Coating</p>
       <p class="footer-credit">3D preview car: "Mazda RX-7" by <a href="https://poly.pizza/u/IvOfficial" target="_blank" rel="noopener">IvOfficial</a>, via <a href="https://poly.pizza/m/SnIoWlh7S2" target="_blank" rel="noopener">Poly Pizza</a> (<a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="noopener">CC-BY 3.0</a>)</p>
+      <p class="footer-copy">© 2026 Young Wrap</p>
     </footer>
 
-    <a class="whatsapp-fab" data-shop="whatsapp" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-      <svg viewBox="0 0 24 24" width="26" height="26" fill="#0a0a0b" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg>
-    </a>
-
     <dialog id="lightbox" class="lightbox">
-      <button class="lightbox-close" type="button" aria-label="Close">×</button>
+      <button class="lightbox-close" type="button" aria-label="Close"><span></span><span></span></button>
       <img class="lightbox-img" src="" alt="" />
     </dialog>
   </body>

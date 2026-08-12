@@ -1,8 +1,39 @@
+import gsap from 'gsap'
 import './styles/main.css'
 import { SHOP } from './config.js'
-import { initLanguageToggle, getSavedLanguage } from './i18n/i18n.js'
-import { WRAP_COLORS, WRAP_FINISHES, wrapParams } from './three/wraps.js'
-import { initGallery } from './gallery.js'
+import { initLanguageToggle } from './i18n/i18n.js'
+import { initCarousel } from './carousel.js'
+import { initMotion, initHeroReveal } from './motion.js'
+import { initMenu, initHeaderScroll } from './menu.js'
+import { initCursor } from './cursor.js'
+import { initQuoteForm } from './quote-form.js'
+
+// Landing-only intro: brief brand curtain, then the hero headline reveals.
+// Skipped instantly (no animation) once seen this session, or under reduced motion.
+function initPreloader(onDone) {
+  const el = document.getElementById('preloader')
+  if (!el) { onDone(); return }
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches
+  let seen = false
+  try { seen = Boolean(sessionStorage.getItem('yw-seen')) } catch { /* private mode — non-fatal */ }
+  if (reduce || seen) {
+    el.remove()
+    onDone()
+    return
+  }
+
+  const mark = el.querySelector('.preloader-mark')
+  gsap.timeline({
+    onComplete: () => {
+      el.remove()
+      try { sessionStorage.setItem('yw-seen', '1') } catch { /* private mode — non-fatal */ }
+      onDone()
+    },
+  })
+    .to(mark, { opacity: 1, letterSpacing: '0.34em', duration: 0.6, ease: 'power2.out' })
+    .to(el, { yPercent: -100, duration: 0.6, ease: 'power3.inOut' })
+}
 
 function wireShopLinks() {
   const targets = {
@@ -19,62 +50,12 @@ function wireShopLinks() {
   document.querySelector('.shop-address').textContent = SHOP.addressLine
   const mapEmbed = document.querySelector('.map-embed')
   if (mapEmbed) mapEmbed.src = SHOP.mapsEmbedSrc
+  const menuPhone = document.querySelector('.menu-phone')
+  if (menuPhone) menuPhone.textContent = SHOP.phoneDisplay
 }
 
-async function initViewer() {
-  const container = document.getElementById('car-canvas')
-  // Dynamic import keeps three.js out of the initial bundle so text paints first.
-  const viewer = await import('./three/carViewer.js')
-    .then(({ createCarViewer }) => createCarViewer(container))
-    .catch(() => null)
-  if (!viewer) {
-    container.classList.add('viewer-fallback')
-    return
-  }
-
-  const lang = getSavedLanguage()
-  let colorId = WRAP_COLORS[0].id
-  let finishId = 'gloss'
-  const update = () => viewer.applyWrap(wrapParams(colorId, finishId))
-
-  const swatchBox = document.getElementById('wrap-colors')
-  for (const c of WRAP_COLORS) {
-    const btn = document.createElement('button')
-    btn.className = 'swatch'
-    btn.type = 'button'
-    btn.style.background = c.hex
-    btn.title = c.name[lang]
-    btn.setAttribute('role', 'option')
-    btn.setAttribute('aria-selected', String(c.id === colorId))
-    btn.addEventListener('click', () => {
-      colorId = c.id
-      for (const el of swatchBox.children) el.setAttribute('aria-selected', 'false')
-      btn.setAttribute('aria-selected', 'true')
-      update()
-    })
-    swatchBox.append(btn)
-  }
-
-  const finishBox = document.getElementById('wrap-finishes')
-  for (const [id, f] of Object.entries(WRAP_FINISHES)) {
-    const btn = document.createElement('button')
-    btn.className = 'finish-btn'
-    btn.type = 'button'
-    btn.dataset.i18n = `finish.${id}`
-    btn.textContent = f.label[lang]
-    btn.setAttribute('role', 'option')
-    btn.setAttribute('aria-selected', String(id === finishId))
-    btn.addEventListener('click', () => {
-      finishId = id
-      for (const el of finishBox.children) el.setAttribute('aria-selected', 'false')
-      btn.setAttribute('aria-selected', 'true')
-      update()
-    })
-    finishBox.append(btn)
-  }
-
-  update()
-}
+const playHeroReveal = initHeroReveal()
+initPreloader(playHeroReveal)
 
 wireShopLinks()
 
@@ -91,7 +72,9 @@ if (SHOP.kol.postUrl) {
 }
 
 initLanguageToggle(document.getElementById('lang-toggle'))
-initGallery()
-new IntersectionObserver((entries, obs) => {
-  if (entries[0].isIntersecting) { obs.disconnect(); initViewer() }
-}, { rootMargin: '300px' }).observe(document.getElementById('configurator'))
+initCarousel()
+initMotion()
+initMenu()
+initHeaderScroll()
+initCursor()
+initQuoteForm(SHOP)
