@@ -68,6 +68,25 @@ export function initMotion() {
       tl.from(clip, { clipPath: 'inset(100% 0 0 0)', duration: 1, ease: 'power3.out' }, 0)
         .from(clip.querySelector('img'), { scale: 1.25, duration: 1.4, ease: 'power2.out' }, 0)
     }
+    // about images drift slowly inside their frame (CSS oversizes them so the
+    // shift never exposes an edge)
+    for (const img of document.querySelectorAll('.edit-media img')) {
+      gsap.fromTo(img, { yPercent: -5 }, { yPercent: 5, ease: 'none',
+        scrollTrigger: { trigger: img.closest('.edit-media'), start: 'top bottom', end: 'bottom top', scrub: true } })
+    }
+    // process rail fills as the flow scrolls; each step's number lights up
+    // while the step is in view
+    const flow = document.querySelector('.flow')
+    if (flow) {
+      gsap.to('.flow-rail-progress', { scaleY: 1, ease: 'none',
+        scrollTrigger: { trigger: flow, start: 'top 65%', end: 'bottom 55%', scrub: true } })
+      for (const step of flow.querySelectorAll('.flow-step')) {
+        ScrollTrigger.create({ trigger: step, start: 'top 70%', end: 'bottom 30%',
+          toggleClass: { targets: step, className: 'is-active' } })
+        gsap.from(step.querySelector('.flow-copy'), { opacity: 0, y: 36, duration: 0.8, ease: 'power3.out',
+          scrollTrigger: { trigger: step, start: 'top 82%' } })
+      }
+    }
   })
   mm.add('(prefers-reduced-motion: reduce)', () => {
     document.querySelector('.hero-video')?.pause()

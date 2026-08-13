@@ -314,11 +314,6 @@ body.menu-open { overflow: hidden; }
 .story { max-width: none; margin: 0; padding: 5.5rem 1.4rem; background: var(--carbon); }
 .story--tint { background: var(--panel); }
 .story-inner { max-width: var(--maxw); margin: 0 auto; }
-.split-head { display: grid; gap: 1.6rem 4.5rem; }
-.split-copy { display: flex; flex-direction: column; justify-content: flex-end; }
-@media (min-width: 940px) {
-  .split-head { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: end; }
-}
 .panel-title {
   font-family: var(--font-display); font-style: italic; font-weight: 700;
   text-transform: uppercase; line-height: 1.02; letter-spacing: -0.01em;
@@ -327,7 +322,20 @@ body.menu-open { overflow: hidden; }
 .media-clip { overflow: hidden; }
 .media-clip img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .panel-body { color: var(--ink-dim); font-size: 1.05rem; max-width: 56ch; }
-.about-media { aspect-ratio: 21 / 9; margin-top: 3.5rem; }
+
+/* about: alternating editorial blocks (tillberg style) — copy one side,
+   tall parallax image the other, flipping each block */
+.edit-block { display: grid; gap: 2.2rem; }
+.edit-block + .edit-block { margin-top: 5rem; }
+.edit-copy { align-self: center; }
+.edit-media { aspect-ratio: 4 / 3.4; }
+/* oversized image gives the scrubbed parallax drift room to move without gaps */
+.edit-media img { height: 116%; margin-top: -8%; }
+@media (min-width: 940px) {
+  .edit-block { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 5rem; }
+  .edit-block--flip .edit-copy { order: 2; }
+  .edit-block--flip .edit-media { order: 1; }
+}
 
 /* ---------- studio teaser banner ---------- */
 .teaser {
@@ -347,20 +355,41 @@ body.menu-open { overflow: hidden; }
 .teaser-inner .panel-body { margin-inline: auto; }
 .teaser-inner .btn { margin-top: 2rem; }
 
-/* process steps */
-.process-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
-  margin-top: 2.5rem;
+/* process: orionix-style vertical flow — numbered steps down an amber
+   progress rail that fills as you scroll */
+.flow { position: relative; margin-top: 3.5rem; display: flex; flex-direction: column; gap: 4.5rem; }
+.flow-rail {
+  position: absolute; left: 1.7rem; top: 0.4rem; bottom: 0.4rem; width: 2px;
+  background: var(--line);
 }
-.process-step { padding-top: 1.1rem; border-top: 1px solid var(--line); }
-.process-step .media-clip { aspect-ratio: 3 / 2; margin-bottom: 1rem; }
-.process-step .row-no { font-size: 1.2rem; }
-.process-step h3 {
+.flow-rail-progress {
+  position: absolute; inset: 0; background: var(--orange);
+  transform: scaleY(0); transform-origin: top;
+}
+.flow-step {
+  position: relative; display: grid; align-items: center;
+  grid-template-columns: 5.6rem minmax(0, 1fr);
+  gap: 1.2rem 0;
+}
+.flow-no {
+  align-self: start; justify-self: start; position: relative; z-index: 1;
   font-family: var(--font-display); font-style: italic; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.02em;
-  font-size: 1.15rem; margin: 0.5rem 0 0.5rem;
+  font-size: 1.5rem; line-height: 1; color: var(--ink-dim);
+  background: var(--panel); padding: 0.55rem 0.35rem;
+  transition: color 0.35s ease;
 }
-.process-step p { color: var(--ink-dim); font-size: 0.94rem; }
+.flow-step.is-active .flow-no { color: var(--orange); }
+.flow-copy h3 {
+  font-family: var(--font-display); font-style: italic; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.01em;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem); margin-bottom: 0.6rem;
+}
+.flow-copy p { color: var(--ink-dim); font-size: 1rem; max-width: 46ch; }
+.flow-media { grid-column: 2; aspect-ratio: 16 / 9; }
+@media (min-width: 940px) {
+  .flow-step { grid-template-columns: 5.6rem minmax(0, 1fr) minmax(0, 42%); gap: 1.2rem 3.5rem; }
+  .flow-media { grid-column: auto; }
+}
 
 /* ---------- about ---------- */
 .about-stats { display: flex; gap: 3rem; flex-wrap: wrap; margin-top: 2.5rem; }
@@ -375,34 +404,34 @@ body.menu-open { overflow: hidden; }
 }
 .stat-label { color: var(--ink-dim); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; }
 
-/* ---------- services (scgroup-style card grid) ---------- */
-.service-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
-  margin-top: 2.5rem;
+/* ---------- services (scgroup category rows) ----------
+   centered header, then per-category: small caps label over a full rule,
+   big stacked titles | paragraph | image */
+.svc-head { text-align: center; }
+.svc-head .panel-body { margin-inline: auto; }
+.svc-cat { margin-top: 4rem; }
+.svc-cat-label {
+  font-family: var(--font-display); font-weight: 700; font-style: italic;
+  text-transform: uppercase; letter-spacing: 0.28em;
+  font-size: 0.82rem; color: var(--ink-dim);
+  padding-bottom: 0.9rem; border-bottom: 1px solid var(--line);
 }
-.row-no {
+.svc-grid { display: grid; gap: 1.8rem; padding-top: 2rem; }
+.svc-titles h3 {
   font-family: var(--font-display); font-style: italic; font-weight: 700;
-  color: var(--ink-dim); font-size: 1rem;
-  transition: color 0.2s ease;
+  text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.1;
+  font-size: clamp(1.5rem, 2.8vw, 2.3rem);
 }
-.service-card {
-  background: var(--panel); border: 1px solid var(--line);
-  padding: 1.7rem 1.5rem 1.5rem;
-  transition: border-color 0.25s ease, background-color 0.25s ease, transform 0.25s ease;
+.svc-titles h3 + h3 { margin-top: 1.1rem; }
+.svc-desc { color: var(--ink-dim); font-size: 0.98rem; max-width: 40ch; }
+.svc-media { aspect-ratio: 16 / 10; }
+@media (min-width: 940px) {
+  .svc-grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 5fr);
+    gap: 3.5rem; align-items: start;
+  }
+  .svc-desc { padding-top: 0.4rem; }
 }
-.service-card h3 {
-  font-family: var(--font-display); font-style: italic; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.02em;
-  font-size: 1.1rem; color: var(--ink); margin: 0.55rem 0 0.45rem;
-}
-.service-card p { color: var(--ink-dim); font-size: 0.94rem; }
-.service-card:hover, .service-card:focus {
-  background: var(--panel-2);
-  border-color: color-mix(in srgb, var(--orange) 55%, var(--line));
-  transform: translateY(-4px);
-}
-.service-card:hover .row-no, .service-card:focus .row-no { color: var(--orange); }
-.service-card--any { border-color: color-mix(in srgb, var(--orange) 35%, var(--line)); }
 
 /* ---------- portfolio carousel (infinite drag loop, drag-to-focus) ---------- */
 .portfolio-viewport { overflow: hidden; margin-top: 1.6rem; }
@@ -537,10 +566,16 @@ body.menu-open { overflow: hidden; }
 .cursor-ring.is-pill .cursor-label {
   opacity: 1;
 }
-/* drag pill grows into a wide capsule with ← → arrows flanking the label */
-.cursor-ring.is-pill.has-arrows { width: 104px; }
-.cursor-ring.has-arrows .cursor-label::before { content: '←'; margin-right: 0.55em; }
-.cursor-ring.has-arrows .cursor-label::after { content: '→'; margin-left: 0.55em; }
+/* carmen-style: small chevrons hover just outside the filled circle */
+.cursor-arrow {
+  position: absolute; top: 50%; translate: 0 -50%;
+  color: var(--orange); opacity: 0; transition: opacity 0.2s ease;
+  display: flex; pointer-events: none;
+}
+.cursor-arrow svg { width: 8px; height: 11px; }
+.cursor-arrow--left { left: -18px; }
+.cursor-arrow--right { right: -18px; }
+.cursor-ring.is-pill.has-arrows .cursor-arrow { opacity: 1; }
 body:has(.cursor-ring) a,
 body:has(.cursor-ring) button,
 body:has(.cursor-ring) .swatch,
@@ -552,17 +587,12 @@ body:has(.cursor-ring) .portfolio-card {
 /* ---------- responsive / a11y ---------- */
 @media (max-width: 939px) {
   .contact-grid { grid-template-columns: 1fr; }
-  .process-grid { grid-template-columns: 1fr 1fr; }
-  .service-grid { grid-template-columns: 1fr 1fr; }
-  .about-media { aspect-ratio: 16 / 9; margin-top: 2.5rem; }
 }
 @media (max-width: 560px) {
-  .process-grid { grid-template-columns: 1fr; gap: 1.4rem; }
-  .service-grid { grid-template-columns: 1fr; }
   .about-stats { gap: 1.6rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .btn, .swatch, .portfolio-card img, .service-card { transition: none; }
+  .btn, .swatch, .portfolio-card img, .flow-no, .cursor-arrow { transition: none; }
   .menu-toggle span, .menu-close span, .menu-links a, .site-header { transition: none; }
 }

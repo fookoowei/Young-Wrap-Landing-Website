@@ -7,7 +7,12 @@ export function initCursor() {
   const dot = document.createElement('div'); dot.className = 'cursor-dot'
   const ring = document.createElement('div'); ring.className = 'cursor-ring'
   const label = document.createElement('span'); label.className = 'cursor-label'
-  ring.append(label); document.body.append(dot, ring)
+  // carmen-style flanking arrows, sitting outside the circle
+  const arrowL = document.createElement('span'); arrowL.className = 'cursor-arrow cursor-arrow--left'
+  arrowL.innerHTML = '<svg viewBox="0 0 6 8" aria-hidden="true"><path d="M6 0 0 4l6 4V5.4L2.9 4 6 2.6Z" fill="currentColor"/></svg>'
+  const arrowR = document.createElement('span'); arrowR.className = 'cursor-arrow cursor-arrow--right'
+  arrowR.innerHTML = '<svg viewBox="0 0 6 8" aria-hidden="true"><path d="M0 0v2.6L3.1 4 0 5.4V8l6-4Z" fill="currentColor"/></svg>'
+  ring.append(arrowL, label, arrowR); document.body.append(dot, ring)
 
   const dx = gsap.quickTo(dot, 'x', { duration: 0.08 }), dy = gsap.quickTo(dot, 'y', { duration: 0.08 })
   const rx = gsap.quickTo(ring, 'x', { duration: 0.35, ease: 'power3.out' }), ry = gsap.quickTo(ring, 'y', { duration: 0.35, ease: 'power3.out' })
