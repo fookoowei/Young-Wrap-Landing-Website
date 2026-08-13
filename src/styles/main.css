@@ -398,10 +398,8 @@ body.menu-open { overflow: hidden; }
 }
 .flow-media { grid-column: 2; aspect-ratio: 16 / 9; }
 .flow-visual { display: none; }
+.flow-facts { display: none; }
 @media (min-width: 940px) {
-  /* process breaks out to a wider container so the pinned visual gets real
-     size without starving the text column */
-  #process .story-inner { max-width: 1320px; }
   .flow { position: static; }
   /* one step fills most of the viewport at a time and slides up past the
      dial, orionix-style; the visual stays pinned on the right and crossfades */
@@ -436,6 +434,21 @@ body.menu-open { overflow: hidden; }
   .flow-steps { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; text-align: center; }
   .flow-copy p { margin-inline: auto; }
   .flow-tags { justify-content: center; }
+  /* right rail: the active step's typical-time fact, mirroring the dial */
+  .flow-facts { display: block; position: absolute; inset: 0 0 0 auto; width: 250px; z-index: 1; }
+  .facts-wrap { position: sticky; top: calc(50vh - 44px); height: 88px; }
+  .flow-fact {
+    position: absolute; right: 2.6rem; top: 0; text-align: right;
+    display: flex; flex-direction: column; gap: 0.3rem;
+    opacity: 0; transform: translateY(14px);
+    transition: opacity 0.45s ease, transform 0.45s ease;
+  }
+  .flow-fact.is-active { opacity: 1; transform: none; }
+  .fact-num {
+    font-family: var(--font-display); font-style: italic; font-weight: 700;
+    font-size: 1.7rem; line-height: 1; color: var(--orange); white-space: nowrap;
+  }
+  .fact-label { color: var(--ink-dim); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.14em; }
   /* the dial: an oversized circle whose right arc sweeps in from the section's
      left edge, floating above the background visual */
   .flow-dial { display: block; position: absolute; inset: 0 auto 0 0; width: 330px; z-index: 1; }
@@ -444,7 +457,7 @@ body.menu-open { overflow: hidden; }
   .dial-wrap {
     position: sticky; top: calc(50vh - 380px);
     width: 760px; height: 760px;
-    margin-left: -560px;
+    margin-left: -480px;
     pointer-events: none;
   }
   .dial-ring { position: absolute; inset: 0; color: var(--line); }

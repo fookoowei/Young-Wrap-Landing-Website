@@ -97,6 +97,7 @@ export function initMotion() {
             step,
             flow.querySelector(`.dial-no[data-step="${i}"]`),
             flow.querySelector(`.flow-visual img[data-step="${i}"]`),
+            flow.querySelector(`.flow-fact[data-step="${i}"]`),
           ].filter(Boolean), className: 'is-active' } })
         gsap.from([step.querySelector('.flow-copy'), step.querySelector('.flow-media')], {
           opacity: 0, y: 90, duration: 1, stagger: 0.12, ease: 'power3.out',
