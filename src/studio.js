@@ -35,12 +35,30 @@ function parseHash(hash) {
   }
 }
 
+const CAR_MODELS = {
+  gr86: `${import.meta.env.BASE_URL}models/toyota-gr86.glb`,
+  porsche: `${import.meta.env.BASE_URL}models/porsche-911.glb`,
+}
+
 async function initViewer() {
   const container = document.getElementById('car-canvas')
-  const viewer = await createCarViewer(container).catch(() => null)
+  const viewer = await createCarViewer(container, CAR_MODELS.gr86).catch(() => null)
   if (!viewer) {
     container.classList.add('viewer-fallback')
     return
+  }
+
+  const carSelect = document.getElementById('car-select')
+  if (carSelect) {
+    for (const btn of carSelect.querySelectorAll('button')) {
+      btn.addEventListener('click', async () => {
+        if (btn.getAttribute('aria-selected') === 'true') return
+        for (const b of carSelect.children) b.setAttribute('aria-selected', String(b === btn))
+        try {
+          await viewer.setCar(CAR_MODELS[btn.dataset.car])
+        } catch { /* keep the current car on load failure */ }
+      })
+    }
   }
 
   const lang = getSavedLanguage()

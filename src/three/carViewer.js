@@ -55,8 +55,7 @@ function findBodyMeshes(root) {
   return meshes.filter((m) => m.material === paintMaterial)
 }
 
-async function loadCar() {
-  const url = `${import.meta.env.BASE_URL}models/car.glb`
+async function loadCar(url) {
   const loader = new GLTFLoader()
   loader.setMeshoptDecoder(MeshoptDecoder)
   const gltf = await loader.loadAsync(url)
@@ -98,7 +97,7 @@ async function loadCar() {
   return { object, bodyMeshes: findBodyMeshes(object) }
 }
 
-export async function createCarViewer(container) {
+export async function createCarViewer(container, modelUrl) {
   if (!supportsWebGL()) {
     container.classList.add('viewer-fallback')
     return null
@@ -204,17 +203,51 @@ export async function createCarViewer(container) {
   controls.addEventListener('start', () => { controls.autoRotate = false; clearTimeout(idleTimer) })
   controls.addEventListener('end', () => { idleTimer = setTimeout(() => { controls.autoRotate = true }, 3000) })
 
+  const bodyMaterial = new THREE.MeshPhysicalMaterial({ color: 0xFA9C20, roughness: 0.12, clearcoat: 1.0, clearcoatRoughness: 0.04 })
+
+  function attach(nextCar) {
+    nextCar.object.traverse((o) => { if (o.isMesh) o.castShadow = true })
+    for (const mesh of nextCar.bodyMeshes) mesh.material = bodyMaterial
+    scene.add(nextCar.object)
+  }
+
+  // frees the previous model's GPU resources; the shared wrap material survives
+  function dispose(object) {
+    object.traverse((o) => {
+      if (!o.isMesh) return
+      o.geometry?.dispose()
+      const mats = Array.isArray(o.material) ? o.material : [o.material]
+      for (const m of mats) {
+        if (!m || m === bodyMaterial) continue
+        for (const key of ['map', 'normalMap', 'roughnessMap', 'metalnessMap', 'aoMap', 'emissiveMap']) m[key]?.dispose()
+        m.dispose()
+      }
+    })
+  }
+
   let car
   try {
-    car = await loadCar()
+    car = await loadCar(modelUrl)
   } catch {
     car = buildFallbackCar()
   }
-  car.object.traverse((o) => { if (o.isMesh) o.castShadow = true })
-  scene.add(car.object)
+  attach(car)
 
-  const bodyMaterial = new THREE.MeshPhysicalMaterial({ color: 0xFA9C20, roughness: 0.12, clearcoat: 1.0, clearcoatRoughness: 0.04 })
-  for (const mesh of car.bodyMeshes) mesh.material = bodyMaterial
+  let swapping = false
+  async function setCar(url) {
+    if (swapping) return
+    swapping = true
+    try {
+      const next = await loadCar(url)
+      scene.remove(car.object)
+      dispose(car.object)
+      car = next
+      attach(car)
+      if (window.__scene3d) window.__scene3d.car = car
+    } finally {
+      swapping = false
+    }
+  }
 
   function applyWrap(params) {
     bodyMaterial.color.set(params.color)
@@ -242,5 +275,5 @@ export async function createCarViewer(container) {
 
   if (new URLSearchParams(location.search).has('debug3d')) window.__scene3d = { scene, car, camera, controls, THREE }
 
-  return { applyWrap }
+  return { applyWrap, setCar }
 }
