@@ -388,17 +388,37 @@ body.menu-open { overflow: hidden; }
   font-family: var(--font-display); letter-spacing: 0.04em;
 }
 .flow-media { grid-column: 2; aspect-ratio: 16 / 9; }
+.flow-visual { display: none; }
 @media (min-width: 940px) {
-  .flow { display: grid; grid-template-columns: 330px minmax(0, 1fr); }
+  /* process breaks out to a wider container so the pinned visual gets real
+     size without starving the text column */
+  #process .story-inner { max-width: 1320px; }
+  .flow { display: grid; grid-template-columns: minmax(240px, 330px) minmax(0, 1fr) clamp(300px, 30vw, 440px); column-gap: 3.5rem; }
+  /* .flow-visual precedes .flow-steps in the DOM — place columns explicitly */
+  .flow-dial { grid-column: 1; grid-row: 1; }
+  .flow-steps { grid-column: 2; grid-row: 1; }
+  .flow-visual { grid-column: 3; grid-row: 1; }
   /* one step fills most of the viewport at a time and slides up past the
-     dial, orionix-style */
+     dial, orionix-style; the visual stays pinned on the right and crossfades */
   .flow-steps { gap: 0; }
   .flow-step {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 44%); gap: 1.2rem 3.5rem;
+    grid-template-columns: minmax(0, 1fr); gap: 1.2rem 0;
     min-height: 76vh; align-content: center;
   }
   .flow-no { display: none; }
-  .flow-media { grid-column: auto; }
+  .flow-media { display: none; }
+  .flow-visual { display: block; position: relative; }
+  .flow-visual-stack {
+    position: sticky; top: calc(50vh - 140px);
+    aspect-ratio: 16 / 10; overflow: hidden;
+  }
+  .flow-visual-stack img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0; transition: opacity 0.5s ease;
+  }
+  .flow-visual-stack img.is-active { opacity: 1; }
+  /* before the first step reaches the middle, show its image as a default */
+  .flow-visual-stack:not(:has(.is-active)) img:first-child { opacity: 1; }
   /* the dial: an oversized circle whose right arc passes through the column.
      The negative block margins stretch the sticky range just enough that the
      circle is already centred when the first step reaches the viewport middle

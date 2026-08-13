@@ -93,7 +93,11 @@ export function initMotion() {
         // next at the exact moment its bottom (= next step's top) crosses the
         // viewport middle, so precisely one step and one dial number are lit
         ScrollTrigger.create({ trigger: step, start: 'top 50%', end: 'bottom 50%',
-          toggleClass: { targets: [step, flow.querySelector(`.dial-no[data-step="${i}"]`)].filter(Boolean), className: 'is-active' } })
+          toggleClass: { targets: [
+            step,
+            flow.querySelector(`.dial-no[data-step="${i}"]`),
+            flow.querySelector(`.flow-visual img[data-step="${i}"]`),
+          ].filter(Boolean), className: 'is-active' } })
         gsap.from([step.querySelector('.flow-copy'), step.querySelector('.flow-media')], {
           opacity: 0, y: 90, duration: 1, stagger: 0.12, ease: 'power3.out',
           scrollTrigger: { trigger: step, start: 'top 78%' } })
