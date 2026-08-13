@@ -61,9 +61,17 @@ async function loadCar() {
   loader.setMeshoptDecoder(MeshoptDecoder)
   const gltf = await loader.loadAsync(url)
   const object = gltf.scene
-  // Normalize: ~4 units long, centered on origin, resting on y=0.
-  const box = new THREE.Box3().setFromObject(object)
-  const size = box.getSize(new THREE.Vector3())
+  // Normalize: ~4 units long, centered on origin, resting on y=0. The stage
+  // dressing (contact shadow, camera framing) assumes the car's length runs
+  // along Z, so rotate models that are authored X-long.
+  let box = new THREE.Box3().setFromObject(object)
+  let size = box.getSize(new THREE.Vector3())
+  if (size.x > size.z) {
+    object.rotation.y = Math.PI / 2
+    object.updateMatrixWorld(true)
+    box = new THREE.Box3().setFromObject(object)
+    size = box.getSize(new THREE.Vector3())
+  }
   const scale = 4 / Math.max(size.x, size.z)
   object.scale.setScalar(scale)
   const scaled = new THREE.Box3().setFromObject(object)
@@ -120,11 +128,13 @@ export async function createCarViewer(container) {
   keyLight.shadow.camera.top = 4
   keyLight.shadow.camera.bottom = -4
   scene.add(keyLight)
-  // amber rim light lives on layer 1 so it kisses the car but not the floor
-  const rimLight = new THREE.DirectionalLight(0xFA9C20, 2.2)
-  rimLight.position.set(-4, 2, -4)
-  rimLight.layers.set(1)
-  scene.add(rimLight)
+  // amber rim: a focused spot aimed at the body so it kisses the car without
+  // washing the floor gold (light.layers can't scope per-object — three.js
+  // only tests light layers against the camera)
+  const rimLight = new THREE.SpotLight(0xFA9C20, 45, 12, 0.3, 0.6, 2)
+  rimLight.position.set(-4.5, 2.8, -4.5)
+  rimLight.target.position.set(0, 0.85, 0)
+  scene.add(rimLight, rimLight.target)
 
   // visible studio ground: wide dark floor + turntable stage with an amber rim;
   // linear fog fades the floor edge into the page background
@@ -178,7 +188,6 @@ export async function createCarViewer(container) {
 
   const camera = new THREE.PerspectiveCamera(36, container.clientWidth / container.clientHeight, 0.1, 100)
   camera.position.set(4.4, 1.45, 4.7)
-  camera.layers.enable(1)
 
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
@@ -201,7 +210,7 @@ export async function createCarViewer(container) {
   } catch {
     car = buildFallbackCar()
   }
-  car.object.traverse((o) => { if (o.isMesh) { o.castShadow = true; o.layers.enable(1) } })
+  car.object.traverse((o) => { if (o.isMesh) o.castShadow = true })
   scene.add(car.object)
 
   const bodyMaterial = new THREE.MeshPhysicalMaterial({ color: 0xFA9C20, roughness: 0.12, clearcoat: 1.0, clearcoatRoughness: 0.04 })
