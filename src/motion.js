@@ -89,7 +89,10 @@ export function initMotion() {
           scrollTrigger: { trigger: flow.querySelector('.flow-steps'), start: 'top 12%', end: 'bottom 88%', scrub: true } })
       }
       steps.forEach((step, i) => {
-        ScrollTrigger.create({ trigger: step, start: 'top 60%', end: 'bottom 40%',
+        // 50%/50% makes the active windows exclusive: a step hands over to the
+        // next at the exact moment its bottom (= next step's top) crosses the
+        // viewport middle, so precisely one step and one dial number are lit
+        ScrollTrigger.create({ trigger: step, start: 'top 50%', end: 'bottom 50%',
           toggleClass: { targets: [step, flow.querySelector(`.dial-no[data-step="${i}"]`)].filter(Boolean), className: 'is-active' } })
         gsap.from([step.querySelector('.flow-copy'), step.querySelector('.flow-media')], {
           opacity: 0, y: 90, duration: 1, stagger: 0.12, ease: 'power3.out',

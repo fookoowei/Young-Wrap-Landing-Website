@@ -389,7 +389,7 @@ body.menu-open { overflow: hidden; }
 }
 .flow-media { grid-column: 2; aspect-ratio: 16 / 9; }
 @media (min-width: 940px) {
-  .flow { display: grid; grid-template-columns: 240px minmax(0, 1fr); }
+  .flow { display: grid; grid-template-columns: 330px minmax(0, 1fr); }
   /* one step fills most of the viewport at a time and slides up past the
      dial, orionix-style */
   .flow-steps { gap: 0; }
@@ -399,8 +399,11 @@ body.menu-open { overflow: hidden; }
   }
   .flow-no { display: none; }
   .flow-media { grid-column: auto; }
-  /* the dial: an oversized circle whose right arc passes through the column */
-  .flow-dial { display: block; position: relative; }
+  /* the dial: an oversized circle whose right arc passes through the column.
+     The negative block margins stretch the sticky range just enough that the
+     circle is already centred when the first step reaches the viewport middle
+     (needed while radius 380px exceeds half a 76vh step) */
+  .flow-dial { display: block; position: relative; margin-block: min(0px, calc(38vh - 380px)); }
   /* top offset centres the circle (and so the amber dot + active number)
      on the viewport's vertical middle while the steps scroll past */
   .dial-wrap {
@@ -423,6 +426,12 @@ body.menu-open { overflow: hidden; }
   .dial-no[data-step="2"] { --a: 36; }
   .dial-no[data-step="3"] { --a: 54; }
   .dial-no[data-step="4"] { --a: 72; }
+}
+/* only the active step reads at full strength; neighbours fade back
+   (motion contexts only — reduced-motion never gets is-active toggles) */
+@media (min-width: 940px) and (prefers-reduced-motion: no-preference) {
+  .flow-step { opacity: 0.18; transition: opacity 0.45s ease; }
+  .flow-step.is-active { opacity: 1; }
   .dial-no.is-active { color: var(--ink); opacity: 1; font-size: 1.9rem; }
   .dial-dot {
     position: absolute; top: 50%; left: 100%;
