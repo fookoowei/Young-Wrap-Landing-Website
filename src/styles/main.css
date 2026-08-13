@@ -315,8 +315,12 @@ body.menu-open { overflow: hidden; }
 .story { max-width: none; margin: 0; padding: 5.5rem 1.4rem; background: var(--carbon); }
 /* overflow: clip (not hidden, which would break the sticky dial) keeps the
    dial's oversized circle and the bleeding visual inside the section without
-   adding horizontal scroll */
-.story--tint { background: var(--panel); overflow: clip; }
+   adding horizontal scroll; position: relative anchors the full-bleed
+   background visual */
+.story--tint { background: var(--panel); overflow: clip; position: relative; }
+/* the inner container must stay unpositioned so the background visual
+   resolves against the full-bleed section; lift just the heading above it */
+.story--tint .eyebrow, .story--tint .panel-title { position: relative; z-index: 1; }
 .story-inner { max-width: var(--maxw); margin: 0 auto; }
 .panel-title {
   font-family: var(--font-display); font-style: italic; font-weight: 700;
@@ -339,6 +343,9 @@ body.menu-open { overflow: hidden; }
   .edit-block { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 5rem; }
   .edit-block--flip .edit-copy { order: 2; }
   .edit-block--flip .edit-media { order: 1; }
+  /* image matches the height of the copy beside it instead of forcing its
+     own aspect ratio */
+  .edit-media { aspect-ratio: auto; height: 100%; }
 }
 
 /* ---------- studio teaser banner ---------- */
@@ -395,14 +402,7 @@ body.menu-open { overflow: hidden; }
   /* process breaks out to a wider container so the pinned visual gets real
      size without starving the text column */
   #process .story-inner { max-width: 1320px; }
-  .flow {
-    --vcol: clamp(320px, 32vw, 480px);
-    display: grid; grid-template-columns: minmax(240px, 330px) minmax(0, 1fr) var(--vcol); column-gap: 3.5rem;
-  }
-  /* .flow-visual precedes .flow-steps in the DOM — place columns explicitly */
-  .flow-dial { grid-column: 1; grid-row: 1; }
-  .flow-steps { grid-column: 2; grid-row: 1; }
-  .flow-visual { grid-column: 3; grid-row: 1; }
+  .flow { position: static; }
   /* one step fills most of the viewport at a time and slides up past the
      dial, orionix-style; the visual stays pinned on the right and crossfades */
   .flow-steps { gap: 0; }
@@ -412,38 +412,39 @@ body.menu-open { overflow: hidden; }
   }
   .flow-no { display: none; }
   .flow-media { display: none; }
-  .flow-visual { display: block; position: relative; }
-  /* the "window": a corner-cut framed panel that stays put while each step's
-     image rises into view behind the mat */
-  /* 16:9 frame matches the photos' native ratio, so the full composition
-     shows instead of a zoomed crop */
+  /* experiment: the step photo becomes the section background — a sticky
+     full-viewport layer behind the content, crossfading per step, darkened
+     by a scrim so the copy stays readable */
+  .flow-visual { display: block; position: absolute; inset: 0; z-index: 0; }
   .flow-visual-stack {
-    position: sticky; top: calc(50vh - var(--vcol) * 0.28125);
-    width: 100%; aspect-ratio: 16 / 9; overflow: hidden;
-    background: var(--carbon); border: 1px solid var(--line); padding: 10px;
+    position: sticky; top: 0; height: 100vh; width: 100%;
+    overflow: hidden;
+  }
+  .flow-visual-stack::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(rgba(10, 10, 11, 0.92), rgba(10, 10, 11, 0.78) 50%, rgba(10, 10, 11, 0.92));
   }
   .flow-visual-stack img {
-    /* replaced elements keep their intrinsic size under inset alone —
-       width/height must be set explicitly */
-    position: absolute; top: 10px; left: 10px;
-    width: calc(100% - 20px); height: calc(100% - 20px);
-    object-fit: cover; opacity: 0; transform: translateY(5%);
-    transition: opacity 0.55s ease, transform 0.55s ease;
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    object-fit: cover; opacity: 0; transform: scale(1.04);
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
   .flow-visual-stack img.is-active { opacity: 1; transform: none; }
   /* before the first step reaches the middle, show its image as a default */
   .flow-visual-stack:not(:has(.is-active)) img:first-child { opacity: 1; }
-  /* the dial: an oversized circle whose right arc passes through the column.
-     The negative block margins stretch the sticky range just enough that the
-     circle is already centred when the first step reaches the viewport middle
-     (needed while radius 380px exceeds half a 76vh step) */
-  .flow-dial { display: block; position: relative; margin-block: min(0px, calc(38vh - 380px)); }
+  /* content centred over the background */
+  .flow-steps { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; text-align: center; }
+  .flow-copy p { margin-inline: auto; }
+  .flow-tags { justify-content: center; }
+  /* the dial: an oversized circle whose right arc sweeps in from the section's
+     left edge, floating above the background visual */
+  .flow-dial { display: block; position: absolute; inset: 0 auto 0 0; width: 330px; z-index: 1; }
   /* top offset centres the circle (and so the amber dot + active number)
      on the viewport's vertical middle while the steps scroll past */
   .dial-wrap {
     position: sticky; top: calc(50vh - 380px);
     width: 760px; height: 760px;
-    margin-left: -600px;
+    margin-left: -560px;
     pointer-events: none;
   }
   .dial-ring { position: absolute; inset: 0; color: var(--line); }
