@@ -312,7 +312,9 @@ body.menu-open { overflow: hidden; }
    compact editorial blocks (scgroup / orionix style) — natural height,
    simple scroll reveals, no sticky stacking */
 .story { max-width: none; margin: 0; padding: 5.5rem 1.4rem; background: var(--carbon); }
-.story--tint { background: var(--panel); }
+/* clip-path (not overflow, which would break the sticky dial) keeps the
+   process dial's oversized circle from bleeding into neighbouring sections */
+.story--tint { background: var(--panel); clip-path: inset(0); }
 .story-inner { max-width: var(--maxw); margin: 0 auto; }
 .panel-title {
   font-family: var(--font-display); font-style: italic; font-weight: 700;
@@ -355,27 +357,21 @@ body.menu-open { overflow: hidden; }
 .teaser-inner .panel-body { margin-inline: auto; }
 .teaser-inner .btn { margin-top: 2rem; }
 
-/* process: orionix-style vertical flow — numbered steps down an amber
-   progress rail that fills as you scroll */
-.flow { position: relative; margin-top: 3.5rem; display: flex; flex-direction: column; gap: 4.5rem; }
-.flow-rail {
-  position: absolute; left: 1.7rem; top: 0.4rem; bottom: 0.4rem; width: 2px;
-  background: var(--line);
-}
-.flow-rail-progress {
-  position: absolute; inset: 0; background: var(--orange);
-  transform: scaleY(0); transform-origin: top;
-}
+/* process: orionix-style flow — a huge circle arc sweeps through the left
+   column; the numbers ride the arc and rotate past a fixed amber dot as the
+   steps scroll by */
+.flow { position: relative; margin-top: 3.5rem; }
+.flow-steps { display: flex; flex-direction: column; gap: 5.5rem; }
+.flow-dial { display: none; }
 .flow-step {
   position: relative; display: grid; align-items: center;
-  grid-template-columns: 5.6rem minmax(0, 1fr);
+  grid-template-columns: 3.2rem minmax(0, 1fr);
   gap: 1.2rem 0;
 }
 .flow-no {
-  align-self: start; justify-self: start; position: relative; z-index: 1;
+  align-self: start; justify-self: start;
   font-family: var(--font-display); font-style: italic; font-weight: 700;
-  font-size: 1.5rem; line-height: 1; color: var(--ink-dim);
-  background: var(--panel); padding: 0.55rem 0.35rem;
+  font-size: 1.4rem; line-height: 1; color: var(--ink-dim); padding-top: 0.4rem;
   transition: color 0.35s ease;
 }
 .flow-step.is-active .flow-no { color: var(--orange); }
@@ -385,18 +381,56 @@ body.menu-open { overflow: hidden; }
   font-size: clamp(1.5rem, 2.6vw, 2.2rem); margin-bottom: 0.6rem;
 }
 .flow-copy p { color: var(--ink-dim); font-size: 1rem; max-width: 46ch; }
+.flow-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.15rem; }
+.flow-tags span {
+  border: 1px solid var(--line); border-radius: 999px;
+  padding: 0.32rem 0.9rem; font-size: 0.8rem; color: var(--ink-dim);
+  font-family: var(--font-display); letter-spacing: 0.04em;
+}
 .flow-media { grid-column: 2; aspect-ratio: 16 / 9; }
 @media (min-width: 940px) {
-  .flow-step { grid-template-columns: 5.6rem minmax(0, 1fr) minmax(0, 42%); gap: 1.2rem 3.5rem; }
+  .flow { display: grid; grid-template-columns: 240px minmax(0, 1fr); }
+  .flow-step { grid-template-columns: minmax(0, 1fr) minmax(0, 44%); gap: 1.2rem 3.5rem; }
+  .flow-no { display: none; }
   .flow-media { grid-column: auto; }
+  /* the dial: an oversized circle whose right arc passes through the column */
+  .flow-dial { display: block; position: relative; }
+  .dial-wrap {
+    position: sticky; top: 50vh;
+    width: 760px; height: 760px;
+    margin-left: -600px; margin-top: -380px;
+    pointer-events: none;
+  }
+  .dial-ring { position: absolute; inset: 0; color: var(--line); }
+  .dial-rotor { position: absolute; inset: 0; will-change: transform; }
+  .dial-no {
+    position: absolute; top: 50%; left: 50%;
+    font-family: var(--font-display); font-style: italic; font-weight: 700;
+    font-size: 1.35rem; color: var(--ink-dim); opacity: 0.55;
+    transform: translate(-50%, -50%) rotate(calc(var(--a) * 1deg)) translateX(380px) translateX(2.4rem);
+    transition: color 0.3s ease, opacity 0.3s ease, font-size 0.3s ease;
+  }
+  .dial-no[data-step="0"] { --a: 0; }
+  .dial-no[data-step="1"] { --a: 18; }
+  .dial-no[data-step="2"] { --a: 36; }
+  .dial-no[data-step="3"] { --a: 54; }
+  .dial-no[data-step="4"] { --a: 72; }
+  .dial-no.is-active { color: var(--ink); opacity: 1; font-size: 1.9rem; }
+  .dial-dot {
+    position: absolute; top: 50%; left: 100%;
+    width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%;
+    background: var(--orange); box-shadow: 0 0 12px rgba(250, 156, 32, 0.7);
+  }
 }
 
 /* ---------- about ---------- */
-.about-stats { display: flex; gap: 3rem; flex-wrap: wrap; margin-top: 2.5rem; }
+.about-stats {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.8rem 2.5rem; margin-top: 2.5rem;
+}
 .stat {
   display: flex; flex-direction: column; gap: 0.2rem;
   padding-top: 1rem; border-top: 1px solid var(--line);
-  min-width: 150px;
 }
 .stat-num {
   font-family: var(--font-display); font-style: italic; font-weight: 700;
@@ -417,12 +451,11 @@ body.menu-open { overflow: hidden; }
   padding-bottom: 0.9rem; border-bottom: 1px solid var(--line);
 }
 .svc-grid { display: grid; gap: 1.8rem; padding-top: 2rem; }
-.svc-titles h3 {
+.svc-title {
   font-family: var(--font-display); font-style: italic; font-weight: 700;
   text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.1;
   font-size: clamp(1.5rem, 2.8vw, 2.3rem);
 }
-.svc-titles h3 + h3 { margin-top: 1.1rem; }
 .svc-desc { color: var(--ink-dim); font-size: 0.98rem; max-width: 40ch; }
 .svc-media { aspect-ratio: 16 / 10; }
 @media (min-width: 940px) {

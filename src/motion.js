@@ -74,18 +74,22 @@ export function initMotion() {
       gsap.fromTo(img, { yPercent: -5 }, { yPercent: 5, ease: 'none',
         scrollTrigger: { trigger: img.closest('.edit-media'), start: 'top bottom', end: 'bottom top', scrub: true } })
     }
-    // process rail fills as the flow scrolls; each step's number lights up
-    // while the step is in view
+    // process dial: the number wheel rotates so the active step's number sits
+    // on the amber dot; each step still highlights while in view
     const flow = document.querySelector('.flow')
     if (flow) {
-      gsap.to('.flow-rail-progress', { scaleY: 1, ease: 'none',
-        scrollTrigger: { trigger: flow, start: 'top 65%', end: 'bottom 55%', scrub: true } })
-      for (const step of flow.querySelectorAll('.flow-step')) {
+      const steps = [...flow.querySelectorAll('.flow-step')]
+      const rotor = flow.querySelector('.dial-rotor')
+      if (rotor && steps.length > 1) {
+        gsap.to(rotor, { rotation: -18 * (steps.length - 1), ease: 'none',
+          scrollTrigger: { trigger: flow.querySelector('.flow-steps'), start: 'top center', end: 'bottom center', scrub: true } })
+      }
+      steps.forEach((step, i) => {
         ScrollTrigger.create({ trigger: step, start: 'top 70%', end: 'bottom 30%',
-          toggleClass: { targets: step, className: 'is-active' } })
+          toggleClass: { targets: [step, flow.querySelector(`.dial-no[data-step="${i}"]`)].filter(Boolean), className: 'is-active' } })
         gsap.from(step.querySelector('.flow-copy'), { opacity: 0, y: 36, duration: 0.8, ease: 'power3.out',
           scrollTrigger: { trigger: step, start: 'top 82%' } })
-      }
+      })
     }
   })
   mm.add('(prefers-reduced-motion: reduce)', () => {
