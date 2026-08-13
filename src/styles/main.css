@@ -546,6 +546,8 @@ body.menu-open { overflow: hidden; }
 @media (min-width: 940px) {
   .svc-tabs-layout { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 2.5rem; }
   .svc-panel { grid-template-columns: minmax(0, 1fr) minmax(0, 38%); align-items: center; }
+  /* image stretches to exactly the height of the copy beside it */
+  .svc-panel-media { aspect-ratio: auto; align-self: stretch; height: 100%; }
 }
 
 /* ---------- portfolio carousel (infinite drag loop, drag-to-focus) ---------- */
