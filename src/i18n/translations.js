@@ -141,7 +141,7 @@ export const translations = {
     'services.anything.f4': 'Paddles & gear',
     'services.anything.f5': 'Laptops & consoles',
     'services.anything.f6': 'If it has a surface',
-    'services.anything.title': 'Anything',
+    'services.anything.title': 'Specialty & Custom Wraps',
   },
   zh: {
     'menu.home': '首页',
@@ -285,6 +285,6 @@ export const translations = {
     'services.anything.f4': '球拍与装备',
     'services.anything.f5': '笔电游戏机',
     'services.anything.f6': '有表面就能包',
-    'services.anything.title': '万物皆可包',
+    'services.anything.title': '特殊定制包膜',
   },
 }
