@@ -42,7 +42,7 @@ const CAR_MODELS = {
 
 async function initViewer() {
   const container = document.getElementById('car-canvas')
-  const viewer = await createCarViewer(container, CAR_MODELS.gr86).catch(() => null)
+  const viewer = await createCarViewer(container, CAR_MODELS.porsche).catch(() => null)
   if (!viewer) {
     container.classList.add('viewer-fallback')
     return
@@ -64,7 +64,7 @@ async function initViewer() {
   const lang = getSavedLanguage()
   const parsed = parseHash(location.hash)
 
-  let colorId = WRAP_COLORS[0].id
+  let colorId = 'racing-red'
   let finishId = 'gloss'
   let customHex = null
 
