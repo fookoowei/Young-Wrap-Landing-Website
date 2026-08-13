@@ -105,6 +105,6 @@ export function initMotion() {
     }
   })
   mm.add('(prefers-reduced-motion: reduce)', () => {
-    document.querySelector('.hero-video')?.pause()
+    for (const v of document.querySelectorAll('.hero-video, video.teaser-bg')) v.pause()
   })
 }
