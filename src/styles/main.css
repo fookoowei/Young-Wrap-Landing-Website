@@ -417,9 +417,10 @@ body.menu-open { overflow: hidden; }
     position: sticky; top: 0; height: 100vh; width: 100%;
     overflow: hidden;
   }
+  /* same brightness range as the hero scrim (0.72 peak, 0.45 over the copy) */
   .flow-visual-stack::after {
     content: ''; position: absolute; inset: 0;
-    background: linear-gradient(rgba(10, 10, 11, 0.92), rgba(10, 10, 11, 0.78) 50%, rgba(10, 10, 11, 0.92));
+    background: linear-gradient(rgba(10, 10, 11, 0.72), rgba(10, 10, 11, 0.45) 50%, rgba(10, 10, 11, 0.72));
   }
   .flow-visual-stack img {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
