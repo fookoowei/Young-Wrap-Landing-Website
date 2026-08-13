@@ -398,7 +398,6 @@ body.menu-open { overflow: hidden; }
 }
 .flow-media { grid-column: 2; aspect-ratio: 16 / 9; }
 .flow-visual { display: none; }
-.flow-facts { display: none; }
 @media (min-width: 940px) {
   .flow { position: static; }
   /* one step fills most of the viewport at a time and slides up past the
@@ -434,21 +433,6 @@ body.menu-open { overflow: hidden; }
   .flow-steps { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; text-align: center; }
   .flow-copy p { margin-inline: auto; }
   .flow-tags { justify-content: center; }
-  /* right rail: the active step's typical-time fact, mirroring the dial */
-  .flow-facts { display: block; position: absolute; inset: 0 0 0 auto; width: 250px; z-index: 1; }
-  .facts-wrap { position: sticky; top: calc(50vh - 44px); height: 88px; }
-  .flow-fact {
-    position: absolute; right: 2.6rem; top: 0; text-align: right;
-    display: flex; flex-direction: column; gap: 0.3rem;
-    opacity: 0; transform: translateY(14px);
-    transition: opacity 0.45s ease, transform 0.45s ease;
-  }
-  .flow-fact.is-active { opacity: 1; transform: none; }
-  .fact-num {
-    font-family: var(--font-display); font-style: italic; font-weight: 700;
-    font-size: 1.7rem; line-height: 1; color: var(--orange); white-space: nowrap;
-  }
-  .fact-label { color: var(--ink-dim); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.14em; }
   /* the dial: an oversized circle whose right arc sweeps in from the section's
      left edge, floating above the background visual */
   .flow-dial { display: block; position: absolute; inset: 0 auto 0 0; width: 330px; z-index: 1; }
@@ -503,32 +487,65 @@ body.menu-open { overflow: hidden; }
 }
 .stat-label { color: var(--ink-dim); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.08em; }
 
-/* ---------- services (scgroup category rows) ----------
-   centered header, then per-category: small caps label over a full rule,
-   big stacked titles | paragraph | image */
-.svc-head { text-align: center; }
-.svc-head .panel-body { margin-inline: auto; }
-.svc-cat { margin-top: 4rem; }
-.svc-cat-label {
-  font-family: var(--font-display); font-weight: 700; font-style: italic;
-  text-transform: uppercase; letter-spacing: 0.28em;
-  font-size: 0.82rem; color: var(--ink-dim);
-  padding-bottom: 0.9rem; border-bottom: 1px solid var(--line);
-}
-.svc-grid { display: grid; gap: 1.8rem; padding-top: 2rem; }
-.svc-title {
+/* ---------- services (tabbed overview) ----------
+   vertical tab list on the left, detail card with feature list + image on
+   the right */
+.svc-tabs-layout { display: grid; gap: 1.8rem; margin-top: 2.5rem; }
+.svc-tabs { display: flex; flex-direction: column; align-self: start; }
+.svc-tab {
+  display: flex; align-items: center; gap: 0.9rem; text-align: left;
+  background: none; border: none; border-top: 1px solid var(--line);
+  padding: 1.15rem 1rem; cursor: pointer;
   font-family: var(--font-display); font-style: italic; font-weight: 700;
-  text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.1;
-  font-size: clamp(1.5rem, 2.8vw, 2.3rem);
+  text-transform: uppercase; letter-spacing: 0.03em;
+  font-size: 1.02rem; color: var(--ink-dim);
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
-.svc-desc { color: var(--ink-dim); font-size: 0.98rem; max-width: 40ch; }
-.svc-media { aspect-ratio: 16 / 10; }
+.svc-tabs .svc-tab:last-child { border-bottom: 1px solid var(--line); }
+.tab-mark {
+  flex: none; width: 12px; height: 14px; background: var(--ink-dim);
+  clip-path: polygon(0 0, 100% 50%, 0 100%, 0 68%, 38% 50%, 0 32%);
+  transition: background-color 0.2s ease;
+}
+.svc-tab:hover { color: var(--ink); }
+.svc-tab[aria-selected="true"] { color: var(--ink); background: var(--panel); }
+.svc-tab[aria-selected="true"] .tab-mark { background: var(--orange); }
+.svc-panel {
+  background: var(--panel); border: 1px solid var(--line);
+  padding: 2rem; display: grid; gap: 1.8rem;
+  animation: panel-in 0.35s ease;
+}
+@keyframes panel-in { from { opacity: 0; transform: translateY(10px); } }
+.svc-panel[hidden] { display: none; }
+.svc-panel-copy h3 {
+  font-family: var(--font-display); font-style: italic; font-weight: 700;
+  text-transform: uppercase; letter-spacing: -0.01em;
+  font-size: clamp(1.4rem, 2.4vw, 2rem); margin-bottom: 0.7rem;
+}
+.svc-panel-copy > p { color: var(--ink-dim); font-size: 0.98rem; max-width: 52ch; }
+.svc-features {
+  list-style: none; display: grid; grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 1.6rem; margin-top: 1.4rem; padding-top: 1.4rem;
+  border-top: 1px solid var(--line);
+}
+.svc-features li {
+  display: flex; align-items: center; gap: 0.6rem;
+  color: var(--ink); font-size: 0.92rem;
+}
+.svc-features li::before {
+  content: ''; flex: none; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--orange);
+}
+.svc-panel-media { overflow: hidden; aspect-ratio: 4 / 3; }
+.svc-panel-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.svc-panel-media--pending {
+  display: flex; align-items: center; justify-content: center;
+  background: var(--carbon); border: 1px dashed var(--line);
+}
+.svc-panel-media--pending .svc-mark { width: 64px; height: auto; opacity: 0.3; }
 @media (min-width: 940px) {
-  .svc-grid {
-    grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(0, 5fr);
-    gap: 3.5rem; align-items: start;
-  }
-  .svc-desc { padding-top: 0.4rem; }
+  .svc-tabs-layout { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 2.5rem; }
+  .svc-panel { grid-template-columns: minmax(0, 1fr) minmax(0, 38%); align-items: center; }
 }
 
 /* ---------- portfolio carousel (infinite drag loop, drag-to-focus) ---------- */

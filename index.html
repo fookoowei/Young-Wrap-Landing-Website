@@ -151,15 +151,6 @@
                 <span class="dial-dot"></span>
               </div>
             </div>
-            <div class="flow-facts" aria-hidden="true">
-              <div class="facts-wrap">
-                <div class="flow-fact" data-step="0"><span class="fact-num" data-i18n="process.s1.fact">±30 min</span><span class="fact-label" data-i18n="process.fact.label">Typical time</span></div>
-                <div class="flow-fact" data-step="1"><span class="fact-num" data-i18n="process.s2.fact">Same day</span><span class="fact-label" data-i18n="process.fact.label">Typical time</span></div>
-                <div class="flow-fact" data-step="2"><span class="fact-num" data-i18n="process.s3.fact">1–3 days</span><span class="fact-label" data-i18n="process.fact.label">Typical time</span></div>
-                <div class="flow-fact" data-step="3"><span class="fact-num" data-i18n="process.delivery.fact">Same day</span><span class="fact-label" data-i18n="process.fact.label">Typical time</span></div>
-                <div class="flow-fact" data-step="4"><span class="fact-num" data-i18n="process.s4.fact">Lifetime</span><span class="fact-label" data-i18n="process.fact.label">Typical time</span></div>
-              </div>
-            </div>
             <div class="flow-visual" aria-hidden="true">
               <div class="flow-visual-stack">
                 <img src="images/car-wrap-vinyl-rolls.webp" alt="" data-step="0" loading="lazy" />
@@ -242,56 +233,108 @@
 
       <section id="services" class="story">
         <div class="story-inner">
-          <div class="svc-head">
-            <p class="eyebrow" data-i18n="services.eyebrow">What We Do</p>
-            <h2 class="panel-title" data-reveal data-i18n="services.title">Our Services</h2>
-          </div>
-          <div class="svc-cat">
-            <p class="svc-cat-label">01</p>
-            <div class="svc-grid">
-              <h3 class="svc-title" data-reveal data-i18n="services.wrap.title">Full & Partial Wraps</h3>
-              <p class="svc-desc" data-reveal data-i18n="services.wrap.desc">Premium cast vinyl in any colour and finish. Change the look, protect the original paint.</p>
-              <figure class="media-clip svc-media"><img src="images/gloss-magenta-wrap-mercedes-amg.webp" alt="Gloss magenta full wrap on a Mercedes-AMG hatchback by Young Wrap" loading="lazy" /></figure>
+          <p class="eyebrow" data-i18n="services.eyebrow">What We Do</p>
+          <h2 class="panel-title" data-reveal data-i18n="services.title">Our Services</h2>
+          <div class="svc-tabs-layout" data-reveal>
+            <div class="svc-tabs" role="tablist" aria-label="Services">
+              <button class="svc-tab" id="tab-wrap" role="tab" aria-selected="true" aria-controls="panel-wrap" data-svc="wrap" type="button"><span class="tab-mark" aria-hidden="true"></span><span data-i18n="services.wrap.title">Full & Partial Wraps</span></button>
+              <button class="svc-tab" id="tab-ppf" role="tab" aria-selected="false" aria-controls="panel-ppf" data-svc="ppf" type="button"><span class="tab-mark" aria-hidden="true"></span><span data-i18n="services.ppf.title">Paint Protection Film</span></button>
+              <button class="svc-tab" id="tab-tint" role="tab" aria-selected="false" aria-controls="panel-tint" data-svc="tint" type="button"><span class="tab-mark" aria-hidden="true"></span><span data-i18n="services.tint.title">Window Tint</span></button>
+              <button class="svc-tab" id="tab-coating" role="tab" aria-selected="false" aria-controls="panel-coating" data-svc="coating" type="button"><span class="tab-mark" aria-hidden="true"></span><span data-i18n="services.coating.title">Ceramic Coating</span></button>
+              <button class="svc-tab" id="tab-detailing" role="tab" aria-selected="false" aria-controls="panel-detailing" data-svc="detailing" type="button"><span class="tab-mark" aria-hidden="true"></span><span data-i18n="services.detailing.title">Detailing</span></button>
+              <button class="svc-tab" id="tab-anything" role="tab" aria-selected="false" aria-controls="panel-anything" data-svc="anything" type="button"><span class="tab-mark" aria-hidden="true"></span><span data-i18n="services.anything.title">Anything</span></button>
             </div>
-          </div>
-          <div class="svc-cat">
-            <p class="svc-cat-label">02</p>
-            <div class="svc-grid">
-              <h3 class="svc-title" data-reveal data-i18n="services.ppf.title">Paint Protection Film</h3>
-              <p class="svc-desc" data-reveal data-i18n="services.ppf.desc">Self-healing transparent film that shields your paint from stone chips and scratches.</p>
-              <figure class="media-clip svc-media"><img src="images/satin-chrome-wrap-bmw-5-series.webp" alt="Satin chrome wrapped BMW 5 Series with a flawless protected finish by Young Wrap" loading="lazy" /></figure>
-            </div>
-          </div>
-          <div class="svc-cat">
-            <p class="svc-cat-label">03</p>
-            <div class="svc-grid">
-              <h3 class="svc-title" data-reveal data-i18n="services.tint.title">Window Tint</h3>
-              <p class="svc-desc" data-reveal data-i18n="services.tint.desc">Heat-rejecting films for cooler cabins, privacy and UV protection.</p>
-              <figure class="media-clip svc-media"><img src="images/gloss-black-wrap-tesla-model-y.webp" alt="Gloss black Tesla Model Y with dark tinted windows by Young Wrap" loading="lazy" /></figure>
-            </div>
-          </div>
-          <div class="svc-cat">
-            <p class="svc-cat-label">04</p>
-            <div class="svc-grid">
-              <h3 class="svc-title" data-reveal data-i18n="services.coating.title">Ceramic Coating</h3>
-              <p class="svc-desc" data-reveal data-i18n="services.coating.desc">Deep gloss and long-lasting protection that makes every wash easier.</p>
-              <figure class="media-clip svc-media"><img src="images/ceramic-coating-water-beading.webp" alt="Water beading on a freshly coated glossy black car panel" loading="lazy" /></figure>
-            </div>
-          </div>
-          <div class="svc-cat">
-            <p class="svc-cat-label">05</p>
-            <div class="svc-grid">
-              <h3 class="svc-title" data-reveal data-i18n="services.detailing.title">Detailing</h3>
-              <p class="svc-desc" data-reveal data-i18n="services.detailing.desc">Interior and exterior deep cleaning to showroom standard.</p>
-              <figure class="media-clip svc-media"><img src="images/car-detailing-foam-wash.webp" alt="Thick foam wash sheeting off a dark car panel during detailing at Young Wrap" loading="lazy" /></figure>
-            </div>
-          </div>
-          <div class="svc-cat">
-            <p class="svc-cat-label">06</p>
-            <div class="svc-grid">
-              <h3 class="svc-title" data-reveal data-i18n="services.anything.title">Anything</h3>
-              <p class="svc-desc" data-reveal data-i18n="services.anything">Not just cars — we've wrapped pickleball paddles, vans, boats, even aircraft. If it has a surface, we'll wrap it.</p>
-              <figure class="media-clip svc-media"><img src="images/car-wrap-vinyl-rolls.webp" alt="Shelves of colourful car wrap vinyl rolls ready for any project at Young Wrap" loading="lazy" /></figure>
+            <div class="svc-panels">
+              <div class="svc-panel cut-corners" role="tabpanel" id="panel-wrap" aria-labelledby="tab-wrap" data-svc="wrap">
+                <div class="svc-panel-copy">
+                  <h3 data-i18n="services.wrap.title">Full & Partial Wraps</h3>
+                  <p data-i18n="services.wrap.desc">Premium cast vinyl in any colour and finish. Change the look, protect the original paint.</p>
+                  <ul class="svc-features">
+                    <li data-i18n="services.wrap.f1">Full colour change</li>
+                    <li data-i18n="services.wrap.f2">Partial accents</li>
+                    <li data-i18n="services.wrap.f3">Gloss · matte · satin</li>
+                    <li data-i18n="services.wrap.f4">Chrome delete</li>
+                    <li data-i18n="services.wrap.f5">Stripes & livery</li>
+                    <li data-i18n="services.wrap.f6">Paint-safe removal</li>
+                  </ul>
+                </div>
+                <div class="svc-panel-media svc-panel-media--pending"><img class="svc-mark" src="logo/yw-mark.png" alt="" loading="lazy" /></div>
+              </div>
+              <div class="svc-panel cut-corners" role="tabpanel" id="panel-ppf" aria-labelledby="tab-ppf" data-svc="ppf" hidden>
+                <div class="svc-panel-copy">
+                  <h3 data-i18n="services.ppf.title">Paint Protection Film</h3>
+                  <p data-i18n="services.ppf.desc">Self-healing transparent film that shields your paint from stone chips and scratches.</p>
+                  <ul class="svc-features">
+                    <li data-i18n="services.ppf.f1">Self-healing film</li>
+                    <li data-i18n="services.ppf.f2">Stone-chip shield</li>
+                    <li data-i18n="services.ppf.f3">High-impact zones</li>
+                    <li data-i18n="services.ppf.f4">Full-front or full-body</li>
+                    <li data-i18n="services.ppf.f5">Invisible finish</li>
+                    <li data-i18n="services.ppf.f6">Yellowing-resistant</li>
+                  </ul>
+                </div>
+                <div class="svc-panel-media svc-panel-media--pending"><img class="svc-mark" src="logo/yw-mark.png" alt="" loading="lazy" /></div>
+              </div>
+              <div class="svc-panel cut-corners" role="tabpanel" id="panel-tint" aria-labelledby="tab-tint" data-svc="tint" hidden>
+                <div class="svc-panel-copy">
+                  <h3 data-i18n="services.tint.title">Window Tint</h3>
+                  <p data-i18n="services.tint.desc">Heat-rejecting films for cooler cabins, privacy and UV protection.</p>
+                  <ul class="svc-features">
+                    <li data-i18n="services.tint.f1">Heat rejection</li>
+                    <li data-i18n="services.tint.f2">UV protection</li>
+                    <li data-i18n="services.tint.f3">Privacy shades</li>
+                    <li data-i18n="services.tint.f4">Cooler cabin</li>
+                    <li data-i18n="services.tint.f5">Glare reduction</li>
+                    <li data-i18n="services.tint.f6">JPJ-compliant options</li>
+                  </ul>
+                </div>
+                <div class="svc-panel-media svc-panel-media--pending"><img class="svc-mark" src="logo/yw-mark.png" alt="" loading="lazy" /></div>
+              </div>
+              <div class="svc-panel cut-corners" role="tabpanel" id="panel-coating" aria-labelledby="tab-coating" data-svc="coating" hidden>
+                <div class="svc-panel-copy">
+                  <h3 data-i18n="services.coating.title">Ceramic Coating</h3>
+                  <p data-i18n="services.coating.desc">Deep gloss and long-lasting protection that makes every wash easier.</p>
+                  <ul class="svc-features">
+                    <li data-i18n="services.coating.f1">Deep gloss</li>
+                    <li data-i18n="services.coating.f2">Hydrophobic beading</li>
+                    <li data-i18n="services.coating.f3">Easier washes</li>
+                    <li data-i18n="services.coating.f4">Chemical resistance</li>
+                    <li data-i18n="services.coating.f5">Multi-year protection</li>
+                    <li data-i18n="services.coating.f6">Wheels & glass add-ons</li>
+                  </ul>
+                </div>
+                <div class="svc-panel-media svc-panel-media--pending"><img class="svc-mark" src="logo/yw-mark.png" alt="" loading="lazy" /></div>
+              </div>
+              <div class="svc-panel cut-corners" role="tabpanel" id="panel-detailing" aria-labelledby="tab-detailing" data-svc="detailing" hidden>
+                <div class="svc-panel-copy">
+                  <h3 data-i18n="services.detailing.title">Detailing</h3>
+                  <p data-i18n="services.detailing.desc">Interior and exterior deep cleaning to showroom standard.</p>
+                  <ul class="svc-features">
+                    <li data-i18n="services.detailing.f1">Interior deep clean</li>
+                    <li data-i18n="services.detailing.f2">Leather & fabric care</li>
+                    <li data-i18n="services.detailing.f3">Paint decontamination</li>
+                    <li data-i18n="services.detailing.f4">Machine polish</li>
+                    <li data-i18n="services.detailing.f5">Engine bay</li>
+                    <li data-i18n="services.detailing.f6">Showroom finish</li>
+                  </ul>
+                </div>
+                <div class="svc-panel-media"><img src="images/car-detailing-foam-wash.webp" alt="Thick foam wash sheeting off a dark car panel during detailing at Young Wrap" loading="lazy" /></div>
+              </div>
+              <div class="svc-panel cut-corners" role="tabpanel" id="panel-anything" aria-labelledby="tab-anything" data-svc="anything" hidden>
+                <div class="svc-panel-copy">
+                  <h3 data-i18n="services.anything.title">Anything</h3>
+                  <p data-i18n="services.anything">Not just cars — we've wrapped pickleball paddles, vans, boats, even aircraft. If it has a surface, we'll wrap it.</p>
+                  <ul class="svc-features">
+                    <li data-i18n="services.anything.f1">Vans & trucks</li>
+                    <li data-i18n="services.anything.f2">Boats & jetskis</li>
+                    <li data-i18n="services.anything.f3">Bikes & helmets</li>
+                    <li data-i18n="services.anything.f4">Paddles & gear</li>
+                    <li data-i18n="services.anything.f5">Laptops & consoles</li>
+                    <li data-i18n="services.anything.f6">If it has a surface</li>
+                  </ul>
+                </div>
+                <div class="svc-panel-media svc-panel-media--pending"><img class="svc-mark" src="logo/yw-mark.png" alt="" loading="lazy" /></div>
+              </div>
             </div>
           </div>
         </div>
