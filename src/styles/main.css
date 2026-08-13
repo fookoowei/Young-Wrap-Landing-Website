@@ -390,15 +390,23 @@ body.menu-open { overflow: hidden; }
 .flow-media { grid-column: 2; aspect-ratio: 16 / 9; }
 @media (min-width: 940px) {
   .flow { display: grid; grid-template-columns: 240px minmax(0, 1fr); }
-  .flow-step { grid-template-columns: minmax(0, 1fr) minmax(0, 44%); gap: 1.2rem 3.5rem; }
+  /* one step fills most of the viewport at a time and slides up past the
+     dial, orionix-style */
+  .flow-steps { gap: 0; }
+  .flow-step {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 44%); gap: 1.2rem 3.5rem;
+    min-height: 76vh; align-content: center;
+  }
   .flow-no { display: none; }
   .flow-media { grid-column: auto; }
   /* the dial: an oversized circle whose right arc passes through the column */
   .flow-dial { display: block; position: relative; }
+  /* top offset centres the circle (and so the amber dot + active number)
+     on the viewport's vertical middle while the steps scroll past */
   .dial-wrap {
-    position: sticky; top: 50vh;
+    position: sticky; top: calc(50vh - 380px);
     width: 760px; height: 760px;
-    margin-left: -600px; margin-top: -380px;
+    margin-left: -600px;
     pointer-events: none;
   }
   .dial-ring { position: absolute; inset: 0; color: var(--line); }

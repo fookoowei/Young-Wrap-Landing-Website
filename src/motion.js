@@ -81,14 +81,19 @@ export function initMotion() {
       const steps = [...flow.querySelectorAll('.flow-step')]
       const rotor = flow.querySelector('.dial-rotor')
       if (rotor && steps.length > 1) {
+        // scrub runs exactly from "first step centred" (top of the list is
+        // half a 76vh step above the viewport middle: 50% - 38% = 12%) to
+        // "last step centred" (bottom at 50% + 38% = 88%), so each number
+        // lands on the dot as its step crosses the middle
         gsap.to(rotor, { rotation: -18 * (steps.length - 1), ease: 'none',
-          scrollTrigger: { trigger: flow.querySelector('.flow-steps'), start: 'top center', end: 'bottom center', scrub: true } })
+          scrollTrigger: { trigger: flow.querySelector('.flow-steps'), start: 'top 12%', end: 'bottom 88%', scrub: true } })
       }
       steps.forEach((step, i) => {
-        ScrollTrigger.create({ trigger: step, start: 'top 70%', end: 'bottom 30%',
+        ScrollTrigger.create({ trigger: step, start: 'top 60%', end: 'bottom 40%',
           toggleClass: { targets: [step, flow.querySelector(`.dial-no[data-step="${i}"]`)].filter(Boolean), className: 'is-active' } })
-        gsap.from(step.querySelector('.flow-copy'), { opacity: 0, y: 36, duration: 0.8, ease: 'power3.out',
-          scrollTrigger: { trigger: step, start: 'top 82%' } })
+        gsap.from([step.querySelector('.flow-copy'), step.querySelector('.flow-media')], {
+          opacity: 0, y: 90, duration: 1, stagger: 0.12, ease: 'power3.out',
+          scrollTrigger: { trigger: step, start: 'top 78%' } })
       })
     }
   })
