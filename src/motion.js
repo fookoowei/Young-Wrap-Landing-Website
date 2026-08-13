@@ -69,24 +69,6 @@ export function initMotion() {
         .from(clip.querySelector('img'), { scale: 1.25, duration: 1.4, ease: 'power2.out' }, 0)
     }
   })
-  // desktop: as each sticky panel is covered by the next, it recedes behind a
-  // darkening veil (opacity + transform only — cheap to composite, no filter)
-  mm.add('(prefers-reduced-motion: no-preference) and (min-width: 940px)', () => {
-    const panels = gsap.utils.toArray('.panel')
-    const cleanups = []
-    panels.forEach((panel, i) => {
-      const next = panels[i + 1]
-      if (!next) return
-      const veil = document.createElement('div')
-      veil.className = 'panel-veil'
-      panel.append(veil)
-      cleanups.push(() => veil.remove())
-      const trig = { trigger: next, start: 'top bottom', end: 'top top', scrub: true }
-      gsap.to(panel, { scale: 0.97, transformOrigin: 'center top', ease: 'none', scrollTrigger: trig })
-      gsap.to(veil, { opacity: 0.65, ease: 'power1.in', scrollTrigger: trig })
-    })
-    return () => { for (const fn of cleanups) fn() }
-  })
   mm.add('(prefers-reduced-motion: reduce)', () => {
     document.querySelector('.hero-video')?.pause()
   })

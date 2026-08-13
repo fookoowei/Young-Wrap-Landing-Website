@@ -18,13 +18,16 @@ export function initCursor() {
   addEventListener('pointerover', (e) => {
     const pill = e.target.closest('[data-cursor]')
     const interactive = e.target.closest('a, button, input, select, textarea, .swatch, .finish-btn')
-    if (pill) { label.textContent = LABELS[pill.dataset.cursor] ?? ''; ring.classList.add('is-pill') }
-    else ring.classList.remove('is-pill')
+    if (pill) {
+      label.textContent = LABELS[pill.dataset.cursor] ?? ''
+      ring.classList.add('is-pill')
+      ring.classList.toggle('has-arrows', pill.dataset.cursor === 'drag')
+    } else ring.classList.remove('is-pill', 'has-arrows')
     const hover = Boolean(interactive) && !pill
     ring.classList.toggle('is-hover', hover)
     rsx(hover ? 1.6 : 1); rsy(hover ? 1.6 : 1)
   })
   addEventListener('pointerout', (e) => {
-    if (e.target.closest('[data-cursor]')) { ring.classList.remove('is-pill'); label.textContent = '' }
+    if (e.target.closest('[data-cursor]')) { ring.classList.remove('is-pill', 'has-arrows'); label.textContent = '' }
   })
 }

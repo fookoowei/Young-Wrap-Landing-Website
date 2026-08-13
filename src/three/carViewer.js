@@ -183,7 +183,10 @@ export async function createCarViewer(container) {
   const controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
   controls.enablePan = false
-  controls.enableZoom = false
+  controls.enableZoom = true
+  controls.minDistance = 3.4
+  controls.maxDistance = 9
+  controls.zoomSpeed = 0.7
   controls.maxPolarAngle = Math.PI / 2.05
   controls.target.set(0, 0.58, 0)
   controls.autoRotate = true
@@ -228,7 +231,7 @@ export async function createCarViewer(container) {
     renderer.render(scene, camera)
   })
 
-  if (new URLSearchParams(location.search).has('debug3d')) window.__scene3d = { scene, car, THREE }
+  if (new URLSearchParams(location.search).has('debug3d')) window.__scene3d = { scene, car, camera, controls, THREE }
 
   return { applyWrap }
 }
