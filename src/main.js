@@ -1,6 +1,7 @@
 import gsap from 'gsap'
 import './styles/main.css'
-import { SHOP } from './config.js'
+import { SHOP, wireWaTextLinks } from './config.js'
+import { initCookieNotice } from './cookie-notice.js'
 import { initLanguageToggle } from './i18n/i18n.js'
 import { initCarousel } from './carousel.js'
 import { initServiceTabs } from './services.js'
@@ -54,7 +55,10 @@ function wireShopLinks() {
   }
   document.querySelector('.shop-address').textContent = SHOP.addressLine
   const mapEmbed = document.querySelector('.map-embed')
-  if (mapEmbed) mapEmbed.src = SHOP.mapsEmbedSrc
+  if (mapEmbed) {
+    mapEmbed.addEventListener('load', () => mapEmbed.closest('.map-wrap')?.classList.add('is-loaded'))
+    mapEmbed.src = SHOP.mapsEmbedSrc
+  }
   const menuPhone = document.querySelector('.menu-phone')
   if (menuPhone) menuPhone.textContent = SHOP.phoneDisplay
 }
@@ -83,6 +87,7 @@ for (const kol of SHOP.kols) {
   iframe.setAttribute('allowtransparency', 'true')
   const crop = document.createElement('div')
   crop.className = 'kol-embed-crop'
+  iframe.addEventListener('load', () => crop.classList.add('is-loaded'))
   crop.append(iframe)
   card.append(handle, crop)
   kolGrid.append(card)
@@ -97,3 +102,5 @@ initMenu()
 initHeaderScroll()
 initCursor()
 initQuoteForm(SHOP)
+wireWaTextLinks()
+initCookieNotice()

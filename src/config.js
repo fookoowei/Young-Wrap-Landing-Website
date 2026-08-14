@@ -32,3 +32,10 @@ export const SHOP = {
     },
   ],
 }
+
+export const waLink = (text) => `${SHOP.whatsappUrl}?text=${encodeURIComponent(text)}`
+
+// CTA anchors carry their prefilled message in data-wa-text
+export function wireWaTextLinks() {
+  for (const el of document.querySelectorAll('[data-wa-text]')) el.href = waLink(el.dataset.waText)
+}

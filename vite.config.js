@@ -5,7 +5,7 @@ export default defineConfig({
   base: './',
   build: {
     target: 'es2020',
-    rollupOptions: { input: { main: resolve(__dirname, 'index.html'), studio: resolve(__dirname, 'studio.html') } },
+    rollupOptions: { input: { main: resolve(__dirname, 'index.html'), studio: resolve(__dirname, 'studio.html'), privacy: resolve(__dirname, 'privacy.html') } },
   },
   test: { environment: 'node' },
 })

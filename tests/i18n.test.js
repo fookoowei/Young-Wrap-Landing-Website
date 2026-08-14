@@ -4,7 +4,7 @@ import { describe, it, expect } from 'vitest'
 import { translations } from '../src/i18n/translations.js'
 import { t } from '../src/i18n/i18n.js'
 
-const HTML_PAGES = ['index.html', 'studio.html']
+const HTML_PAGES = ['index.html', 'studio.html', 'privacy.html']
 
 function keysUsedInHtml() {
   const keys = new Set()

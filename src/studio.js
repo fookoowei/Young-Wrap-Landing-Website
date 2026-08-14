@@ -1,5 +1,6 @@
 import './styles/main.css'
-import { SHOP } from './config.js'
+import { SHOP, waLink, wireWaTextLinks } from './config.js'
+import { initCookieNotice } from './cookie-notice.js'
 import { initLanguageToggle, getSavedLanguage, t } from './i18n/i18n.js'
 import { WRAP_COLORS, WRAP_FINISHES, GROUP_ORDER, wrapParams } from './three/wraps.js'
 import { createCarViewer } from './three/carViewer.js'
@@ -47,6 +48,7 @@ async function initViewer() {
     container.classList.add('viewer-fallback')
     return
   }
+  container.classList.add('is-ready')
 
   const carSelect = document.getElementById('car-select')
   if (carSelect) {
@@ -54,9 +56,12 @@ async function initViewer() {
       btn.addEventListener('click', async () => {
         if (btn.getAttribute('aria-selected') === 'true') return
         for (const b of carSelect.children) b.setAttribute('aria-selected', String(b === btn))
+        container.classList.remove('is-ready')
         try {
           await viewer.setCar(CAR_MODELS[btn.dataset.car])
         } catch { /* keep the current car on load failure */ }
+        container.classList.add('is-ready')
+        syncBook()
       })
     }
   }
@@ -85,9 +90,21 @@ async function initViewer() {
     history.replaceState(null, '', `#c=${currentHex().slice(1)}&f=${finishId}`)
   }
 
+  // "Book This Wrap" opens WhatsApp with the current car/colour/finish and a
+  // shareable preview link (the hash restores the exact look)
+  const bookBtn = document.getElementById('book-wrap')
+  const syncBook = () => {
+    if (!bookBtn) return
+    const carName = carSelect?.querySelector('[aria-selected="true"]')?.textContent.trim() ?? 'the car'
+    const colorName = customHex ? `custom colour ${customHex}` : WRAP_COLORS.find((c) => c.id === colorId)?.name.en ?? currentHex()
+    const finishName = WRAP_FINISHES[finishId]?.label.en ?? finishId
+    bookBtn.href = waLink(`Hi Young Wrap! I designed a wrap in your 3D studio — ${carName} in ${colorName} (${finishName} finish). Preview: ${location.href}`)
+  }
+
   const update = () => {
     viewer.applyWrap(wrapParams(colorId, finishId, customHex))
     syncHash()
+    syncBook()
   }
 
   const swatchButtons = []
@@ -186,3 +203,5 @@ initSmoothScroll()
 initMenu()
 initHeaderScroll()
 initCursor()
+wireWaTextLinks()
+initCookieNotice()

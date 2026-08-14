@@ -3,17 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>3D Wrap Studio — Young Wrap</title>
-    <meta name="description" content="Preview wrap colours and finishes on a 3D car — Young Wrap, Kota Kemuning." />
+    <title>Privacy & Cookies — Young Wrap</title>
+    <meta name="description" content="How Young Wrap handles your data, cookies and third-party content on this website." />
     <meta name="theme-color" content="#0a0a0b" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="3D Wrap Studio — Young Wrap" />
-    <meta property="og:description" content="Preview wrap colours and finishes on a 3D car — Young Wrap, Kota Kemuning." />
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,500;1,700&family=Saira:wght@400;500;600&display=swap" rel="stylesheet" />
-    <script type="module" src="/src/studio.js"></script>
+    <script type="module" src="/src/privacy.js"></script>
   </head>
   <body>
     <header class="site-header">
@@ -42,29 +39,40 @@
     </aside>
 
     <main id="top">
-      <section class="studio">
-        <p class="eyebrow" data-i18n="configurator.title">Design Your Wrap</p>
-        <p class="section-sub" data-i18n="hero.hint">Drag to spin the car — tap a color to preview a wrap</p>
-        <div class="studio-layout">
-          <div id="car-canvas" data-cursor="spin" data-lenis-prevent role="img" aria-label="Interactive 3D car preview">
-            <img class="viewer-fallback-img" src="images/gloss-grey-orange-stripe-wrap-ford-mustang.webp" alt="Wrapped car preview" hidden />
-            <div class="canvas-loader" aria-hidden="true"><span data-i18n="studio.loading">Loading 3D model…</span></div>
-          </div>
-          <div class="wrap-picker">
-            <p class="picker-title" data-i18n="picker.car">Car</p>
-            <div id="car-select" class="finishes" role="listbox" aria-label="Car model">
-              <button class="finish-btn" type="button" role="option" aria-selected="true" data-car="porsche">911 Turbo</button>
-              <button class="finish-btn" type="button" role="option" aria-selected="false" data-car="gr86">GR86</button>
-            </div>
-            <div id="wrap-colors" class="swatch-groups" role="listbox" aria-label="Wrap colors"></div>
-            <p class="picker-title" data-i18n="picker.finish">Finish</p>
-            <div id="wrap-finishes" class="finishes" role="listbox" aria-label="Wrap finishes"></div>
-            <a id="book-wrap" class="btn btn-primary picker-cta" href="#" data-wa-text="Hi Young Wrap! I'd like to book a wrap consultation." target="_blank" rel="noopener" data-i18n="studio.book">Book This Wrap</a>
-          </div>
-        </div>
+      <section class="legal">
+        <p class="eyebrow" data-i18n="privacy.eyebrow">Legal</p>
+        <h1 class="panel-title" data-i18n="privacy.title">Privacy &amp; Cookies</h1>
+        <p class="legal-updated" data-i18n="privacy.updated">Last updated: 14 August 2026</p>
+        <p data-i18n="privacy.intro">This page explains what happens to your data when you use this website. The short version: we keep it minimal — no accounts, no tracking cookies, no ads, and nothing you type here is stored on our servers.</p>
+
+        <h2 data-i18n="privacy.s1.title">Who we are</h2>
+        <p data-i18n="privacy.s1.body">Young Wrap is a car wrap and detailing shop at 42, Jalan Anggerik Vanilla Ad 31/Ad, Kota Kemuning, 40460 Shah Alam, Selangor, Malaysia. This website is our online showcase and the easiest way to reach us.</p>
+
+        <h2 data-i18n="privacy.s2.title">What we collect</h2>
+        <p data-i18n="privacy.s2.body">This website has no accounts and no database. When you fill in the quote form or tap a WhatsApp button, your message is composed on your own device and opens in WhatsApp — nothing is sent or saved anywhere until you press send inside WhatsApp. We then receive it as a normal WhatsApp chat, handled under WhatsApp's own terms and privacy policy.</p>
+
+        <h2 data-i18n="privacy.s3.title">Cookies &amp; local storage</h2>
+        <p data-i18n="privacy.s3.body">This site sets no tracking cookies of its own. Your browser's local storage is used only to remember your language choice (English or 中文), that you've already seen the intro animation this session, and that you've dismissed the cookie notice. This data never leaves your device and you can clear it at any time through your browser settings.</p>
+
+        <h2 data-i18n="privacy.s4.title">Third-party content</h2>
+        <p data-i18n="privacy.s4.body">Some parts of this site load content from third parties: Instagram posts from creators we've worked with, a Google Maps view of our shop, and web fonts from Google Fonts. When those load, your browser contacts those providers, which may log technical data (such as your IP address) and set their own cookies under their policies:</p>
+        <ul class="legal-links">
+          <li><a href="https://privacycenter.instagram.com/policy" target="_blank" rel="noopener">Instagram / Meta Privacy Policy</a></li>
+          <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy (Maps &amp; Fonts)</a></li>
+          <li><a href="https://www.whatsapp.com/legal/privacy-policy" target="_blank" rel="noopener">WhatsApp Privacy Policy</a></li>
+        </ul>
+
+        <h2 data-i18n="privacy.s5.title">Analytics &amp; advertising</h2>
+        <p data-i18n="privacy.s5.body">We run no analytics, no ad trackers and no marketing pixels on this website.</p>
+
+        <h2 data-i18n="privacy.s6.title">Your choices</h2>
+        <p data-i18n="privacy.s6.body">You can block third-party cookies in your browser without breaking this site. If you'd like anything you've sent us over WhatsApp corrected or deleted, just ask in the same chat and we'll take care of it.</p>
+
+        <h2 data-i18n="privacy.s7.title">Contact</h2>
+        <p data-i18n="privacy.s7.body">Questions about this policy? Message us on WhatsApp at +60 19-600 2910 or visit us at the shop.</p>
+        <p><a data-shop="whatsapp" href="#" target="_blank" rel="noopener" data-i18n="privacy.contactCta">Chat with us on WhatsApp</a></p>
       </section>
     </main>
-
 
     <a class="whatsapp-fab" data-shop="whatsapp" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
       <svg viewBox="0 0 24 24" width="26" height="26" fill="#0a0a0b" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg>
@@ -78,7 +86,6 @@
         <a data-shop="whatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.4 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2 1-2.3c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5s.8 1.9.8 2c.1.1.1.3 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1l1.9.9c.2.1.4.2.4.3.1.1.1.6-.1 1.2Z"/></svg></a>
       </div>
       <p class="footer-tagline" data-i18n="footer.tagline">Your neighbourhood wrap installer — Wraps | PPF | Tint | Coating</p>
-      <p class="footer-credit">3D preview cars based on "<a href="https://sketchfab.com/3d-models/toyota-gr86-zn8-4919d14eba9640599e838230e8e5ed74" target="_blank" rel="noopener">Toyota GR86 (ZN8)</a>" by <a href="https://sketchfab.com/Car2022" target="_blank" rel="noopener">Mona x Supercars</a> and "<a href="https://sketchfab.com/3d-models/free-1975-porsche-911-930-turbo-8568d9d14a994b9cae59499f0dbed21e" target="_blank" rel="noopener">FREE 1975 Porsche 911 (930) Turbo</a>" by <a href="https://sketchfab.com/lionsharp" target="_blank" rel="noopener">Lionsharp Studios</a>, both licensed under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC-BY-4.0</a></p>
       <p class="footer-legal"><a href="privacy.html" data-i18n="footer.privacy">Privacy &amp; Cookies</a></p>
       <p class="footer-copy">© 2026 Young Wrap</p>
     </footer>
